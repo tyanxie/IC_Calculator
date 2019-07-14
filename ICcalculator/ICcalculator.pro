@@ -26,13 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        ICcalculator.cpp
+        ICcalculator.cpp \
+    science.cpp
 
 HEADERS += \
-        ICcalculator.h
+        ICcalculator.h \
+    science.h
 
 FORMS += \
-        ICcalculator.ui
+        ICcalculator.ui \
+    science.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
