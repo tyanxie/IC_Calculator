@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Calculator</class>
+ <widget class="QMainWindow" name="Calculator">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Calculator</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextUnderIcon</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>400</width>
+     <height>17</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionscience"/>
+   <addaction name="actionrelationship"/>
+   <addaction name="actiondate"/>
+   <addaction name="actionequation"/>
+   <addaction name="actioncomplex"/>
+   <addaction name="actiongame"/>
+   <addaction name="actionregression"/>
+   <addaction name="actionprogrammer"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionscience">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/science.ico</normaloff>:/images/science.ico</iconset>
+   </property>
+   <property name="text">
+    <string>科学</string>
+   </property>
+   <property name="toolTip">
+    <string>科学</string>
+   </property>
+  </action>
+  <action name="actionprogrammer">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/programmer.ico</normaloff>:/images/programmer.ico</iconset>
+   </property>
+   <property name="text">
+    <string>程序员</string>
+   </property>
+   <property name="toolTip">
+    <string>程序员</string>
+   </property>
+  </action>
+  <action name="actionrelationship">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/relationship.ico</normaloff>:/images/relationship.ico</iconset>
+   </property>
+   <property name="text">
+    <string>辈分</string>
+   </property>
+   <property name="toolTip">
+    <string>辈分计算器</string>
+   </property>
+  </action>
+  <action name="actionequation">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/binary.ico</normaloff>:/images/binary.ico</iconset>
+   </property>
+   <property name="text">
+    <string>解方程</string>
+   </property>
+   <property name="toolTip">
+    <string>二元一次一元二次</string>
+   </property>
+  </action>
+  <action name="actiondate">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/date2.ico</normaloff>:/images/date2.ico</iconset>
+   </property>
+   <property name="text">
+    <string>日期计算</string>
+   </property>
+   <property name="toolTip">
+    <string>日期计算</string>
+   </property>
+  </action>
+  <action name="actioncomplex">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/complex.ico</normaloff>:/images/complex.ico</iconset>
+   </property>
+   <property name="text">
+    <string>复数</string>
+   </property>
+   <property name="toolTip">
+    <string>复数计算</string>
+   </property>
+  </action>
+  <action name="actionregression">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/maxt.ico</normaloff>:/images/maxt.ico</iconset>
+   </property>
+   <property name="text">
+    <string>回归分析</string>
+   </property>
+   <property name="toolTip">
+    <string>回归分析</string>
+   </property>
+  </action>
+  <action name="actiongame">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/game.ico</normaloff>:/images/game.ico</iconset>
+   </property>
+   <property name="text">
+    <string>小游戏</string>
+   </property>
+   <property name="toolTip">
+    <string>小游戏</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
