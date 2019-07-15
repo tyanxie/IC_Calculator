@@ -380,3 +380,17 @@ QString science::Calculate(QQueue<QString> &exp)
         {return "Error";
         }
 }
+
+void science::on_PI_clicked()
+{
+    str = "3.14159";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_E_clicked()
+{
+    str = "2.71828";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}

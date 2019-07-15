@@ -69,6 +69,10 @@ private slots:
         QString Calculate(QString& l,QString& op,QString& r);
         QString ValidNum(QString str);
 
+        void on_PI_clicked();
+
+        void on_E_clicked();
+
 private:
     Ui::science *ui;
     QLabel *label;
