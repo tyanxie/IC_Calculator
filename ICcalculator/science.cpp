@@ -155,7 +155,7 @@ void science::on_Clear_clicked()
 
 void science::on_Equal_clicked()
 {
-    str = "=";
+        str = "=";
         strall.append(str);
         ui->textEditIN->setText(strall);
 
@@ -163,6 +163,8 @@ void science::on_Equal_clicked()
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
         QString temp3 = Calculate(temp2);
 
+        strall="";
+        ui->textEditIN->setText(strall);
         ui->textEditOUT->setText(temp3);
 }
 QQueue<QString> science::prefixExpression(const QString &exp)
