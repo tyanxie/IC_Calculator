@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_science_t {
-    QByteArrayData data[36];
-    char stringdata0[509];
+    QByteArrayData data[37];
+    char stringdata0[531];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -67,7 +67,8 @@ QT_MOC_LITERAL(31, 467, 1), // "r"
 QT_MOC_LITERAL(32, 469, 8), // "ValidNum"
 QT_MOC_LITERAL(33, 478, 3), // "str"
 QT_MOC_LITERAL(34, 482, 13), // "on_PI_clicked"
-QT_MOC_LITERAL(35, 496, 12) // "on_E_clicked"
+QT_MOC_LITERAL(35, 496, 12), // "on_E_clicked"
+QT_MOC_LITERAL(36, 509, 21) // "on_Involution_clicked"
 
     },
     "science\0on_Seven_clicked\0\0on_Eight_clicked\0"
@@ -84,7 +85,7 @@ QT_MOC_LITERAL(35, 496, 12) // "on_E_clicked"
     "transferToPostfixExpression\0"
     "QQueue<QString>&\0Calculate\0QString&\0"
     "l\0op\0r\0ValidNum\0str\0on_PI_clicked\0"
-    "on_E_clicked"
+    "on_E_clicked\0on_Involution_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -94,7 +95,7 @@ static const uint qt_meta_data_science[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      27,   14, // methods
+      28,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -102,33 +103,34 @@ static const uint qt_meta_data_science[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  149,    2, 0x08 /* Private */,
-       3,    0,  150,    2, 0x08 /* Private */,
-       4,    0,  151,    2, 0x08 /* Private */,
-       5,    0,  152,    2, 0x08 /* Private */,
-       6,    0,  153,    2, 0x08 /* Private */,
-       7,    0,  154,    2, 0x08 /* Private */,
-       8,    0,  155,    2, 0x08 /* Private */,
-       9,    0,  156,    2, 0x08 /* Private */,
-      10,    0,  157,    2, 0x08 /* Private */,
-      11,    0,  158,    2, 0x08 /* Private */,
-      12,    0,  159,    2, 0x08 /* Private */,
-      13,    0,  160,    2, 0x08 /* Private */,
-      14,    0,  161,    2, 0x08 /* Private */,
-      15,    0,  162,    2, 0x08 /* Private */,
-      16,    0,  163,    2, 0x08 /* Private */,
-      17,    0,  164,    2, 0x08 /* Private */,
-      18,    0,  165,    2, 0x08 /* Private */,
-      19,    0,  166,    2, 0x08 /* Private */,
-      20,    0,  167,    2, 0x08 /* Private */,
-      21,    0,  168,    2, 0x08 /* Private */,
-      22,    1,  169,    2, 0x08 /* Private */,
-      25,    1,  172,    2, 0x08 /* Private */,
-      27,    1,  175,    2, 0x08 /* Private */,
-      27,    3,  178,    2, 0x08 /* Private */,
-      32,    1,  185,    2, 0x08 /* Private */,
-      34,    0,  188,    2, 0x08 /* Private */,
-      35,    0,  189,    2, 0x08 /* Private */,
+       1,    0,  154,    2, 0x08 /* Private */,
+       3,    0,  155,    2, 0x08 /* Private */,
+       4,    0,  156,    2, 0x08 /* Private */,
+       5,    0,  157,    2, 0x08 /* Private */,
+       6,    0,  158,    2, 0x08 /* Private */,
+       7,    0,  159,    2, 0x08 /* Private */,
+       8,    0,  160,    2, 0x08 /* Private */,
+       9,    0,  161,    2, 0x08 /* Private */,
+      10,    0,  162,    2, 0x08 /* Private */,
+      11,    0,  163,    2, 0x08 /* Private */,
+      12,    0,  164,    2, 0x08 /* Private */,
+      13,    0,  165,    2, 0x08 /* Private */,
+      14,    0,  166,    2, 0x08 /* Private */,
+      15,    0,  167,    2, 0x08 /* Private */,
+      16,    0,  168,    2, 0x08 /* Private */,
+      17,    0,  169,    2, 0x08 /* Private */,
+      18,    0,  170,    2, 0x08 /* Private */,
+      19,    0,  171,    2, 0x08 /* Private */,
+      20,    0,  172,    2, 0x08 /* Private */,
+      21,    0,  173,    2, 0x08 /* Private */,
+      22,    1,  174,    2, 0x08 /* Private */,
+      25,    1,  177,    2, 0x08 /* Private */,
+      27,    1,  180,    2, 0x08 /* Private */,
+      27,    3,  183,    2, 0x08 /* Private */,
+      32,    1,  190,    2, 0x08 /* Private */,
+      34,    0,  193,    2, 0x08 /* Private */,
+      35,    0,  194,    2, 0x08 /* Private */,
+      36,    0,  195,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -156,6 +158,7 @@ static const uint qt_meta_data_science[] = {
     QMetaType::QString, 0x80000000 | 26,   24,
     QMetaType::QString, 0x80000000 | 28, 0x80000000 | 28, 0x80000000 | 28,   29,   30,   31,
     QMetaType::QString, QMetaType::QString,   33,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -200,6 +203,7 @@ void science::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 25: _t->on_PI_clicked(); break;
         case 26: _t->on_E_clicked(); break;
+        case 27: _t->on_Involution_clicked(); break;
         default: ;
         }
     }
@@ -230,13 +234,13 @@ int science::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 27)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 27;
+        _id -= 28;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 27)
+        if (_id < 28)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 27;
+        _id -= 28;
     }
     return _id;
 }

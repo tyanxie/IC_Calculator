@@ -177,7 +177,7 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                 num += exp[i];
             }
 
-            else if(exp[i]== '(' || exp[i]== ')' || exp[i]== '*' || exp[i]== '/'  )
+            else if(exp[i]== '(' || exp[i]== ')' || exp[i]== '*' || exp[i]== '/'  ||exp[i]=='^')
             {
                 if(!num.isEmpty())
                 {
@@ -194,7 +194,7 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                  num+= exp[i];
                 }
 
-                else if(exp[i-1]=='(' || exp[i-1]=='+' || exp[i-1]=='-' || exp[i-1]=='*' || exp[i-1]=='/')
+                else if(exp[i-1]=='(' || exp[i-1]=='+' || exp[i-1]=='-' || exp[i-1]=='*' || exp[i-1]=='/'||exp[i-1]=='^')
                 {
                  num+= exp[i];
                 }
@@ -246,7 +246,7 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
               stack.push(symbol);//输出
           }
 
-          else if(symbol=="*"||symbol=="/")
+          else if(symbol=="*"||symbol=="/"||symbol=="^")
           {
               while(!stack.isEmpty() && (stack.top()!="(") && (stack.top()!="+") && (stack.top()!="-"))
               {
@@ -299,6 +299,10 @@ QString science::Calculate(QString &l, QString &op, QString &r)
             res = left * right;
         }
 
+        else if(op == "^")
+        {
+            res = pow(left,right);
+        }
         else if(op == "/")
         {
             if( (right>(-0.000000000000001)) && (right<(0.000000000000001)) )   //判断除数为0
@@ -391,6 +395,13 @@ void science::on_PI_clicked()
 void science::on_E_clicked()
 {
     str = "2.71828";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_Involution_clicked()
+{
+    str = "^";
         strall.append(str);
         ui->textEditIN->setText(strall);
 }
