@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include "science.h"
+#include "complex.h"
 namespace Ui {
 class Calculator;
 }
@@ -17,9 +18,14 @@ public:
     explicit Calculator(QWidget *parent = nullptr);
     ~Calculator();
 
+private slots:
+    void open_science();
+    void open_complex();
+
 private:
     Ui::Calculator *ui;
     science *new_science;
+    Complex *new_complex;
 };
 
 #endif // CALCULATOR_H

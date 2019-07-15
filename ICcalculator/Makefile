@@ -206,6 +206,7 @@ Makefile: ICcalculator.pro ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/win32-g+
 		../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/qt_config.prf \
 		../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/toolchain.prf \
 		../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/default_pre.prf \
@@ -379,6 +380,7 @@ Makefile: ICcalculator.pro ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/win32-g+
 ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/qt_config.prf:
 ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/win32-g++/qmake.conf:
 ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/toolchain.prf:
 ../../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/default_pre.prf:

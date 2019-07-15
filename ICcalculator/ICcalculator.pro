@@ -27,15 +27,20 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         ICcalculator.cpp \
-    science.cpp
+    science.cpp \
+    plural.cpp \
+    complex.cpp
 
 HEADERS += \
         ICcalculator.h \
-    science.h
+    science.h \
+    plural.h \
+    complex.h
 
 FORMS += \
         ICcalculator.ui \
-    science.ui
+    science.ui \
+    complex.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
