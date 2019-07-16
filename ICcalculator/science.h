@@ -85,6 +85,8 @@ private slots:
 
         void on_Mod_clicked();
 
+        void on_Log_clicked();
+
 private:
     Ui::science *ui;
     QLabel *label;

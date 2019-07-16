@@ -24,7 +24,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -186,7 +186,7 @@
       <item>
        <widget class="QPushButton" name="Log">
         <property name="text">
-         <string>log</string>
+         <string>ln</string>
         </property>
        </widget>
       </item>

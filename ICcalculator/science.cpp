@@ -161,6 +161,7 @@ void science::on_Equal_clicked()
         strall.remove("os");//cos
         strall.remove("an");//tan
         strall.remove("od");//Mod
+        strall.remove('I');//In
 
         QQueue<QString> temp1 = prefixExpression(strall);
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
@@ -185,7 +186,7 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                     || exp[i]== '*' || exp[i]== '/'
                     ||exp[i] == '^' || exp[i]== 's'
                     ||exp[i] == 'c' || exp[i]== 't'
-                    ||exp[i] == "√" || exp[i]== 'M')
+                    ||exp[i] == "√" || exp[i]== 'M'||exp[i]=='n')
             {
                 if(!num.isEmpty())
                 {
@@ -205,7 +206,8 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                 else if(exp[i-1]=='(' || exp[i-1]=='+'
                         || exp[i-1]=='-' || exp[i-1]=='*'
                         || exp[i-1]=='/'||exp[i-1]=='^'||exp[i-1]=='s'
-                        || exp[i-1]=='c'||exp[i-1]=='t'||exp[i-1]=="√"||exp[i-1]=='M')
+                        || exp[i-1]=='c'||exp[i-1]=='t'||exp[i-1]=="√"
+                        || exp[i-1]=='M'||exp[i-1]=='n')
                 {
                  num+= exp[i];
                 }
@@ -266,7 +268,9 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
               stack.push(symbol);//输出
           }
 
-          else if(symbol=="s"||symbol=="c"||symbol=='t'||symbol=="√"||symbol=='M')
+          else if(symbol=="s"||symbol=="c"
+                  ||symbol=='t'||symbol=="√"
+                  ||symbol=='M'||symbol=='n')
           {
               while(!stack.isEmpty() && (stack.top()!="(")
                     && (stack.top()!="+") && (stack.top()!="-")
@@ -387,7 +391,9 @@ QString science::Calculate(QQueue<QString> &exp)
           symbol = exp.dequeue();   //出队列
           symbol.toDouble(&num_ok);
 
-          if(num_ok==true && symbol!='s' && symbol!='c' && symbol!='t' && symbol!="√")      //数字
+          if(num_ok==true && symbol!='s'
+                  && symbol!='c' && symbol!='t'
+                  && symbol!="√" && symbol!='n')      //数字
           {
             stack.push(symbol);
           }
@@ -426,10 +432,18 @@ QString science::Calculate(QQueue<QString> &exp)
                                 stack.pop();
                                 ret.sprintf("%f",res);
                                }
+                              else if(symbol=="n")
+                               {
+
+                                res = stack.top().toDouble();
+                                res=log(res);
+                                stack.pop();
+                                ret.sprintf("%f",res);
+                               }
                               else if(stack.size()<2)
                                   return "Error";
 
-                              if(symbol!='s' && symbol!='c' && symbol!='t' && symbol!="√")
+                              if(symbol!='s' && symbol!='c' && symbol!='t' && symbol!="√" &&symbol!='n')
                               {
                                   R= stack.pop();
 
@@ -462,7 +476,7 @@ void science::on_PI_clicked()
 
 void science::on_E_clicked()
 {
-    str = "2.71828";
+    str = "2.718281828";
         strall.append(str);
         ui->textEditIN->setText(strall);
 }
@@ -506,6 +520,13 @@ void science::on_Square_clicked()
 void science::on_Mod_clicked()
 {
     str = "Mod";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_Log_clicked()
+{
+    str = "In";
         strall.append(str);
         ui->textEditIN->setText(strall);
 }
