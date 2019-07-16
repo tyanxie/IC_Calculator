@@ -5,8 +5,16 @@
 #include <QQueue>
 #include <QStack>
 
-QString strall;
+QString strall="0";
 QString str;
+
+int fac(int x)
+{
+    int i,sum=1;
+    for(i=1;i<=x;i++)
+        sum*=i;
+    return sum;
+}
 
 science::science(QWidget *parent) :
     QWidget(parent),
@@ -186,7 +194,8 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                     || exp[i]== '*' || exp[i]== '/'
                     ||exp[i] == '^' || exp[i]== 's'
                     ||exp[i] == 'c' || exp[i]== 't'
-                    ||exp[i] == "√" || exp[i]== 'M'||exp[i]=='n')
+                    ||exp[i] == "√" || exp[i]== 'M'
+                    ||exp[i] =='n'  || exp[i]== '!')
             {
                 if(!num.isEmpty())
                 {
@@ -207,7 +216,7 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                         || exp[i-1]=='-' || exp[i-1]=='*'
                         || exp[i-1]=='/'||exp[i-1]=='^'||exp[i-1]=='s'
                         || exp[i-1]=='c'||exp[i-1]=='t'||exp[i-1]=="√"
-                        || exp[i-1]=='M'||exp[i-1]=='n')
+                        || exp[i-1]=='M'||exp[i-1]=='n'||exp[i-1]=='!')
                 {
                  num+= exp[i];
                 }
@@ -249,6 +258,7 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
           }
 
 
+
           //与栈顶运算符进行优先级比较，如果小于等于，将栈顶元素输出，转1；如果大于，将当前元素入栈。
           else if(symbol=="+"||symbol=="-")
           {
@@ -270,7 +280,7 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
 
           else if(symbol=="s"||symbol=="c"
                   ||symbol=='t'||symbol=="√"
-                  ||symbol=='M'||symbol=='n')
+                  ||symbol=='M'||symbol=='n'||symbol=='!')
           {
               while(!stack.isEmpty() && (stack.top()!="(")
                     && (stack.top()!="+") && (stack.top()!="-")
@@ -440,10 +450,20 @@ QString science::Calculate(QQueue<QString> &exp)
                                 stack.pop();
                                 ret.sprintf("%f",res);
                                }
+                              else if(symbol=="!")
+                               {
+
+                                res = stack.top().toDouble();
+                                res=fac(int(res));
+                                stack.pop();
+                                ret.sprintf("%f",res);
+                               }
                               else if(stack.size()<2)
                                   return "Error";
 
-                              if(symbol!='s' && symbol!='c' && symbol!='t' && symbol!="√" &&symbol!='n')
+                              if(symbol!='s' && symbol!='c'
+                                 && symbol!='t' && symbol!="√"
+                                 && symbol!='n' && symbol!='!')
                               {
                                   R= stack.pop();
 
@@ -529,4 +549,21 @@ void science::on_Log_clicked()
     str = "In";
         strall.append(str);
         ui->textEditIN->setText(strall);
+}
+
+void science::on_Factorial_clicked()
+{
+    str = "!";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+
+
+
+
+        QQueue<QString> temp1 = prefixExpression(strall);
+        QQueue<QString> temp2 = transferToPostfixExpression(temp1);
+        QString temp3 = Calculate(temp2);
+
+        strall.clear();
+        ui->textEditOUT->setText(temp3);
 }
