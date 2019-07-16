@@ -6,6 +6,8 @@ Complex::Complex(QWidget *parent) :
     ui(new Ui::Complex)
 {
     ui->setupUi(this);
+
+    QWidget::setTabOrder(ui->input_a2,ui->input_b1);
 }
 
 Complex::~Complex()

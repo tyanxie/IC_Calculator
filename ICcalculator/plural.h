@@ -26,7 +26,14 @@ private:
     Judging J_real, J_complex;
     inline void normal_to_polar() {
         this->mold = sqrt(pow(this->real, 2) + pow(this->complex, 2));
-        this->angle = atan(this->complex / this->real) * RAD;
+        if(fabs(this->real)<1e-8){
+            if(this->complex < 0)
+                this->angle = -90.0;
+            else
+                this->angle = 90.0;
+        }
+        else
+            this->angle = atan(this->complex / this->real) * RAD;
     }
     inline void polar_to_normal() {
         this->real = this->mold * cos(this->angle / RAD);
