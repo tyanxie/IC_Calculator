@@ -5,7 +5,7 @@
 #include <QQueue>
 #include <QStack>
 
-QString strall="0";
+QString strall;
 QString str;
 
 int fac(int x)
@@ -553,12 +553,22 @@ void science::on_Log_clicked()
 
 void science::on_Factorial_clicked()
 {
+
     str = "!";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
 
 
+        if(strall=="")
+        {
+            strall.append("0!");
+            ui->textEditIN->setText(strall);
 
+        }
+        else
+        {
+            strall.append(str);
+            ui->textEditIN->setText(strall);
+
+        }
 
         QQueue<QString> temp1 = prefixExpression(strall);
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
