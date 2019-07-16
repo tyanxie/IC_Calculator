@@ -155,16 +155,17 @@ void science::on_Clear_clicked()
 
 void science::on_Equal_clicked()
 {
-        str = "=";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+
+        ui->textEditIN->setText("");
+        strall.remove("in");//sin去掉in取‘s’为运算符，简便
+        strall.remove("os");//cos
+        strall.remove("an");//tan
 
         QQueue<QString> temp1 = prefixExpression(strall);
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
         QString temp3 = Calculate(temp2);
 
-        strall="";
-        ui->textEditIN->setText(strall);
+        strall.clear();
         ui->textEditOUT->setText(temp3);
 }
 QQueue<QString> science::prefixExpression(const QString &exp)
@@ -179,7 +180,10 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                 num += exp[i];
             }
 
-            else if(exp[i]== '(' || exp[i]== ')' || exp[i]== '*' || exp[i]== '/'  ||exp[i]=='^')
+            else if(exp[i]== '(' || exp[i]== ')'
+                    || exp[i]== '*' || exp[i]== '/'
+                    ||exp[i] == '^' || exp[i]== 's'
+                    ||exp[i] == 'c' || exp[i]== 't')
             {
                 if(!num.isEmpty())
                 {
@@ -196,7 +200,10 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                  num+= exp[i];
                 }
 
-                else if(exp[i-1]=='(' || exp[i-1]=='+' || exp[i-1]=='-' || exp[i-1]=='*' || exp[i-1]=='/'||exp[i-1]=='^')
+                else if(exp[i-1]=='(' || exp[i-1]=='+'
+                        || exp[i-1]=='-' || exp[i-1]=='*'
+                        || exp[i-1]=='/'||exp[i-1]=='^'||exp[i-1]=='s'
+                        || exp[i-1]=='c'||exp[i-1]=='t')
                 {
                  num+= exp[i];
                 }
@@ -251,6 +258,17 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
           else if(symbol=="*"||symbol=="/"||symbol=="^")
           {
               while(!stack.isEmpty() && (stack.top()!="(") && (stack.top()!="+") && (stack.top()!="-"))
+              {
+                  ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
+              }
+              stack.push(symbol);//输出
+          }
+
+          else if(symbol=="s"||symbol=="c"||symbol=='t')
+          {
+              while(!stack.isEmpty() && (stack.top()!="(")
+                    && (stack.top()!="+") && (stack.top()!="-")
+                    && (stack.top()!="*") && (stack.top()!="/"))
               {
                   ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
               }
@@ -355,23 +373,54 @@ QString science::Calculate(QQueue<QString> &exp)
         QString symbol,L,R,op,ret;
         bool num_ok;
 
+        double res;
         while(!exp.isEmpty())
         {
           symbol = exp.dequeue();   //出队列
           symbol.toDouble(&num_ok);
 
-          if(num_ok==true)      //数字
+          if(num_ok==true && symbol!='s' && symbol!='c' && symbol!='t' )      //数字
           {
             stack.push(symbol);
           }
           else                  //运算符
           {
-              if(stack.size()<2)
-                  return "Error";
+                              if(symbol=='s')
+                               {
 
-              R= stack.pop();
-              L= stack.pop();
-              ret = Calculate(L,symbol,R );
+                                res = stack.top().toDouble();
+                                res=sin(res);
+                                stack.pop();
+                                ret.sprintf("%f",res);
+                               }
+                              else if(symbol=='c')
+                               {
+
+                                res = stack.top().toDouble();
+                                res=cos(res);
+                                stack.pop();
+                                ret.sprintf("%f",res);
+                               }
+                              else if(symbol=='t')
+                               {
+
+                                res = stack.top().toDouble();
+                                res=tan(res);
+                                stack.pop();
+                                ret.sprintf("%f",res);
+                               }
+
+                              else if(stack.size()<2)
+                                  return "Error";
+
+                              if(symbol!='s' && symbol!='c' && symbol!='t')
+                              {
+                                  R= stack.pop();
+
+                                  L= stack.pop();
+
+                                  ret = Calculate(L,symbol,R );
+                              }
               if(ret==nullptr)
                   return ret;
 
@@ -383,13 +432,14 @@ QString science::Calculate(QQueue<QString> &exp)
              return ValidNum(stack.pop());
         }
         else
-        {return "Error";
+        {
+            return "Error";
         }
 }
 
 void science::on_PI_clicked()
 {
-    str = "3.14159";
+    str = "3.1415926";
         strall.append(str);
         ui->textEditIN->setText(strall);
 }
@@ -404,6 +454,28 @@ void science::on_E_clicked()
 void science::on_Involution_clicked()
 {
     str = "^";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_Sin_clicked()
+{
+    str = "sin";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+
+}
+
+void science::on_Cos_clicked()
+{
+    str = "cos";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_pushButton_9_clicked()
+{
+    str = "tan";
         strall.append(str);
         ui->textEditIN->setText(strall);
 }

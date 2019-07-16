@@ -75,6 +75,12 @@ private slots:
 
         void on_Involution_clicked();
 
+        void on_Sin_clicked();
+
+        void on_Cos_clicked();
+
+        void on_pushButton_9_clicked();
+
 private:
     Ui::science *ui;
     QLabel *label;
