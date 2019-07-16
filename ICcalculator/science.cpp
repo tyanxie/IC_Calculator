@@ -160,6 +160,7 @@ void science::on_Equal_clicked()
         strall.remove("in");//sin去掉in取‘s’为运算符，简便
         strall.remove("os");//cos
         strall.remove("an");//tan
+        strall.remove("od");//Mod
 
         QQueue<QString> temp1 = prefixExpression(strall);
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
@@ -183,7 +184,8 @@ QQueue<QString> science::prefixExpression(const QString &exp)
             else if(exp[i]== '(' || exp[i]== ')'
                     || exp[i]== '*' || exp[i]== '/'
                     ||exp[i] == '^' || exp[i]== 's'
-                    ||exp[i] == 'c' || exp[i]== 't')
+                    ||exp[i] == 'c' || exp[i]== 't'
+                    ||exp[i] == "√" || exp[i]== 'M')
             {
                 if(!num.isEmpty())
                 {
@@ -203,7 +205,7 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                 else if(exp[i-1]=='(' || exp[i-1]=='+'
                         || exp[i-1]=='-' || exp[i-1]=='*'
                         || exp[i-1]=='/'||exp[i-1]=='^'||exp[i-1]=='s'
-                        || exp[i-1]=='c'||exp[i-1]=='t')
+                        || exp[i-1]=='c'||exp[i-1]=='t'||exp[i-1]=="√"||exp[i-1]=='M')
                 {
                  num+= exp[i];
                 }
@@ -264,7 +266,7 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
               stack.push(symbol);//输出
           }
 
-          else if(symbol=="s"||symbol=="c"||symbol=='t')
+          else if(symbol=="s"||symbol=="c"||symbol=='t'||symbol=="√"||symbol=='M')
           {
               while(!stack.isEmpty() && (stack.top()!="(")
                     && (stack.top()!="+") && (stack.top()!="-")
@@ -323,6 +325,12 @@ QString science::Calculate(QString &l, QString &op, QString &r)
         {
             res = pow(left,right);
         }
+
+        else if(op == "M")
+        {
+            res = int(left) % int(right);
+        }
+
         else if(op == "/")
         {
             if( (right>(-0.000000000000001)) && (right<(0.000000000000001)) )   //判断除数为0
@@ -379,7 +387,7 @@ QString science::Calculate(QQueue<QString> &exp)
           symbol = exp.dequeue();   //出队列
           symbol.toDouble(&num_ok);
 
-          if(num_ok==true && symbol!='s' && symbol!='c' && symbol!='t' )      //数字
+          if(num_ok==true && symbol!='s' && symbol!='c' && symbol!='t' && symbol!="√")      //数字
           {
             stack.push(symbol);
           }
@@ -410,10 +418,18 @@ QString science::Calculate(QQueue<QString> &exp)
                                 ret.sprintf("%f",res);
                                }
 
+                              else if(symbol=="√")
+                               {
+
+                                res = stack.top().toDouble();
+                                res=sqrt(res);
+                                stack.pop();
+                                ret.sprintf("%f",res);
+                               }
                               else if(stack.size()<2)
                                   return "Error";
 
-                              if(symbol!='s' && symbol!='c' && symbol!='t')
+                              if(symbol!='s' && symbol!='c' && symbol!='t' && symbol!="√")
                               {
                                   R= stack.pop();
 
@@ -476,6 +492,20 @@ void science::on_Cos_clicked()
 void science::on_pushButton_9_clicked()
 {
     str = "tan";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_Square_clicked()
+{
+    str = "√";
+        strall.append(str);
+        ui->textEditIN->setText(strall);
+}
+
+void science::on_Mod_clicked()
+{
+    str = "Mod";
         strall.append(str);
         ui->textEditIN->setText(strall);
 }

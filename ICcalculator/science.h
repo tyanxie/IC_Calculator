@@ -81,6 +81,10 @@ private slots:
 
         void on_pushButton_9_clicked();
 
+        void on_Square_clicked();
+
+        void on_Mod_clicked();
+
 private:
     Ui::science *ui;
     QLabel *label;
