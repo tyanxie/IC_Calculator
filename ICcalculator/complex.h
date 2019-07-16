@@ -2,6 +2,7 @@
 #define COMPLEX_H
 
 #include <QWidget>
+#include "plural.h"
 
 namespace Ui {
 class Complex;
@@ -14,6 +15,23 @@ class Complex : public QWidget
 public:
     explicit Complex(QWidget *parent = nullptr);
     ~Complex();
+
+private slots:
+    void on_input_a_combo_currentIndexChanged(int index);
+
+    void on_input_b_combo_currentIndexChanged(int index);
+
+    void on_equal_push_pressed();
+
+    void on_operator_combo_currentIndexChanged(int index);
+
+    void on_input_a1_textChanged(const QString &arg1);
+
+    void on_input_a2_textChanged(const QString &arg1);
+
+    void on_input_b1_textChanged(const QString &arg1);
+
+    void on_input_b2_textChanged(const QString &arg1);
 
 private:
     Ui::Complex *ui;

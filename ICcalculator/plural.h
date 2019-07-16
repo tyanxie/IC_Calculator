@@ -47,15 +47,34 @@ private:
         else
             J_complex = LESS;
     }
+    inline void keep_five_decimal() {
+        this->real = floor(this->real * 100000.00 + 0.5) / 100000.00;
+        this->complex = floor(this->complex * 100000.00 + 0.5) / 100000.00;
+        this->mold = floor(this->mold * 100000.00 + 0.5) / 100000.00;
+        this->angle = floor(this->angle * 100000.00 + 0.5) / 100000.00;
+    }
 
 public:
     Plural(double = 0, double = 0, Form = NORMAL);
     Plural(const Plural&);
+    void set(double = 0, double = 0, Form = NORMAL);
     Plural& operator=(const Plural&);
     Plural operator+(const Plural&)const;
     Plural operator-(const Plural&)const;
     Plural operator*(const Plural&)const;
     Plural operator/(const Plural&)const;
+    inline double get_real(){
+        return this->real;
+    }
+    inline double get_complex(){
+        return this->complex;
+    }
+    inline double get_mold(){
+        return this->mold;
+    }
+    inline double get_angle(){
+        return this->angle;
+    }
 };
 
 #endif // PLURAL_H

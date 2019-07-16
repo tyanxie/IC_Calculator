@@ -17,7 +17,8 @@ Plural::Plural(double a, double b, Form form) {
         this->angle = b;
         polar_to_normal();
     }
-    Judge();
+    this->keep_five_decimal();
+    this->Judge();
 }
 
 Plural::Plural(const Plural& p) {
@@ -27,6 +28,22 @@ Plural::Plural(const Plural& p) {
     this->mold = p.mold;
     this->J_complex = p.J_complex;
     this->J_real = p.J_real;
+}
+
+void Plural::set(double a, double b, Form form){
+    if (form == NORMAL) {
+        this->real = a;
+        this->complex = b;
+        normal_to_polar();
+    }
+    else
+    {
+        this->mold = a;
+        this->angle = b;
+        polar_to_normal();
+    }
+    this->keep_five_decimal();
+    this->Judge();
 }
 
 Plural& Plural::operator=(const Plural& p) {
@@ -46,6 +63,7 @@ Plural Plural::operator+(const Plural& p)const {
     new_p.real = this->real + p.real;
     new_p.complex = this->complex + p.complex;
     new_p.normal_to_polar();
+    new_p.keep_five_decimal();
     new_p.Judge();
     return new_p;
 }
@@ -54,8 +72,9 @@ Plural Plural::operator-(const Plural& p)const {
     Plural new_p;
     new_p.real = this->real - p.real;
     new_p.complex = this->complex - p.complex;
-    new_p.Judge();
     new_p.normal_to_polar();
+    new_p.keep_five_decimal();
+    new_p.Judge();
     return new_p;
 }
 
@@ -64,15 +83,19 @@ Plural Plural::operator*(const Plural& p)const {
     new_p.mold = this->mold * p.mold;
     new_p.angle = this->angle + p.angle;
     new_p.polar_to_normal();
+    new_p.keep_five_decimal();
     new_p.Judge();
     return new_p;
 }
 
 Plural Plural::operator/(const Plural& p)const {
+    if (fabs(p.mold) < 1e-8)
+        throw exception();
     Plural new_p;
     new_p.mold = this->mold / p.mold;
     new_p.angle = this->angle - p.angle;
     new_p.polar_to_normal();
+    new_p.keep_five_decimal();
     new_p.Judge();
     return new_p;
 }
