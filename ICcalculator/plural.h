@@ -27,10 +27,12 @@ private:
     inline void normal_to_polar() {
         this->mold = sqrt(pow(this->real, 2) + pow(this->complex, 2));
         if(fabs(this->real)<1e-8){
-            if(this->complex < 0)
-                this->angle = -90.0;
-            else
+            if(fabs(this->complex) < 1e-8)
+                this->angle = 0;
+            else if(this->complex > 0)
                 this->angle = 90.0;
+            else
+                this->angle = -90.0;
         }
         else
             this->angle = atan(this->complex / this->real) * RAD;

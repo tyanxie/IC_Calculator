@@ -17,7 +17,7 @@ Complex::~Complex()
 
 void Complex::on_input_a_combo_currentIndexChanged(int index)
 {
-    if(index==0){
+    if(index == 0){
         ui->input_a_ra->setText("＋");
         ui->input_a_i->setText("i");
     }
@@ -30,7 +30,7 @@ void Complex::on_input_a_combo_currentIndexChanged(int index)
 
 void Complex::on_input_b_combo_currentIndexChanged(int index)
 {
-    if(index==0){
+    if(index == 0){
         ui->input_b_ra->setText("＋");
         ui->input_b_i->setText("i");
     }
@@ -43,13 +43,13 @@ void Complex::on_input_b_combo_currentIndexChanged(int index)
 
 void Complex::on_equal_push_pressed()
 {
-    Plural a,b,result;
+    Plural a, b, result;
     bool flag = true;
-    if(ui->input_a_combo->currentText()=="直角坐标")
+    if(ui->input_a_combo->currentText() == "直角坐标")
         a.set(ui->input_a1->text().toDouble(),ui->input_a2->text().toDouble(),NORMAL);
     else
         a.set(ui->input_a1->text().toDouble(),ui->input_a2->text().toDouble(),POLAR);
-    if(ui->input_b_combo->currentText()=="直角坐标")
+    if(ui->input_b_combo->currentText() == "直角坐标")
         b.set(ui->input_b1->text().toDouble(),ui->input_b2->text().toDouble(),NORMAL);
     else
         b.set(ui->input_b1->text().toDouble(),ui->input_b2->text().toDouble(),POLAR);
@@ -80,7 +80,7 @@ void Complex::on_equal_push_pressed()
         ui->output_a2->setText(QString::asprintf("%.5lf",fabs(result.get_complex())));
         ui->output_b1->setText(QString::asprintf("%.5lf",result.get_mold()));
         ui->output_b2->setText(QString::asprintf("%.5lf",result.get_angle()));
-        if(result.get_complex()>=0)
+        if(result.get_complex() >= 0)
             ui->label_7->setText("＋");
         else
             ui->label_7->setText("－");

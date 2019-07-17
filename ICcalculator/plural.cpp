@@ -1,6 +1,5 @@
 #include "plural.h"
 #include <iostream>
-#include <exception>
 #include <cmath>
 
 using namespace std;
@@ -89,8 +88,6 @@ Plural Plural::operator*(const Plural& p)const {
 }
 
 Plural Plural::operator/(const Plural& p)const {
-    if (fabs(p.mold) < 1e-8)
-        throw exception();
     Plural new_p;
     new_p.mold = this->mold / p.mold;
     new_p.angle = this->angle - p.angle;
