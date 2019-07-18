@@ -70,28 +70,27 @@ void Complex::on_equal_push_pressed()
         b.set(ui->input_b1->text().toDouble(),ui->input_b2->text().toDouble(),NORMAL);
     else
         b.set(ui->input_b1->text().toDouble(),ui->input_b2->text().toDouble(),POLAR);
-    if(flag)
-        switch (ui->operator_combo->currentIndex()){
-        case 0:
-            result = a + b;
-            break;
-        case 1:
-            result = a - b;
-            break;
-        case 2:
-            result = a * b;
-            break;
-        case 3:
-            if(fabs(b.get_mold())<1e-8){
-                flag = false;
-                break;
-            }
-            result = a / b;
-            break;
-        default:
+    switch (ui->operator_combo->currentIndex()){
+    case 0:
+        result = a + b;
+        break;
+    case 1:
+        result = a - b;
+        break;
+    case 2:
+        result = a * b;
+        break;
+    case 3:
+        if(fabs(b.get_mold())<1e-8){
             flag = false;
             break;
         }
+        result = a / b;
+        break;
+    default:
+        flag = false;
+        break;
+    }
     if(flag){
         ui->output_a1->setText(QString::asprintf("%.5lf",result.get_real()));
         ui->output_a2->setText(QString::asprintf("%.5lf",fabs(result.get_complex())));
