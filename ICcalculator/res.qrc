@@ -13,5 +13,7 @@
         <file>images/relationship.ico</file>
         <file>images/science.ico</file>
         <file>images/science2.ico</file>
+        <file>images/matrix2.ico</file>
+        <file>images/mainIco.ico</file>
     </qresource>
 </RCC>

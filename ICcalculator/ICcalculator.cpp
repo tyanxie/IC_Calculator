@@ -10,6 +10,7 @@ Calculator::Calculator(QWidget *parent) :
     ui(new Ui::Calculator)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/images/mainIco.ico"));
     new_science=new science;
     new_complex=new Complex;
     ui->stackedWidget->addWidget(new_science);

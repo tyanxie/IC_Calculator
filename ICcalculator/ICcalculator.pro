@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = newhomework
+TARGET = ICcalculator
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -49,3 +49,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+RC_ICONS = mainIco.ico

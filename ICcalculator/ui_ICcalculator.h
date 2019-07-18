@@ -34,6 +34,7 @@ public:
     QAction *actioncomplex;
     QAction *actionregression;
     QAction *actiongame;
+    QAction *actionmatrix;
     QWidget *centralWidget;
     QStackedWidget *stackedWidget;
     QWidget *page;
@@ -95,6 +96,11 @@ public:
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/images/game.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actiongame->setIcon(icon7);
+        actionmatrix = new QAction(Calculator);
+        actionmatrix->setObjectName(QStringLiteral("actionmatrix"));
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/images/matrix2.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionmatrix->setIcon(icon8);
         centralWidget = new QWidget(Calculator);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         stackedWidget = new QStackedWidget(centralWidget);
@@ -119,13 +125,14 @@ public:
         Calculator->setStatusBar(statusBar);
 
         mainToolBar->addAction(actionscience);
+        mainToolBar->addAction(actionprogrammer);
         mainToolBar->addAction(actionrelationship);
         mainToolBar->addAction(actiondate);
         mainToolBar->addAction(actionequation);
         mainToolBar->addAction(actioncomplex);
-        mainToolBar->addAction(actiongame);
+        mainToolBar->addAction(actionmatrix);
         mainToolBar->addAction(actionregression);
-        mainToolBar->addAction(actionprogrammer);
+        mainToolBar->addAction(actiongame);
 
         retranslateUi(Calculator);
 
@@ -167,6 +174,7 @@ public:
 #ifndef QT_NO_TOOLTIP
         actiongame->setToolTip(QApplication::translate("Calculator", "\345\260\217\346\270\270\346\210\217", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
+        actionmatrix->setText(QApplication::translate("Calculator", "\347\237\251\351\230\265", Q_NULLPTR));
     } // retranslateUi
 
 };
