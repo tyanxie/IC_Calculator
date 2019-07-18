@@ -14,24 +14,25 @@ class Complex : public QWidget
 
 public:
     explicit Complex(QWidget *parent = nullptr);
+    bool is_all_numbers(const QString&);
     ~Complex();
 
 private slots:
-    void on_input_a_combo_currentIndexChanged(int index);
+    void on_input_a_combo_currentIndexChanged(int);
 
-    void on_input_b_combo_currentIndexChanged(int index);
+    void on_input_b_combo_currentIndexChanged(int);
 
     void on_equal_push_pressed();
 
-    void on_operator_combo_currentIndexChanged(int index);
+    void on_operator_combo_currentIndexChanged(int);
 
-    void on_input_a1_textChanged(const QString &arg1);
+    void on_input_a1_textChanged(const QString &);
 
-    void on_input_a2_textChanged(const QString &arg1);
+    void on_input_a2_textChanged(const QString &);
 
-    void on_input_b1_textChanged(const QString &arg1);
+    void on_input_b1_textChanged(const QString &);
 
-    void on_input_b2_textChanged(const QString &arg1);
+    void on_input_b2_textChanged(const QString &);
 
 private:
     Ui::Complex *ui;

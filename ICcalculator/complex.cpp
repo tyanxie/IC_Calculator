@@ -15,6 +15,13 @@ Complex::~Complex()
     delete ui;
 }
 
+bool Complex::is_all_numbers(const QString &s){
+    for (int i = 0; i < s.length(); ++i)
+        if(!(s[i] >= '0' && s[i] <= '9'))
+            return false;
+    return true;
+}
+
 void Complex::on_input_a_combo_currentIndexChanged(int index)
 {
     if(index == 0){
@@ -44,7 +51,17 @@ void Complex::on_input_b_combo_currentIndexChanged(int index)
 void Complex::on_equal_push_pressed()
 {
     Plural a, b, result;
-    bool flag = true;
+    bool flag = this->is_all_numbers(ui->input_a1->text())&&
+            this->is_all_numbers(ui->input_a2->text())&&
+            this->is_all_numbers(ui->input_b1->text())&&
+            this->is_all_numbers(ui->input_b2->text());
+    if(!flag){
+        ui->output_a1->setText("Error");
+        ui->output_a2->setText("Error");
+        ui->output_b1->setText("Error");
+        ui->output_b2->setText("Error");
+        return;
+    }
     if(ui->input_a_combo->currentText() == "直角坐标")
         a.set(ui->input_a1->text().toDouble(),ui->input_a2->text().toDouble(),NORMAL);
     else
@@ -53,28 +70,28 @@ void Complex::on_equal_push_pressed()
         b.set(ui->input_b1->text().toDouble(),ui->input_b2->text().toDouble(),NORMAL);
     else
         b.set(ui->input_b1->text().toDouble(),ui->input_b2->text().toDouble(),POLAR);
-
-    switch (ui->operator_combo->currentIndex()){
-    case 0:
-        result = a + b;
-        break;
-    case 1:
-        result = a - b;
-        break;
-    case 2:
-        result = a * b;
-        break;
-    case 3:
-        if(fabs(b.get_mold())<1e-8){
+    if(flag)
+        switch (ui->operator_combo->currentIndex()){
+        case 0:
+            result = a + b;
+            break;
+        case 1:
+            result = a - b;
+            break;
+        case 2:
+            result = a * b;
+            break;
+        case 3:
+            if(fabs(b.get_mold())<1e-8){
+                flag = false;
+                break;
+            }
+            result = a / b;
+            break;
+        default:
             flag = false;
             break;
         }
-        result = a / b;
-        break;
-    default:
-        flag = false;
-        break;
-    }
     if(flag){
         ui->output_a1->setText(QString::asprintf("%.5lf",result.get_real()));
         ui->output_a2->setText(QString::asprintf("%.5lf",fabs(result.get_complex())));
