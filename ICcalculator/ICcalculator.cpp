@@ -11,11 +11,20 @@ Calculator::Calculator(QWidget *parent) :
 {
     ui->setupUi(this);
     new_science=new science;
+    new_programmer=new Programmer;
     ui->stackedWidget->addWidget(new_science);
     ui->stackedWidget->setCurrentWidget(new_science);
+    ui->stackedWidget->addWidget(new_programmer);
+
+    connect(ui->actionprogrammer,&QAction::triggered,this,&Calculator::open_programmer);
 }
 
 Calculator::~Calculator()
 {
     delete ui;
+}
+
+void Calculator::open_programmer()
+{
+        ui->stackedWidget->setCurrentWidget(new_programmer);
 }

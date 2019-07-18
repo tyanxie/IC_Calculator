@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include "science.h"
+#include "programmer.h"
 namespace Ui {
 class Calculator;
 }
@@ -17,9 +18,13 @@ public:
     explicit Calculator(QWidget *parent = nullptr);
     ~Calculator();
 
+private slots:
+    void open_programmer();
+
 private:
     Ui::Calculator *ui;
     science *new_science;
+    Programmer *new_programmer;
 };
 
 #endif // CALCULATOR_H
