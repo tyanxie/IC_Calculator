@@ -29,18 +29,23 @@ SOURCES += \
         ICcalculator.cpp \
     science.cpp \
     plural.cpp \
-    complex.cpp
+    complex.cpp \
+    matrix.cpp \
+    matrix_bottom.cpp
 
 HEADERS += \
         ICcalculator.h \
     science.h \
     plural.h \
-    complex.h
+    complex.h \
+    matrix.h \
+    matrix_bottom.h
 
 FORMS += \
         ICcalculator.ui \
     science.ui \
-    complex.ui
+    complex.ui \
+    matrix.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
