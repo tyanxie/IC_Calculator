@@ -100,7 +100,7 @@ public:
         output_grid = new QWidget(Matrix);
         output_grid->setObjectName(QStringLiteral("output_grid"));
         output_grid->setEnabled(true);
-        output_grid->setGeometry(QRect(460, 380, 350, 350));
+        output_grid->setGeometry(QRect(285, 380, 700, 350));
         output_gridLayout = new QGridLayout(output_grid);
         output_gridLayout->setSpacing(3);
         output_gridLayout->setObjectName(QStringLiteral("output_gridLayout"));
@@ -174,7 +174,6 @@ public:
          << QApplication::translate("Matrix", "\357\274\213", Q_NULLPTR)
          << QApplication::translate("Matrix", "\357\274\215", Q_NULLPTR)
          << QApplication::translate("Matrix", "\303\227", Q_NULLPTR)
-         << QApplication::translate("Matrix", "\303\267", Q_NULLPTR)
         );
     } // retranslateUi
 

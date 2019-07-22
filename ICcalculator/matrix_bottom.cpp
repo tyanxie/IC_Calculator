@@ -1,15 +1,22 @@
 #include <exception>
 #include "matrix_bottom.h"
 
-Matrix_bottom::Matrix_bottom(int r, int c) {
+Matrix_bottom::Matrix_bottom(){
+    this->row = 0;
+    this->column = 0;
+    this->data = new double* [this->row];
+    for (int i = 0; i < this->row; i++)
+        this->data[i] = new double[this->column];
+}
+
+Matrix_bottom::Matrix_bottom(int r, int c, QLineEdit **lineEdit) {
     this->row = r;
     this->column = c;
     this->data = new double* [this->row];
-    for (int i = 0; i < this->row; i++)
-    {
+    for (int i = 0; i < this->row; i++){
         this->data[i] = new double[this->column];
-        for (int j = 0; j < this->column; j++)
-            std::cin >> this->data[i][j];
+        for(int j = 0; j < this->column; ++j)
+            this->data[i][j] = lineEdit[i][j].text().toDouble();
     }
 }
 
@@ -51,7 +58,7 @@ Matrix_bottom& Matrix_bottom::operator=(const Matrix_bottom& m) {
 
 Matrix_bottom Matrix_bottom::operator+(const Matrix_bottom& m)const {
     if (!(this->row == m.row && this->column == m.column))
-        throw std::exception();
+        throw QString("行列必须对应相等");
     Matrix_bottom new_m;
     new_m.row = this->row;
     new_m.column = this->column;
@@ -67,7 +74,7 @@ Matrix_bottom Matrix_bottom::operator+(const Matrix_bottom& m)const {
 
 Matrix_bottom Matrix_bottom::operator-(const Matrix_bottom& m)const {
     if (!(this->row == m.row && this->column == m.column))
-        throw std::exception();
+        throw QString("行列必须对应相等");
     Matrix_bottom new_m;
     new_m.row = this->row;
     new_m.column = this->column;
@@ -87,7 +94,7 @@ Matrix_bottom Matrix_bottom::operator*(const Matrix_bottom& m)const {
     else if (m.row == 1 && m.column == 1)
         return *this * m.data[0][0];
     else if (this->column != m.row)
-        throw std::exception();
+        throw QString("左矩阵的列数应当等于右矩阵的行数");
     Matrix_bottom new_m;
     new_m.row = this->row;
     new_m.column = m.column;

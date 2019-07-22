@@ -2,32 +2,39 @@
 #include "ui_matrix.h"
 #include "matrix_bottom.h"
 
+bool Matrix::flag = true;
+
 Matrix::Matrix(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Matrix)
 {
     ui->setupUi(this);
-/*
+    /*
     ui->a_input_grid->setStyleSheet("background:transparent;border:2px solid black;");
 
     ui->b_input_grid->setStyleSheet("background:transparent;border:2px solid black;");
 
     ui->output_grid->setStyleSheet("background:transparent;border:2px solid black;");
 */
-    QSizePolicy sizepolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
-
     QFont font("楷体",20);
 
     a_last_row_length = 1;
-    a_last_colunm_length = 1;
+    a_last_column_length = 1;
+
     b_last_row_length = 1;
     b_last_column_length = 1;
+
+    output_last_row_length = 1;
+    output_last_column_length = 1;
 
     a_input_LineEdit = new QLineEdit*[1];
     a_input_LineEdit[0] = new QLineEdit[1];
 
     b_input_LineEdit = new QLineEdit*[1];
     b_input_LineEdit[0] = new QLineEdit[1];
+
+    output_Label = new QLabel*[1];
+    output_Label[0] = new QLabel[1];
 
     a_input_LineEdit[0][0].setSizePolicy(sizepolicy);
     a_input_LineEdit[0][0].setMaximumSize(54,54);
@@ -38,6 +45,13 @@ Matrix::Matrix(QWidget *parent) :
     b_input_LineEdit[0][0].setMaximumSize(54,54);
     b_input_LineEdit[0][0].setFont(font);
     ui->b_input_gridLayout->addWidget(&b_input_LineEdit[0][0],0,0);
+
+    output_Label[0][0].setSizePolicy(sizepolicy);
+    output_Label[0][0].setMaximumSize(54,108);
+    output_Label[0][0].setFont(font);
+    output_Label[0][0].setText("0");
+    ui->output_gridLayout->addWidget(&output_Label[0][0]);
+    output_Label[0][0].setStyleSheet("background:transparent;border:0px solid black;");
 }
 
 Matrix::~Matrix()
@@ -49,6 +63,16 @@ Matrix::~Matrix()
     for (int i = 0; i < b_last_row_length; ++i)
         delete [] b_input_LineEdit[i];
     delete [] b_input_LineEdit;
+
+    if(flag){
+        for(int i = 0; i < output_last_row_length; ++i)
+            delete [] output_Label[i];
+        delete [] output_Label;
+    }
+
+    if(flag == false)
+        delete error_Label;
+
     delete ui;
 }
 
@@ -63,19 +87,17 @@ void Matrix::iniUI(){
     delete [] b_input_LineEdit;
 
     a_last_row_length = ui->a_row_combo->currentIndex() + 1;
-    a_last_colunm_length = ui->a_column_combo->currentIndex() + 1;
+    a_last_column_length = ui->a_column_combo->currentIndex() + 1;
 
     b_last_row_length = ui->b_row_combo->currentIndex() + 1;
     b_last_column_length = ui->b_column_combo->currentIndex() + 1;
-
-    QSizePolicy sizepolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
 
     QFont font("楷体",20);
 
     a_input_LineEdit = new QLineEdit*[a_last_row_length];
     for(int i = 0; i < a_last_row_length; ++i){
-        a_input_LineEdit[i] = new QLineEdit[a_last_colunm_length];
-        for(int j = 0; j < a_last_colunm_length; ++j){
+        a_input_LineEdit[i] = new QLineEdit[a_last_column_length];
+        for(int j = 0; j < a_last_column_length; ++j){
             a_input_LineEdit[i][j].setSizePolicy(sizepolicy);
             a_input_LineEdit[i][j].setMaximumSize(54,54);
             a_input_LineEdit[i][j].setFont(font);
@@ -97,9 +119,124 @@ void Matrix::iniUI(){
 
 void Matrix::compute(){
 
+    QFont font("楷体",20);
+
+    QFont error_font("楷体",30,75);
+
+    if(flag == false){
+        delete error_Label;
+
+        output_last_row_length = 1;
+        output_last_column_length = 1;
+
+        output_Label = new QLabel*[output_last_row_length];
+        for(int i = 0; i < output_last_row_length; ++i){
+            output_Label[i] = new QLabel[output_last_column_length];
+            for(int j = 0; j < output_last_column_length; ++j){
+                output_Label[i][j].setSizePolicy(sizepolicy);
+                output_Label[i][j].setMaximumSize(54,54);
+                output_Label[i][j].setFont(font);
+                output_Label[i][j].setText(QString::asprintf("%d %d",i,j));
+                output_Label[i][j].setStyleSheet("background:transparent;border:0px solid black;");
+                ui->output_gridLayout->addWidget(&output_Label[i][j],i,j);
+            }
+        }
+        flag = true;
+    }
+
+    Matrix_bottom a(a_last_row_length,a_last_column_length,a_input_LineEdit);
+
+    Matrix_bottom b(b_last_row_length,b_last_column_length,b_input_LineEdit);
+
+    Matrix_bottom c;
+
+    try{
+        switch (ui->operator_combo->currentIndex()) {
+        case 0:
+            c = a + b;
+            break;
+        case 1:
+            c = a - b;
+            break;
+        case 2:
+            c = a * b;
+            break;
+        default:
+            break;
+        }
+
+    } catch (QString& s) {
+        flag = false;
+
+        for(int i = 0; i < output_last_row_length; ++i)
+            delete [] output_Label[i];
+        delete [] output_Label;
+
+        error_Label = new QLabel;
+        error_Label->setSizePolicy(sizepolicy);
+        error_Label->setMinimumSize(54,120);
+        error_Label->setFont(error_font);
+        error_Label->setText(s);
+        ui->output_gridLayout->addWidget(error_Label);
+
+        return;
+    }
+    construct_output(c.get_row(),c.get_column());
+    for(int i = 0; i < output_last_row_length; ++i)
+        for(int j = 0; j < output_last_column_length; ++j)
+            output_Label[i][j].setText(QString::asprintf("%.2lf",c[i][j]));
+}
+
+void Matrix::construct_output(int row,int column){
+
+    QFont font("楷体",20);
+
+    for(int i = 0; i < output_last_row_length; ++i)
+        delete [] output_Label[i];
+    delete [] output_Label;
+
+    output_last_row_length = row;
+    output_last_column_length = column;
+
+    output_Label = new QLabel*[output_last_row_length];
+    for(int i = 0; i < output_last_row_length; ++i){
+        output_Label[i] = new QLabel[output_last_column_length];
+        for(int j = 0; j < output_last_column_length; ++j){
+            output_Label[i][j].setSizePolicy(sizepolicy);
+            output_Label[i][j].setMaximumSize(54,54);
+            output_Label[i][j].setFont(font);
+            output_Label[i][j].setText(QString::asprintf("%d %d",i,j));
+            output_Label[i][j].setStyleSheet("background:transparent;border:0px solid black;");
+            ui->output_gridLayout->addWidget(&output_Label[i][j],i,j);
+        }
+    }
+}
+
+void Matrix::on_operator_combo_currentIndexChanged(int)
+{
+    compute();
 }
 
 void Matrix::on_a_row_combo_currentIndexChanged(int)
+{
+    ui->a_column_combo->setCurrentIndex(ui->a_row_combo->currentIndex());
+    ui->b_row_combo->setCurrentIndex(ui->a_row_combo->currentIndex());
+    ui->b_column_combo->setCurrentIndex(ui->a_row_combo->currentIndex());
+    iniUI();
+}
+
+void Matrix::on_a_column_combo_currentIndexChanged(int)
+{
+    iniUI();
+}
+
+void Matrix::on_b_row_combo_currentIndexChanged(int)
+{
+    ui->b_column_combo->setCurrentIndex(ui->b_row_combo->currentIndex());
+    iniUI();
+}
+
+void Matrix::on_b_column_combo_currentIndexChanged(int)
 {
     iniUI();
 }
