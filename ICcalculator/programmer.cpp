@@ -54,9 +54,17 @@ void Programmer::on_input_textChanged(const QString &arg1)
         break;
     }
     c.operation_for_num();
-    ui->bin_output->setText(QString(c.num_bin));
-    ui->oct_output->setText(QString(c.num_oct));
-    ui->dec_output->setText(QString(c.num_dec));
-    ui->hex_output->setText(QString(c.num_hex));
+    if(c.getflag()){
+        ui->bin_output->setText(QString("Error!!!"));
+        ui->oct_output->setText(QString("Error!!!"));
+        ui->dec_output->setText(QString("Error!!!"));
+        ui->hex_output->setText(QString("Error!!!"));
+    }
+    else {
+        ui->bin_output->setText(QString(c.num_bin));
+        ui->oct_output->setText(QString(c.num_oct));
+        ui->dec_output->setText(QString(c.num_dec));
+        ui->hex_output->setText(QString(c.num_hex));
+    }
     delete[] ni;
 }

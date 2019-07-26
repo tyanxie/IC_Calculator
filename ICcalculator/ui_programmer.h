@@ -122,6 +122,10 @@ public:
         bin_output->setObjectName(QStringLiteral("bin_output"));
         sizePolicy.setHeightForWidth(bin_output->sizePolicy().hasHeightForWidth());
         bin_output->setSizePolicy(sizePolicy);
+        QFont font3;
+        font3.setFamily(QStringLiteral("Consolas"));
+        font3.setPointSize(14);
+        bin_output->setFont(font3);
 
         verticalLayout_3->addWidget(bin_output);
 
@@ -129,6 +133,7 @@ public:
         oct_output->setObjectName(QStringLiteral("oct_output"));
         sizePolicy.setHeightForWidth(oct_output->sizePolicy().hasHeightForWidth());
         oct_output->setSizePolicy(sizePolicy);
+        oct_output->setFont(font3);
 
         verticalLayout_3->addWidget(oct_output);
 
@@ -136,6 +141,7 @@ public:
         dec_output->setObjectName(QStringLiteral("dec_output"));
         sizePolicy.setHeightForWidth(dec_output->sizePolicy().hasHeightForWidth());
         dec_output->setSizePolicy(sizePolicy);
+        dec_output->setFont(font3);
 
         verticalLayout_3->addWidget(dec_output);
 
@@ -143,16 +149,17 @@ public:
         hex_output->setObjectName(QStringLiteral("hex_output"));
         sizePolicy.setHeightForWidth(hex_output->sizePolicy().hasHeightForWidth());
         hex_output->setSizePolicy(sizePolicy);
+        hex_output->setFont(font3);
 
         verticalLayout_3->addWidget(hex_output);
 
         comboBox = new QComboBox(Programmer);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(140, 110, 141, 81));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("\345\215\216\346\226\207\350\241\214\346\245\267"));
-        font3.setPointSize(18);
-        comboBox->setFont(font3);
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("\345\215\216\346\226\207\350\241\214\346\245\267"));
+        font4.setPointSize(18);
+        comboBox->setFont(font4);
         groupBox_5 = new QGroupBox(Programmer);
         groupBox_5->setObjectName(QStringLiteral("groupBox_5"));
         groupBox_5->setGeometry(QRect(950, 180, 181, 431));
@@ -162,10 +169,10 @@ public:
         label_14->setObjectName(QStringLiteral("label_14"));
         sizePolicy.setHeightForWidth(label_14->sizePolicy().hasHeightForWidth());
         label_14->setSizePolicy(sizePolicy);
-        QFont font4;
-        font4.setFamily(QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223"));
-        font4.setPointSize(14);
-        label_14->setFont(font4);
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223"));
+        font5.setPointSize(14);
+        label_14->setFont(font5);
 
         verticalLayout_2->addWidget(label_14);
 
@@ -173,7 +180,7 @@ public:
         label_15->setObjectName(QStringLiteral("label_15"));
         sizePolicy.setHeightForWidth(label_15->sizePolicy().hasHeightForWidth());
         label_15->setSizePolicy(sizePolicy);
-        label_15->setFont(font4);
+        label_15->setFont(font5);
 
         verticalLayout_2->addWidget(label_15);
 
@@ -181,7 +188,7 @@ public:
         label_16->setObjectName(QStringLiteral("label_16"));
         sizePolicy.setHeightForWidth(label_16->sizePolicy().hasHeightForWidth());
         label_16->setSizePolicy(sizePolicy);
-        label_16->setFont(font4);
+        label_16->setFont(font5);
 
         verticalLayout_2->addWidget(label_16);
 
@@ -189,7 +196,7 @@ public:
         label_17->setObjectName(QStringLiteral("label_17"));
         sizePolicy.setHeightForWidth(label_17->sizePolicy().hasHeightForWidth());
         label_17->setSizePolicy(sizePolicy);
-        label_17->setFont(font4);
+        label_17->setFont(font5);
 
         verticalLayout_2->addWidget(label_17);
 

@@ -8,12 +8,13 @@ public:
     calculator_for_programmer(const char *ch = nullptr, int ma = 0);
     ~calculator_for_programmer()
     {
-        delete num_bin;
-        delete num_oct;
-        delete num_dec;
-        delete num_hex;
+        delete[] num_bin;
+        delete[] num_oct;
+        delete[] num_dec;
+        delete[] num_hex;
     }
     //void length_judge();
+    int getflag();
     void setma(int m = 0);
     void operation_for_num();
     void setDec();
@@ -31,6 +32,7 @@ private:
     int macha;
     int len_init;
     int num_Dec;
+    int flag;
 };
 
 #endif // CALCULATOR_FOR_PROGRAMMER_H

@@ -3,7 +3,7 @@
 #include <iostream>
 
 calculator_for_programmer::calculator_for_programmer(const char *ch, int ma)
-    : macha(ma), len_init(0), num_Dec(0),
+    : macha(ma), len_init(0), flag(0), num_Dec(0),
     num_bin(nullptr), num_oct(nullptr), num_dec(nullptr), num_hex(nullptr) {
 
     int j;
@@ -20,6 +20,10 @@ calculator_for_programmer::calculator_for_programmer(const char *ch, int ma)
 
 void calculator_for_programmer::setma(int m){
     macha = m;
+}
+
+int calculator_for_programmer::getflag(){
+    return flag;
 }
 
 void calculator_for_programmer::operation_for_num(){
@@ -87,7 +91,7 @@ void calculator_for_programmer::setDec() {
         case '\0':
             break;
         default:
-            abort();
+            flag = 1;
 
         }
     }
@@ -95,6 +99,11 @@ void calculator_for_programmer::setDec() {
     for (int i = 0; i < len_init; i++)
     {
         num_Dec += numarray[len_init - 1 - i] * pow(macha, i);
+    }
+    for (int i = 0; i < len_init; i++) {
+        if(numarray[i] >= macha){
+            flag = 1;
+        }
     }
     delete[] numarray;
 }
