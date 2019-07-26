@@ -1,12 +1,28 @@
 #include "calculator_for_programmer.h"
-
-#include "calculator_for_programmer.h"
 #include <cmath>
+#include <iostream>
 
-caculator_for_programmer::caculator_for_programmer(int ni, int ma)
-    : num_init(ni), macha(ma), len_init(0), num_Dec(0),
-      num_bin(nullptr), num_dec(nullptr), num_oct(nullptr), num_hex(nullptr) {
-    length_judge();
+calculator_for_programmer::calculator_for_programmer(const char *ch, int ma)
+    : macha(ma), len_init(0), num_Dec(0),
+    num_bin(nullptr), num_oct(nullptr), num_dec(nullptr), num_hex(nullptr) {
+
+    int j;
+    for (int i = 0; i < 100; i++)
+    {
+        num_init[i] = '\0';
+    }
+    for (j = 0; j < 99 && ch[j] != '\0'; j++)
+    {
+        num_init[j] = ch[j];
+    }
+    len_init = j;
+}
+
+void calculator_for_programmer::setma(int m){
+    macha = m;
+}
+
+void calculator_for_programmer::operation_for_num(){
     setDec();
     transfer_to_binary();
     transfer_to_Octal();
@@ -14,39 +30,76 @@ caculator_for_programmer::caculator_for_programmer(int ni, int ma)
     transfer_to_hexadecimal();
 }
 
-void caculator_for_programmer::length_judge() {
-    //设置初始输入的数字长度
-    for (int i = 10, j = 1; 1; i *= 10, j++) {
-        if (num_init%i == num_init) {
-            len_init = j;
-            break;
-        }
-    }
-}
-
-void caculator_for_programmer::setDec() {
-    //如果输入就是十进制数，那就直接设置十进制数
-    if (macha == 10) {
-        num_Dec = num_init;
-        return;
-    }
-    //将输入的进制数转换为数组，以统一转换为十进制数
+void calculator_for_programmer::setDec() {
+    //将输入的进制数字符串转换为数组，以统一转换为十进制数计算
     int *numarray = new int[len_init];
-    int num_copy = num_init;
-    for (int i = 0; i < len_init || num_copy != 0; i++)
+    for (int i = 0; i < len_init; i++)
     {
-        numarray[i] = num_copy % 10;
-        num_copy /= 10;
+        switch (num_init[i]) {
+        case '0':
+            numarray[i] = 0;
+            break;
+        case '1':
+            numarray[i] = 1;
+            break;
+        case '2':
+            numarray[i] = 2;
+            break;
+        case '3':
+            numarray[i] = 3;
+            break;
+        case '4':
+            numarray[i] = 4;
+            break;
+        case '5':
+            numarray[i] = 5;
+            break;
+        case '6':
+            numarray[i] = 6;
+            break;
+        case '7':
+            numarray[i] = 7;
+            break;
+        case '8':
+            numarray[i] = 8;
+            break;
+        case '9':
+            numarray[i] = 9;
+            break;
+        case 'a':
+            numarray[i] = 10;
+            break;
+        case 'b':
+            numarray[i] = 11;
+            break;
+        case 'c':
+            numarray[i] = 12;
+            break;
+        case 'd':
+            numarray[i] = 13;
+            break;
+        case 'e':
+            numarray[i] = 14;
+            break;
+        case 'f':
+            numarray[i] = 15;
+            break;
+        case '\0':
+            break;
+        default:
+            abort();
+
+        }
     }
     //根据进制数和数组将初始数字转换为十进制数
     for (int i = 0; i < len_init; i++)
     {
-        num_Dec += numarray[i] * pow(macha, i);
+        num_Dec += numarray[len_init - 1 - i] * pow(macha, i);
     }
     delete[] numarray;
 }
 
-void caculator_for_programmer::transfer_to_binary() {
+void calculator_for_programmer::transfer_to_binary() {
     //由于二进制数无法直接输出，所以手动计算，计算方法为短除取余
     //计算二进制数长度以设置数组
     int len = 0;
@@ -87,7 +140,7 @@ void caculator_for_programmer::transfer_to_binary() {
     delete[] result_array;
 }
 
-void caculator_for_programmer::transfer_to_Octal() {
+void calculator_for_programmer::transfer_to_Octal() {
     //计算八进制数长度以设置数组
     int len = 0;
     for (int i = 0; 1; i++)
@@ -145,7 +198,7 @@ void caculator_for_programmer::transfer_to_Octal() {
     delete[] result_array;
 }
 
-void caculator_for_programmer::transfer_to_decimal() {
+void calculator_for_programmer::transfer_to_decimal() {
     //计算十进制数长度以设置数组
     int len = 0;
     for (int i = 0; 1; i++)
@@ -209,7 +262,7 @@ void caculator_for_programmer::transfer_to_decimal() {
     delete[] result_array;
 }
 
-void caculator_for_programmer::transfer_to_hexadecimal() {
+void calculator_for_programmer::transfer_to_hexadecimal() {
     //计算十六进制数长度以设置数组
     int len = 0;
     for (int i = 0; 1; i++)
