@@ -11,6 +11,28 @@ namespace Ui {
 class Matrix;
 }
 
+struct Storing
+{
+    int row;
+    int column;
+    QString** data;
+    Storing(int r,int c,QLineEdit** lineedit) {
+        row = r;
+        column = c;
+        data = new QString*[row];
+        for(int i = 0;i < row;i++){
+            data[i] = new QString[column];
+            for(int j = 0;j < column;j++)
+                data[i][j]=lineedit[i][j].text();
+        }
+    }
+    ~Storing(){
+        for(int i = 0;i < row;i++)
+            delete[] data[i];
+        delete[] data;
+    }
+};
+
 class Matrix : public QWidget
 {
     Q_OBJECT
@@ -23,13 +45,13 @@ private slots:
 
     void on_operator_combo_currentIndexChanged(int);
 
-    void on_a_row_combo_currentIndexChanged(int index);
+    void on_a_row_combo_currentIndexChanged(int);
 
-    void on_a_column_combo_currentIndexChanged(int index);
+    void on_a_column_combo_currentIndexChanged(int);
 
-    void on_b_row_combo_currentIndexChanged(int index);
+    void on_b_row_combo_currentIndexChanged(int);
 
-    void on_b_column_combo_currentIndexChanged(int index);
+    void on_b_column_combo_currentIndexChanged(int);
 
 private:
     Ui::Matrix *ui;

@@ -100,7 +100,7 @@ public:
         output_grid = new QWidget(Matrix);
         output_grid->setObjectName(QStringLiteral("output_grid"));
         output_grid->setEnabled(true);
-        output_grid->setGeometry(QRect(285, 380, 700, 350));
+        output_grid->setGeometry(QRect(100, 380, 1000, 350));
         output_gridLayout = new QGridLayout(output_grid);
         output_gridLayout->setSpacing(3);
         output_gridLayout->setObjectName(QStringLiteral("output_gridLayout"));

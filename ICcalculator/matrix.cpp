@@ -9,13 +9,13 @@ Matrix::Matrix(QWidget *parent) :
     ui(new Ui::Matrix)
 {
     ui->setupUi(this);
-    /*
-    ui->a_input_grid->setStyleSheet("background:transparent;border:2px solid black;");
 
-    ui->b_input_grid->setStyleSheet("background:transparent;border:2px solid black;");
+//    ui->a_input_grid->setStyleSheet("background:transparent;border:2px solid black;");
 
-    ui->output_grid->setStyleSheet("background:transparent;border:2px solid black;");
-*/
+//    ui->b_input_grid->setStyleSheet("background:transparent;border:2px solid black;");
+
+//    ui->output_grid->setStyleSheet("background:transparent;border:2px solid black;");
+
     QFont font("楷体",20);
 
     a_last_row_length = 1;
@@ -40,18 +40,14 @@ Matrix::Matrix(QWidget *parent) :
     a_input_LineEdit[0][0].setMaximumSize(54,54);
     a_input_LineEdit[0][0].setFont(font);
     ui->a_input_gridLayout->addWidget(&a_input_LineEdit[0][0],0,0);
+    connect(&a_input_LineEdit[0][0],&QLineEdit::textEdited,this,&Matrix::compute);
 
     b_input_LineEdit[0][0].setSizePolicy(sizepolicy);
     b_input_LineEdit[0][0].setMaximumSize(54,54);
     b_input_LineEdit[0][0].setFont(font);
     ui->b_input_gridLayout->addWidget(&b_input_LineEdit[0][0],0,0);
+    connect(&b_input_LineEdit[0][0],&QLineEdit::textEdited,this,&Matrix::compute);
 
-    output_Label[0][0].setSizePolicy(sizepolicy);
-    output_Label[0][0].setMaximumSize(54,108);
-    output_Label[0][0].setFont(font);
-    output_Label[0][0].setText("0");
-    ui->output_gridLayout->addWidget(&output_Label[0][0]);
-    output_Label[0][0].setStyleSheet("background:transparent;border:0px solid black;");
 }
 
 Matrix::~Matrix()
@@ -102,6 +98,7 @@ void Matrix::iniUI(){
             a_input_LineEdit[i][j].setMaximumSize(54,54);
             a_input_LineEdit[i][j].setFont(font);
             ui->a_input_gridLayout->addWidget(&a_input_LineEdit[i][j],i,j);
+            connect(&a_input_LineEdit[i][j],&QLineEdit::textEdited,this,&Matrix::compute);
         }
     }
 
@@ -113,6 +110,7 @@ void Matrix::iniUI(){
             b_input_LineEdit[i][j].setMaximumSize(54,54);
             b_input_LineEdit[i][j].setFont(font);
             ui->b_input_gridLayout->addWidget(&b_input_LineEdit[i][j],i,j);
+            connect(&b_input_LineEdit[i][j],&QLineEdit::textEdited,this,&Matrix::compute);
         }
     }
 }
@@ -202,11 +200,12 @@ void Matrix::construct_output(int row,int column){
     for(int i = 0; i < output_last_row_length; ++i){
         output_Label[i] = new QLabel[output_last_column_length];
         for(int j = 0; j < output_last_column_length; ++j){
-            output_Label[i][j].setSizePolicy(sizepolicy);
-            output_Label[i][j].setMaximumSize(54,54);
+            output_Label[i][j].setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
+            output_Label[i][j].setMinimumSize(54,35);
+            output_Label[i][j].setMaximumSize(975/row,35);
+            output_Label[i][j].setAlignment(Qt::AlignCenter);
             output_Label[i][j].setFont(font);
-            output_Label[i][j].setText(QString::asprintf("%d %d",i,j));
-            output_Label[i][j].setStyleSheet("background:transparent;border:0px solid black;");
+            output_Label[i][j].setStyleSheet("background:transparent;border:1px solid black;");
             ui->output_gridLayout->addWidget(&output_Label[i][j],i,j);
         }
     }
@@ -217,26 +216,56 @@ void Matrix::on_operator_combo_currentIndexChanged(int)
     compute();
 }
 
-void Matrix::on_a_row_combo_currentIndexChanged(int)
+void Matrix::on_a_row_combo_currentIndexChanged(int index)
 {
-    ui->a_column_combo->setCurrentIndex(ui->a_row_combo->currentIndex());
-    ui->b_row_combo->setCurrentIndex(ui->a_row_combo->currentIndex());
-    ui->b_column_combo->setCurrentIndex(ui->a_row_combo->currentIndex());
+    Storing a(a_last_row_length,a_last_column_length,a_input_LineEdit);
+    Storing b(b_last_row_length,b_last_column_length,b_input_LineEdit);
+
+    ui->a_column_combo->setCurrentIndex(index);
+    ui->b_row_combo->setCurrentIndex(index);
+    ui->b_column_combo->setCurrentIndex(index);
+
     iniUI();
+
+    for(int i = 0;i < a_last_row_length && i < a.row;i++)
+        for(int j = 0;j < a_last_column_length && j < a.column;j++)
+            a_input_LineEdit[i][j].setText(a.data[i][j]);
+
+    for(int i = 0;i < b_last_row_length && i < b.row;i++)
+        for(int j = 0;j < b_last_column_length && j < b.column;j++)
+            b_input_LineEdit[i][j].setText(b.data[i][j]);
 }
 
 void Matrix::on_a_column_combo_currentIndexChanged(int)
 {
+    Storing a(a_last_row_length,a_last_column_length,a_input_LineEdit);
+
     iniUI();
+
+    for(int i = 0;i < a_last_row_length && i < a.row;i++)
+        for(int j = 0;j < a_last_column_length && j < a.column;j++)
+            a_input_LineEdit[i][j].setText(a.data[i][j]);
 }
 
-void Matrix::on_b_row_combo_currentIndexChanged(int)
+void Matrix::on_b_row_combo_currentIndexChanged(int index)
 {
-    ui->b_column_combo->setCurrentIndex(ui->b_row_combo->currentIndex());
+    Storing b(b_last_row_length,b_last_column_length,b_input_LineEdit);
+
+    ui->b_column_combo->setCurrentIndex(index);
     iniUI();
+
+    for(int i = 0;i < b_last_row_length && i < b.row;i++)
+        for(int j = 0;j < b_last_column_length && j < b.column;j++)
+            b_input_LineEdit[i][j].setText(b.data[i][j]);
 }
 
 void Matrix::on_b_column_combo_currentIndexChanged(int)
 {
+    Storing b(b_last_row_length,b_last_column_length,b_input_LineEdit);
+
     iniUI();
+
+    for(int i = 0;i < b_last_row_length && i < b.row;i++)
+        for(int j = 0;j < b_last_column_length && j < b.column;j++)
+            b_input_LineEdit[i][j].setText(b.data[i][j]);
 }

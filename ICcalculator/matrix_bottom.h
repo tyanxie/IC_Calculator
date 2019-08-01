@@ -23,10 +23,10 @@ public:
     Matrix_bottom operator*(const Matrix_bottom&)const;
     Matrix_bottom operator*(double)const;
     double* operator[](int)const;
-    inline int get_row()const{
+    int get_row()const{
         return this->row;
     }
-    inline int get_column()const{
+    int get_column()const{
         return this->column;
     }
 };

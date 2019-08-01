@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Matrix_t {
-    QByteArrayData data[8];
-    char stringdata0[198];
+    QByteArrayData data[7];
+    char stringdata0[192];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,15 +35,14 @@ QT_MOC_LITERAL(0, 0, 6), // "Matrix"
 QT_MOC_LITERAL(1, 7, 37), // "on_operator_combo_currentInde..."
 QT_MOC_LITERAL(2, 45, 0), // ""
 QT_MOC_LITERAL(3, 46, 34), // "on_a_row_combo_currentIndexCh..."
-QT_MOC_LITERAL(4, 81, 5), // "index"
-QT_MOC_LITERAL(5, 87, 37), // "on_a_column_combo_currentInde..."
-QT_MOC_LITERAL(6, 125, 34), // "on_b_row_combo_currentIndexCh..."
-QT_MOC_LITERAL(7, 160, 37) // "on_b_column_combo_currentInde..."
+QT_MOC_LITERAL(4, 81, 37), // "on_a_column_combo_currentInde..."
+QT_MOC_LITERAL(5, 119, 34), // "on_b_row_combo_currentIndexCh..."
+QT_MOC_LITERAL(6, 154, 37) // "on_b_column_combo_currentInde..."
 
     },
     "Matrix\0on_operator_combo_currentIndexChanged\0"
     "\0on_a_row_combo_currentIndexChanged\0"
-    "index\0on_a_column_combo_currentIndexChanged\0"
+    "on_a_column_combo_currentIndexChanged\0"
     "on_b_row_combo_currentIndexChanged\0"
     "on_b_column_combo_currentIndexChanged"
 };
@@ -65,16 +64,16 @@ static const uint qt_meta_data_Matrix[] = {
  // slots: name, argc, parameters, tag, flags
        1,    1,   39,    2, 0x08 /* Private */,
        3,    1,   42,    2, 0x08 /* Private */,
-       5,    1,   45,    2, 0x08 /* Private */,
-       6,    1,   48,    2, 0x08 /* Private */,
-       7,    1,   51,    2, 0x08 /* Private */,
+       4,    1,   45,    2, 0x08 /* Private */,
+       5,    1,   48,    2, 0x08 /* Private */,
+       6,    1,   51,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    2,
-    QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::Int,    2,
 
        0        // eod
 };
