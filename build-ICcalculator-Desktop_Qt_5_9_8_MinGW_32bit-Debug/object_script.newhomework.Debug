@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\ICcalculator.o
+./debug\science.o
+./debug\date.o
+./debug\equation.o
+./debug\qrc_res.o
+./debug\moc_ICcalculator.o
+./debug\moc_science.o
+./debug\moc_date.o
+./debug\moc_equation.o
+);

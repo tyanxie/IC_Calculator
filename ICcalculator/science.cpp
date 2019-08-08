@@ -5,10 +5,10 @@
 #include <QQueue>
 #include <QStack>
 
-QString strall;
+QString strall;//输入框中总的字符串
 QString str;
 
-int fac(int x)
+int fac(int x)//阶乘函数
 {
     int i,sum=1;
     for(i=1;i<=x;i++)
@@ -175,9 +175,14 @@ void science::on_Equal_clicked()
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
         QString temp3 = Calculate(temp2);
 
+        if(temp3=="-0")temp3="0";//规范
+
         strall.clear();
         ui->textEditOUT->setText(temp3);
 }
+
+
+//区分数字和运算符（带符号的-4及+4也为数字）
 QQueue<QString> science::prefixExpression(const QString &exp)
 {
     QQueue<QString> ret;
@@ -266,21 +271,23 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
               {
                   ret.enqueue(stack.pop());     //取出栈顶运算符  并入队列
               }
-              stack.push(symbol);//输出
+              stack.push(symbol);
           }
 
-          else if(symbol=="*"||symbol=="/"||symbol=="^")
+          else if(symbol=="*"||symbol=="/")
           {
               while(!stack.isEmpty() && (stack.top()!="(") && (stack.top()!="+") && (stack.top()!="-"))
               {
                   ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
               }
-              stack.push(symbol);//输出
+              stack.push(symbol);
           }
 
+
+          //以下优先级比乘，除，^更高
           else if(symbol=="s"||symbol=="c"
                   ||symbol=='t'||symbol=="√"
-                  ||symbol=='M'||symbol=='n'||symbol=='!')
+                  ||symbol=='M'||symbol=='n'||symbol=='!'||symbol=="^")
           {
               while(!stack.isEmpty() && (stack.top()!="(")
                     && (stack.top()!="+") && (stack.top()!="-")
@@ -300,20 +307,36 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
           {
               while(!stack.isEmpty() && (stack.top()!="("))
               {
-                  ret.enqueue(stack.pop());     //取出栈顶运算符并入队列
+                  ret.enqueue(stack.pop()); //取出栈顶运算符并入队列
+              }
+
+              if(stack.isEmpty())//若没有“（”，则Error
+              {
+                  ret.clear();
+                  return ret;
               }
               if(stack.top()=="(")
                 stack.pop();
+
           }
+        }
+
+        if(stack.isEmpty())//若没有数字，全为运算符，则Error
+        {
+            ret.clear();
+            return ret;
         }
 
         while(!stack.isEmpty()&& (stack.top()!="("))         //遍历完成,判断栈里是否为空
         {
            ret.enqueue(stack.pop());     //取出栈顶运算符并入队列
-        }return ret;
+        }
+        return ret;
 
 }
 
+
+//有左、右运算数的符号  的算法
 QString science::Calculate(QString &l, QString &op, QString &r)
 {
     double left,right,res;
@@ -348,12 +371,12 @@ QString science::Calculate(QString &l, QString &op, QString &r)
         else if(op == "/")
         {
             if( (right>(-0.000000000000001)) && (right<(0.000000000000001)) )   //判断除数为0
-                return NULL;
+                return "Error";
             else
                 res = left/right;
         }
 
-        ret.sprintf("%f",res);
+        ret.sprintf("%f",res);//将double型的res 转成 QString型的ret
         return ret;
 }
 
@@ -361,15 +384,16 @@ QString science::ValidNum(QString str)
 {
     QString num;
 
-        if(str.indexOf(".")== -1) //判断是否小数
+        if(str.indexOf(".")== -1) //没有出现“.”,indexOf返回-1，判断是否小数
             return str;
+
 
         while(str.length()>1)   //避免0被去掉
         {
-             num=str.right(1);
+             num=str.right(1);//字符串右端提取一个字符
              if(num=="."||num=="0")
              {
-                 str.chop(1);
+                 str.chop(1);//砍掉一个字符
                  if(num==".")
                      return  str;
              }
@@ -396,6 +420,7 @@ QString science::Calculate(QQueue<QString> &exp)
         bool num_ok;
 
         double res;
+        if(exp.isEmpty())return"Error";
         while(!exp.isEmpty())
         {
           symbol = exp.dequeue();   //出队列
@@ -409,6 +434,10 @@ QString science::Calculate(QQueue<QString> &exp)
           }
           else                  //运算符
           {
+
+              if(stack.size()<1)
+                  return "Error";
+
                               if(symbol=='s')
                                {
 
@@ -458,8 +487,13 @@ QString science::Calculate(QQueue<QString> &exp)
                                 stack.pop();
                                 ret.sprintf("%f",res);
                                }
+
                               else if(stack.size()<2)
                                   return "Error";
+
+                              if(fabs(res)>=3060000.1) return"Overflow";
+
+
 
                               if(symbol!='s' && symbol!='c'
                                  && symbol!='t' && symbol!="√"
@@ -471,6 +505,8 @@ QString science::Calculate(QQueue<QString> &exp)
 
                                   ret = Calculate(L,symbol,R );
                               }
+
+                              if(ret=="Error")return "Error";
               if(ret==nullptr)
                   return ret;
 
@@ -569,6 +605,7 @@ void science::on_Factorial_clicked()
             ui->textEditIN->setText(strall);
 
         }
+
 
         QQueue<QString> temp1 = prefixExpression(strall);
         QQueue<QString> temp2 = transferToPostfixExpression(temp1);
