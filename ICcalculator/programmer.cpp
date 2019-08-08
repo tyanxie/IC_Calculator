@@ -20,15 +20,19 @@ void Programmer::on_comboBox_activated(int index)
 {
     if(index == 0){
         ui->indication->setText("二进制");
+        ui->indication->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     }
     else if(index == 1){
         ui->indication->setText("八进制");
+        ui->indication->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     }
     else if(index == 2){
         ui->indication->setText("十进制");
+        ui->indication->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     }
     else if(index == 3){
         ui->indication->setText("十六进制");
+        ui->indication->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     }
 }
 
