@@ -16,22 +16,22 @@ Equation::~Equation()
     delete ui;
 }
 
-void Equation::on_One2_clicked(bool checked)
+void Equation::on_One2_clicked(bool)
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void Equation::on_One3_clicked(bool checked)
+void Equation::on_One3_clicked(bool)
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void Equation::on_Two_clicked(bool checked)
+void Equation::on_Two_clicked(bool)
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void Equation::on_radioButton_4_clicked(bool checked)
+void Equation::on_radioButton_4_clicked(bool)
 {
 
 }
@@ -100,10 +100,10 @@ void Equation::on_pushButton_2_clicked()
 {
     QString ret;
     QString str="",ret1,ret2;
-    double a=ui->textEditaa->toPlainText().toDouble();
-    double b=ui->textEdit_a_2->toPlainText().toDouble();
-    double c=ui->textEdit_b_2->toPlainText().toDouble();
-    double d=ui->textEdit_c_2->toPlainText().toDouble();
+    double a=ui->textEditaa->text().toDouble();
+    double b=ui->textEdit_a_2->text().toDouble();
+    double c=ui->textEdit_b_2->text().toDouble();
+    double d=ui->textEdit_c_2->text().toDouble();
     double A,B,C,dis,y1,y2,t;  //盛金公式,dis为判别式
     double x1,x2,x2_a,x2_b,x3_a,x3_b;
     A=b*b-3*a*c;
@@ -118,9 +118,9 @@ void Equation::on_pushButton_2_clicked()
     if(fabs(a)<10e-20)//若a为零，不为三次方程
     {
 
-        double va=ui->textEdit_a_2->toPlainText().toDouble();
-        double vb=ui->textEdit_b_2->toPlainText().toDouble();
-        double vc=ui->textEdit_c_2->toPlainText().toDouble();
+        double va=ui->textEdit_a_2->text().toDouble();
+        double vb=ui->textEdit_b_2->text().toDouble();
+        double vc=ui->textEdit_c_2->text().toDouble();
 
         double da=vb*vb-va*vc*4.0;
 

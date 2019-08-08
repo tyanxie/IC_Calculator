@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -39,11 +40,7 @@ public:
     QTextEdit *textEdit_out;
     QPushButton *pushButton;
     QWidget *page_3;
-    QTextEdit *textEditaa;
     QTextEdit *textEdit_2;
-    QTextEdit *textEdit_a_2;
-    QTextEdit *textEdit_c_2;
-    QTextEdit *textEdit_b_2;
     QTextEdit *textEdit_6;
     QTextEdit *textEdit_7;
     QTextEdit *textEdit_8;
@@ -64,6 +61,10 @@ public:
     QTextEdit *i2;
     QPushButton *pushButton_2;
     QTextEdit *textEdit_besides;
+    QLineEdit *textEditaa;
+    QLineEdit *textEdit_a_2;
+    QLineEdit *textEdit_b_2;
+    QLineEdit *textEdit_c_2;
     QWidget *page_4;
     QTextEdit *textEdit_11;
     QTextEdit *textEdit_12;
@@ -155,28 +156,12 @@ public:
         stackedWidget->addWidget(page);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        textEditaa = new QTextEdit(page_3);
-        textEditaa->setObjectName(QStringLiteral("textEditaa"));
-        textEditaa->setGeometry(QRect(20, 70, 81, 71));
-        textEditaa->setFont(font);
         textEdit_2 = new QTextEdit(page_3);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setEnabled(false);
         textEdit_2->setGeometry(QRect(100, 70, 101, 91));
         textEdit_2->setFont(font);
         textEdit_2->setFrameShape(QFrame::HLine);
-        textEdit_a_2 = new QTextEdit(page_3);
-        textEdit_a_2->setObjectName(QStringLiteral("textEdit_a_2"));
-        textEdit_a_2->setGeometry(QRect(200, 70, 81, 71));
-        textEdit_a_2->setFont(font);
-        textEdit_c_2 = new QTextEdit(page_3);
-        textEdit_c_2->setObjectName(QStringLiteral("textEdit_c_2"));
-        textEdit_c_2->setGeometry(QRect(530, 70, 81, 71));
-        textEdit_c_2->setFont(font);
-        textEdit_b_2 = new QTextEdit(page_3);
-        textEdit_b_2->setObjectName(QStringLiteral("textEdit_b_2"));
-        textEdit_b_2->setGeometry(QRect(380, 70, 81, 71));
-        textEdit_b_2->setFont(font);
         textEdit_6 = new QTextEdit(page_3);
         textEdit_6->setObjectName(QStringLiteral("textEdit_6"));
         textEdit_6->setEnabled(false);
@@ -304,6 +289,34 @@ public:
         font6.setWeight(75);
         textEdit_besides->setFont(font6);
         textEdit_besides->setFrameShape(QFrame::HLine);
+        textEditaa = new QLineEdit(page_3);
+        textEditaa->setObjectName(QStringLiteral("textEditaa"));
+        textEditaa->setGeometry(QRect(20, 70, 81, 71));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(textEditaa->sizePolicy().hasHeightForWidth());
+        textEditaa->setSizePolicy(sizePolicy);
+        textEditaa->setFont(font);
+        textEditaa->setCursorMoveStyle(Qt::VisualMoveStyle);
+        textEdit_a_2 = new QLineEdit(page_3);
+        textEdit_a_2->setObjectName(QStringLiteral("textEdit_a_2"));
+        textEdit_a_2->setGeometry(QRect(200, 70, 81, 71));
+        sizePolicy.setHeightForWidth(textEdit_a_2->sizePolicy().hasHeightForWidth());
+        textEdit_a_2->setSizePolicy(sizePolicy);
+        textEdit_a_2->setFont(font);
+        textEdit_b_2 = new QLineEdit(page_3);
+        textEdit_b_2->setObjectName(QStringLiteral("textEdit_b_2"));
+        textEdit_b_2->setGeometry(QRect(380, 70, 81, 71));
+        sizePolicy.setHeightForWidth(textEdit_b_2->sizePolicy().hasHeightForWidth());
+        textEdit_b_2->setSizePolicy(sizePolicy);
+        textEdit_b_2->setFont(font);
+        textEdit_c_2 = new QLineEdit(page_3);
+        textEdit_c_2->setObjectName(QStringLiteral("textEdit_c_2"));
+        textEdit_c_2->setGeometry(QRect(530, 70, 81, 71));
+        sizePolicy.setHeightForWidth(textEdit_c_2->sizePolicy().hasHeightForWidth());
+        textEdit_c_2->setSizePolicy(sizePolicy);
+        textEdit_c_2->setFont(font);
         stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));

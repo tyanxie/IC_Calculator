@@ -18,7 +18,7 @@ Calculator::Calculator(QWidget *parent) :
     ui->stackedWidget->addWidget(new_date);
     ui->stackedWidget->addWidget(new_equation);
 
-    ui->stackedWidget->setCurrentWidget(new_equation);
+    ui->stackedWidget->setCurrentWidget(new_science);
 
     connect(ui->actionscience,&QAction::triggered,this,&Calculator::open_science);
     connect(ui->actiondate,&QAction::triggered,this,&Calculator::open_date);

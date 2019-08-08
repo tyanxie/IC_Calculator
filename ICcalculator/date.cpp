@@ -9,6 +9,9 @@ Date::Date(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->radioButton_add->click();
+
+    setTabOrder(ui->spinBox_year,ui->spinBox_month);
+    setTabOrder(ui->spinBox_month,ui->spinBox_day);
 }
 
 Date::~Date()
@@ -16,7 +19,7 @@ Date::~Date()
     delete ui;
 }
 
-void Date::on_comboBox_currentIndexChanged(const QString &arg1)
+void Date::on_comboBox_currentIndexChanged(const QString &)
 {
     if(ui->stackedWidget->currentIndex()==0)
     ui->stackedWidget->setCurrentIndex(1);
@@ -57,7 +60,7 @@ void Date::on_dateEdit_dateChanged(const QDate &date)
     ui->textEdit_out->setText(str);
 }
 
-void Date::on_radioButton_sub_clicked(bool checked)
+void Date::on_radioButton_sub_clicked(bool)
 {
     QString str="日期: ",s;
     QDate date = ui->dateEdit_3->date();
@@ -109,7 +112,7 @@ void Date::on_radioButton_sub_clicked(bool checked)
 
 }
 
-void Date::on_radioButton_add_clicked(bool checked)
+void Date::on_radioButton_add_clicked(bool)
 {
     QString str="日期: ",s;
     QDate date = ui->dateEdit_3->date();
@@ -167,9 +170,9 @@ void Date::on_radioButton_add_clicked(bool checked)
     ui->textEdit_out2->setText(str);
 }
 
-void Date::on_dateEdit_3_dateChanged(const QDate &date)
+void Date::on_dateEdit_3_dateChanged(const QDate &)
 {
-    bool checked;
+    bool checked=true;
     if(ui->radioButton_add->isChecked())
     {
         on_radioButton_add_clicked(checked);
@@ -179,9 +182,9 @@ void Date::on_dateEdit_3_dateChanged(const QDate &date)
     }
 }
 
-void Date::on_spinBox_year_valueChanged(int arg1)
+void Date::on_spinBox_year_valueChanged(int)
 {
-    bool checked;
+    bool checked=true;
     if(ui->radioButton_add->isChecked())
     {
         on_radioButton_add_clicked(checked);
@@ -191,9 +194,9 @@ void Date::on_spinBox_year_valueChanged(int arg1)
     }
 }
 
-void Date::on_spinBox_month_valueChanged(int arg1)
+void Date::on_spinBox_month_valueChanged(int)
 {
-    bool checked;
+    bool checked=true;
     if(ui->radioButton_add->isChecked())
     {
         on_radioButton_add_clicked(checked);
@@ -203,9 +206,9 @@ void Date::on_spinBox_month_valueChanged(int arg1)
     }
 }
 
-void Date::on_spinBox_day_valueChanged(int arg1)
+void Date::on_spinBox_day_valueChanged(int)
 {
-    bool checked;
+    bool checked=true;
     if(ui->radioButton_add->isChecked())
     {
         on_radioButton_add_clicked(checked);
