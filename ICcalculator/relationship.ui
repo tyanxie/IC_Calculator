@@ -51,10 +51,16 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>50</y>
+      <y>60</y>
       <width>750</width>
-      <height>80</height>
+      <height>40</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>华文宋体</family>
+      <pointsize>14</pointsize>
+     </font>
     </property>
    </widget>
   </widget>
@@ -94,7 +100,7 @@
      <rect>
       <x>490</x>
       <y>40</y>
-      <width>250</width>
+      <width>500</width>
       <height>80</height>
      </rect>
     </property>
@@ -119,7 +125,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>请使用按键输入</string>
+    <string>请使用按键输入,请输入最短的亲戚关系线，否则会导致无法准确查询</string>
    </property>
    <widget class="QPushButton" name="father">
     <property name="geometry">
