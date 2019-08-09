@@ -28,10 +28,12 @@ int calculator_for_programmer::getflag(){
 
 void calculator_for_programmer::operation_for_num(){
     setDec();
-    transfer_to_binary();
-    transfer_to_Octal();
-    transfer_to_decimal();
-    transfer_to_hexadecimal();
+    if(!flag){
+        transfer_to_binary();
+        transfer_to_Octal();
+        transfer_to_decimal();
+        transfer_to_hexadecimal();
+    }
 }
 
 void calculator_for_programmer::setDec() {
@@ -99,6 +101,10 @@ void calculator_for_programmer::setDec() {
     for (int i = 0; i < len_init; i++)
     {
         num_Dec += numarray[len_init - 1 - i] * pow(macha, i);
+        if(num_Dec < 0){
+            flag = 1;
+            break;
+        }
     }
     for (int i = 0; i < len_init; i++) {
         if(numarray[i] >= macha){
