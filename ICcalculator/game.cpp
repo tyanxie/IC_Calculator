@@ -19,6 +19,9 @@ Game::~Game()
 void Game::on_startbutton_clicked()
 {
     ui->startbutton->setText("再来一发");
+    ui->answer->setText("");
+    ui->realanswer->setText("");
+    ui->result->setText("");
 
     g.get_equation();
 
