@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include "science.h"
 #include "complex.h"
+#include "date.h"
+#include "equation.h"
 namespace Ui {
 class Calculator;
 }
@@ -19,13 +21,17 @@ public:
     ~Calculator();
 
 private slots:
-    void open_science();
     void open_complex();
+    void open_date();
+    void open_science();
+    void open_equation();
 
 private:
     Ui::Calculator *ui;
     science *new_science;
     Complex *new_complex;
+    Date *new_date;
+    Equation *new_equation;
 };
 
 #endif // CALCULATOR_H

@@ -30,17 +30,25 @@ SOURCES += \
     science.cpp \
     plural.cpp \
     complex.cpp
+    date.cpp \
+    equation.cpp \
+    clock.cpp
 
 HEADERS += \
         ICcalculator.h \
     science.h \
     plural.h \
     complex.h
+    date.h \
+    equation.h \
+    clock.h
 
 FORMS += \
         ICcalculator.ui \
     science.ui \
     complex.ui
+    date.ui \
+    equation.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

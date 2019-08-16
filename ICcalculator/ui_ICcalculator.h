@@ -115,7 +115,7 @@ public:
         Calculator->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Calculator);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1200, 22));
+        menuBar->setGeometry(QRect(0, 0, 1200, 17));
         Calculator->setMenuBar(menuBar);
         mainToolBar = new QToolBar(Calculator);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
