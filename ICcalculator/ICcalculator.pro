@@ -29,24 +29,24 @@ SOURCES += \
         ICcalculator.cpp \
     science.cpp \
     plural.cpp \
-    complex.cpp
+    complex.cpp \
+    clock.cpp \
     date.cpp \
-    equation.cpp \
-    clock.cpp
+    equation.cpp
 
 HEADERS += \
         ICcalculator.h \
     science.h \
     plural.h \
-    complex.h
+    complex.h \
+    clock.h \
     date.h \
-    equation.h \
-    clock.h
+    equation.h
 
 FORMS += \
         ICcalculator.ui \
     science.ui \
-    complex.ui
+    complex.ui \
     date.ui \
     equation.ui
 
