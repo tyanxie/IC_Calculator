@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\ICcalculator.o
+./release\science.o
+./release\plural.o
+./release\complex.o
+./release\regression.o
+./release\qrc_res.o
+./release\moc_ICcalculator.o
+./release\moc_science.o
+./release\moc_complex.o
+./release\moc_regression.o
+);

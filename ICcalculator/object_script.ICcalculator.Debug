@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\ICcalculator.o
+./debug\science.o
+./debug\plural.o
+./debug\complex.o
+./debug\regression.o
+./debug\qrc_res.o
+./debug\moc_ICcalculator.o
+./debug\moc_science.o
+./debug\moc_complex.o
+./debug\moc_regression.o
+);

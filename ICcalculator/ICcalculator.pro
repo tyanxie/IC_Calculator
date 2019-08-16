@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,18 +30,21 @@ SOURCES += \
         ICcalculator.cpp \
     science.cpp \
     plural.cpp \
-    complex.cpp
+    complex.cpp \
+    regression.cpp
 
 HEADERS += \
         ICcalculator.h \
     science.h \
     plural.h \
-    complex.h
+    complex.h \
+    regression.h
 
 FORMS += \
         ICcalculator.ui \
     science.ui \
-    complex.ui
+    complex.ui \
+    regression.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
