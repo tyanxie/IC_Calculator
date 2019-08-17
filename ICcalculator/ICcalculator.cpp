@@ -18,14 +18,17 @@ Calculator::Calculator(QWidget *parent) :
     new_equation=new Equation;
     new_matrix = new Matrix;
     new_programmer=new Programmer;
+    new_relationship=new Relationship;
     ui->stackedWidget->addWidget(new_science);
     ui->stackedWidget->addWidget(new_complex);
     ui->stackedWidget->addWidget(new_date);
     ui->stackedWidget->addWidget(new_equation);
     ui->stackedWidget->addWidget(new_matrix);
     ui->stackedWidget->addWidget(new_programmer);
+    ui->stackedWidget->addWidget(new_relationship);
 
     ui->stackedWidget->setCurrentWidget(new_science);
+
 
     connect(ui->actionscience,&QAction::triggered,this,&Calculator::open_science);
     connect(ui->actioncomplex,&QAction::triggered,this,&Calculator::open_complex);
@@ -33,6 +36,7 @@ Calculator::Calculator(QWidget *parent) :
     connect(ui->actionequation,&QAction::triggered,this,&Calculator::open_equation);
     connect(ui->actionmatrix,&QAction::triggered,this,&Calculator::open_matrix);
     connect(ui->actionprogrammer,&QAction::triggered,this,&Calculator::open_programmer);
+    connect(ui->actionrelationship,&QAction::triggered,this,&Calculator::open_relationship);
 }
 
 Calculator::~Calculator()
@@ -68,4 +72,8 @@ void Calculator::open_matrix()
 void Calculator::open_programmer()
 {
         ui->stackedWidget->setCurrentWidget(new_programmer);
+}
+
+void Calculator::open_relationship(){
+    ui->stackedWidget->setCurrentWidget(new_relationship);
 }

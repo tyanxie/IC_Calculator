@@ -10,6 +10,7 @@
 #include "equation.h"
 #include "matrix.h"
 #include "programmer.h"
+#include "relationship.h"
 namespace Ui {
 class Calculator;
 }
@@ -29,6 +30,7 @@ private slots:
     void open_equation();
     void open_matrix();
     void open_programmer();
+    void open_relationship();
 
 private:
     Ui::Calculator *ui;
@@ -38,6 +40,7 @@ private:
     Equation *new_equation;
     Matrix *new_matrix;
     Programmer *new_programmer;
+    Relationship *new_relationship;
 };
 
 #endif // CALCULATOR_H
