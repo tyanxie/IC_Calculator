@@ -8,6 +8,7 @@ Regression::Regression(QWidget *parent) :
     ui->setupUi(this);
 
     number = 3;
+    title_flag = false;
 
     data = new QLineEdit*[2];
     data[0] = new QLineEdit[number];
@@ -24,52 +25,48 @@ Regression::Regression(QWidget *parent) :
         ui->gridLayout->addWidget(&data[1][i],1,i);
     }
 
-    ui->expresion->setAlignment(Qt::AlignCenter);
+    ui->x->setAlignment(Qt::AlignCenter);
+    ui->y->setAlignment(Qt::AlignCenter);
 
+    chartview = new QChartView(ui->stackedWidget);
+    chartview->setVisible(false);
 }
 
 void Regression::Solution(double& a,double& b,double& r){
-        double x = 0, y = 0, sum = 0, x2 = 0, y2 = 0, avg_x2, avg_y2, avg_xy;
-        Point avg, temp;
+    double x = 0, y = 0, sum = 0, x2 = 0, y2 = 0, avg_x2, avg_y2, avg_xy;
+    Point avg, temp;
 
-        QVector<Point>point;
-        for (int i = 0; i < number; i++) {
-            temp.x = data[0][i].text().toDouble();
-            temp.y = data[1][i].text().toDouble();
-            point.push_back(temp);
-        }
+    QVector<Point>point;
+    for (int i = 0; i < number; i++) {
+        temp.x = data[0][i].text().toDouble();
+        temp.y = data[1][i].text().toDouble();
+        point.push_back(temp);
+    }
 
-        // 计算x，y，x的平方，y的平方，x乘以y的平均值
-        for (auto it : point) {
-            x += it.x;
-            y += it.y;
-            x2 += it.x * it.x;
-            y2 += it.y * it.y;
-            sum += it.x * it.y;
-        }
-        avg.x = x / number;
-        avg.y = y / number;
-        avg_x2 = x2 / number;
-        avg_y2 = y2 / number;
-        avg_xy = sum / number;
+    // 计算x，y，x的平方，y的平方，x乘以y的平均值
+    for (auto it : point) {
+        x += it.x;
+        y += it.y;
+        x2 += it.x * it.x;
+        y2 += it.y * it.y;
+        sum += it.x * it.y;
+    }
+    avg.x = x / number;
+    avg.y = y / number;
+    avg_x2 = x2 / number;
+    avg_y2 = y2 / number;
+    avg_xy = sum / number;
 
-        // 四舍五入
-//        avg.x = round(avg.x * 10) / 10.0;
-//        avg.y = round(avg.y * 10) / 10.0;
-//        avg_x2 = round(avg_x2 * 10) / 10.0;
-//        avg_y2 = round(avg_y2 * 10) / 10.0;
-//        avg_xy = round(avg_xy * 10) / 10.0;
+    // 计算Lxx,Lyy,Lxy
+    double Lxx, Lyy, Lxy;
+    Lxx = avg_x2 - pow(avg.x, 2);
+    Lyy = avg_y2 - pow(avg.y, 2);
+    Lxy = avg_xy - avg.x * avg.y;
 
-        // 计算Lxx,Lyy,Lxy
-        double Lxx, Lyy, Lxy;
-        Lxx = avg_x2 - pow(avg.x, 2);
-        Lyy = avg_y2 - pow(avg.y, 2);
-        Lxy = avg_xy - avg.x * avg.y;
-
-        // 计算回归方程的斜率，截距，相关系数
-        a = Lxy / Lxx;
-        b = avg.y - a * avg.x;
-        r = Lxy / sqrt(Lxx * Lyy);
+    // 计算回归方程的斜率，截距，相关系数
+    a = Lxy / Lxx;
+    b = avg.y - a * avg.x;
+    r = Lxy / sqrt(Lxx * Lyy);
 }
 
 Regression::~Regression()
@@ -103,21 +100,30 @@ void Regression::on_comboBox_currentIndexChanged(int index)
 
 void Regression::on_calculation_clicked()
 {
+    expression.clear();
     double a,b,r;
+    bool is_a = false;
     Solution(a,b,r);
 
     // a
-    ui->expresion->setText(QString::asprintf("y = %.4lfx",a));
+    if(a<1e-8){
+        is_a = true;
+        expression = "";
+    }
+    else
+        expression.sprintf("y = %.4lfx",a);
+
     // b
     if(b<1e-8)
-        ui->expresion->setText(ui->expresion->text()+"");
+        expression = expression + "";
     else if(b<0)
-        ui->expresion->setText(ui->expresion->text()+
-                               QString::asprintf(" － %.5lf",fabs(b)));
-    else
-        ui->expresion->setText(ui->expresion->text()+
-                               QString::asprintf(" ＋ %.5lf",fabs(b)));
-
+        expression = expression +  QString::asprintf(" － %.4lf",fabs(b));
+    else{
+        if(is_a)
+            expression = QString::asprintf("%.4lf",fabs(b));
+        else
+            expression = expression + QString::asprintf(" ＋ %.4lf",fabs(b));
+    }
     // r
     ui->r->setText(QString::asprintf("%.3lf",r));
 
@@ -126,23 +132,57 @@ void Regression::on_calculation_clicked()
 
 
 void Regression::drawing(double a,double b){
-    QChartView *chartview = new QChartView(ui->stackedWidget);
     chartview->setVisible(true);
     chartview->setRenderHint(QPainter::Antialiasing);
     chartview->setMinimumSize(940,450);
     QChart *chart = new QChart();
     chartview->setChart(chart);
-    chart->setTitle(QString::asprintf("y = %.4lfx + %.4lf",a,b));
-    chart->setTheme(QChart::ChartThemeBlueCerulean);
+
+    // 展示动画
     chart->setAnimationOptions(QChart::AllAnimations);
 
-    // 折线系列和散点系列
-    QLineSeries *line = new QLineSeries();
-    QScatterSeries *scatter = new QScatterSeries();
+    // 设置系列主题
+    if(ui->light->isChecked())
+        chart->setTheme(QChart::ChartThemeLight);
+    else if(ui->bluesky->isChecked())
+        chart->setTheme(QChart::ChartThemeBlueCerulean);
+    else if(ui->dark->isChecked())
+        chart->setTheme((QChart::ChartThemeDark));
+    else if(ui->brown->isChecked())
+        chart->setTheme(QChart::ChartThemeBrownSand);
+    else
+        chart->setTheme(QChart::ChartThemeLight);
 
-    // 坐标系
-    QValueAxis *xaxis = new QValueAxis();
-    QValueAxis *yaxis = new QValueAxis();
+    // 设置标题
+    if(title_flag)
+        chart->setTitle(ui->title->text());
+    else
+        chart->setTitle("图表1");
+    chart->setTitleFont(FONT);
+
+    // 散点系列
+    QScatterSeries *scatter = new QScatterSeries();
+    scatter->setName("散点");
+
+    // 折线系列
+    QLineSeries *line = new QLineSeries();
+    line->setName(expression);
+    QPen pen(QBrush(Qt::black),3);
+    line->setPen(pen);
+
+    // 折线系列的颜色
+    if(ui->black->isChecked())
+        line->setColor(Qt::black);
+    else if(ui->blue->isChecked())
+        line->setColor(Qt::blue);
+    else if(ui->red->isChecked())
+        line->setColor(Qt::red);
+    else if(ui->yellow->isChecked())
+        line->setColor(Qt::yellow);
+    else if(ui->green->isChecked())
+        line->setColor(Qt::green);
+    else
+        line->setColor(Qt::black);
 
     // 读取数据
     Point temp;
@@ -156,6 +196,15 @@ void Regression::drawing(double a,double b){
     // 为散点系列添加坐标点
     for (int i = 0; i < number; i++)
         scatter->append(point.at(i).x,point.at(i).y);
+
+    // 坐标系
+    QValueAxis *xaxis = new QValueAxis();
+    xaxis->setTitleText(ui->x->text());
+    xaxis->setTitleFont(SMALL_FONT);
+
+    QValueAxis *yaxis = new QValueAxis();
+    yaxis->setTitleText(ui->y->text());
+    yaxis->setTitleFont(SMALL_FONT);
 
     double max,min;
     // 寻找横坐标最值
@@ -185,8 +234,8 @@ void Regression::drawing(double a,double b){
     yaxis->setRange(min-max/min,max+max/min);
 
     // 添加折线和散点系列
-    chart->addSeries(line);
     chart->addSeries(scatter);
+    chart->addSeries(line);
 
     // 为系列添加坐标系
     chart->setAxisX(xaxis,line);
@@ -195,7 +244,20 @@ void Regression::drawing(double a,double b){
     chart->setAxisY(yaxis,scatter);
 }
 
+void Regression::on_pushButton_clicked()
+{
+    QString filepath = QFileDialog::getSaveFileName(
+                this,tr("Save Image"),"图片",tr("*.png"));
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QPixmap p = screen->grabWindow(chartview->winId());
+    QImage image = p.toImage();
+    image.save(filepath);
+}
 
-
-
-
+void Regression::on_title_textChanged(const QString &arg1)
+{
+    if(arg1 == "在此输入标题，默认为图表1")
+        title_flag = false;
+    else
+        title_flag = true;
+}
