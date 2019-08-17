@@ -9,6 +9,7 @@
 #include "date.h"
 #include "equation.h"
 #include "matrix.h"
+#include "programmer.h"
 namespace Ui {
 class Calculator;
 }
@@ -27,6 +28,7 @@ private slots:
     void open_science();
     void open_equation();
     void open_matrix();
+    void open_programmer();
 
 private:
     Ui::Calculator *ui;
@@ -35,6 +37,7 @@ private:
     Date *new_date;
     Equation *new_equation;
     Matrix *new_matrix;
+    Programmer *new_programmer;
 };
 
 #endif // CALCULATOR_H
