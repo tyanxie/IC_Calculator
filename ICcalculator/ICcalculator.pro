@@ -32,7 +32,7 @@ SOURCES += \
     complex.cpp \
     clock.cpp \
     date.cpp \
-    equation.cpp
+    equation.cpp \
     matrix.cpp \
     matrix_bottom.cpp
 
@@ -43,7 +43,7 @@ HEADERS += \
     complex.h \
     clock.h \
     date.h \
-    equation.h
+    equation.h \
     matrix.h \
     matrix_bottom.h
 
@@ -52,7 +52,7 @@ FORMS += \
     science.ui \
     complex.ui \
     date.ui \
-    equation.ui
+    equation.ui \
     matrix.ui
 
 # Default rules for deployment.
