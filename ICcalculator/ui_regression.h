@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -38,17 +37,11 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QPushButton *calculation;
-    QWidget *horizontalLayoutWidget;
-    QHBoxLayout *expression;
-    QLabel *y;
-    QLabel *a;
-    QLabel *x;
-    QLabel *operator_2;
-    QLabel *b;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *coefficient;
     QLabel *y_2;
     QLabel *r;
+    QLabel *expresion;
 
     void setupUi(QWidget *Regression)
     {
@@ -101,45 +94,6 @@ public:
         font3.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font3.setPointSize(24);
         calculation->setFont(font3);
-        horizontalLayoutWidget = new QWidget(Regression);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(250, 20, 691, 81));
-        expression = new QHBoxLayout(horizontalLayoutWidget);
-        expression->setObjectName(QStringLiteral("expression"));
-        expression->setContentsMargins(0, 0, 0, 0);
-        y = new QLabel(horizontalLayoutWidget);
-        y->setObjectName(QStringLiteral("y"));
-        QFont font4;
-        font4.setFamily(QStringLiteral("DejaVu Sans Mono"));
-        font4.setPointSize(30);
-        y->setFont(font4);
-
-        expression->addWidget(y);
-
-        a = new QLabel(horizontalLayoutWidget);
-        a->setObjectName(QStringLiteral("a"));
-        a->setFont(font4);
-
-        expression->addWidget(a);
-
-        x = new QLabel(horizontalLayoutWidget);
-        x->setObjectName(QStringLiteral("x"));
-        x->setFont(font4);
-
-        expression->addWidget(x);
-
-        operator_2 = new QLabel(horizontalLayoutWidget);
-        operator_2->setObjectName(QStringLiteral("operator_2"));
-        operator_2->setFont(font4);
-
-        expression->addWidget(operator_2);
-
-        b = new QLabel(horizontalLayoutWidget);
-        b->setObjectName(QStringLiteral("b"));
-        b->setFont(font4);
-
-        expression->addWidget(b);
-
         verticalLayoutWidget = new QWidget(Regression);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(1060, 110, 101, 101));
@@ -148,6 +102,9 @@ public:
         coefficient->setContentsMargins(0, 0, 0, 0);
         y_2 = new QLabel(verticalLayoutWidget);
         y_2->setObjectName(QStringLiteral("y_2"));
+        QFont font4;
+        font4.setFamily(QStringLiteral("DejaVu Sans Mono"));
+        font4.setPointSize(20);
         y_2->setFont(font4);
 
         coefficient->addWidget(y_2);
@@ -158,6 +115,14 @@ public:
 
         coefficient->addWidget(r);
 
+        expresion = new QLabel(Regression);
+        expresion->setObjectName(QStringLiteral("expresion"));
+        expresion->setGeometry(QRect(260, 10, 681, 81));
+        QFont font5;
+        font5.setFamily(QStringLiteral("DejaVu Sans Mono"));
+        font5.setPointSize(30);
+        expresion->setFont(font5);
+        expresion->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         retranslateUi(Regression);
 
@@ -182,13 +147,9 @@ public:
         label_2->setText(QApplication::translate("Regression", "X\357\274\232", Q_NULLPTR));
         label_3->setText(QApplication::translate("Regression", "Y\357\274\232", Q_NULLPTR));
         calculation->setText(QApplication::translate("Regression", "\350\256\241\347\256\227", Q_NULLPTR));
-        y->setText(QApplication::translate("Regression", "y = ", Q_NULLPTR));
-        a->setText(QApplication::translate("Regression", "a", Q_NULLPTR));
-        x->setText(QApplication::translate("Regression", "x", Q_NULLPTR));
-        operator_2->setText(QApplication::translate("Regression", "\357\274\213", Q_NULLPTR));
-        b->setText(QApplication::translate("Regression", "b", Q_NULLPTR));
         y_2->setText(QApplication::translate("Regression", "R=", Q_NULLPTR));
-        r->setText(QApplication::translate("Regression", "1", Q_NULLPTR));
+        r->setText(QApplication::translate("Regression", "666", Q_NULLPTR));
+        expresion->setText(QApplication::translate("Regression", "y = 0.4444x + 0.4444", Q_NULLPTR));
     } // retranslateUi
 
 };

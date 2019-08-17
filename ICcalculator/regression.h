@@ -27,6 +27,9 @@ class Regression : public QWidget
 {
     Q_OBJECT
 
+private:
+    void drawing(double a,double b);
+
 public:
     explicit Regression(QWidget *parent = nullptr);
     void Solution(double& a,double& b,double& r);

@@ -231,6 +231,7 @@ Makefile: ICcalculator.pro ../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/win32-g++/q
 		../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/lex.prf \
 		ICcalculator.pro \
 		../../../Qt5.9.8/5.9.8/mingw53_32/lib/qtmaind.prl \
+		../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Charts.prl \
 		../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Widgets.prl \
 		../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Gui.prl \
 		../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Core.prl
@@ -405,6 +406,7 @@ Makefile: ICcalculator.pro ../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/win32-g++/q
 ../../../Qt5.9.8/5.9.8/mingw53_32/mkspecs/features/lex.prf:
 ICcalculator.pro:
 ../../../Qt5.9.8/5.9.8/mingw53_32/lib/qtmaind.prl:
+../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Charts.prl:
 ../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Widgets.prl:
 ../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Gui.prl:
 ../../../Qt5.9.8/5.9.8/mingw53_32/lib/Qt5Core.prl:

@@ -23,6 +23,9 @@ Regression::Regression(QWidget *parent) :
         ui->gridLayout->addWidget(&data[0][i],0,i);
         ui->gridLayout->addWidget(&data[1][i],1,i);
     }
+
+    ui->expresion->setAlignment(Qt::AlignCenter);
+
 }
 
 void Regression::Solution(double& a,double& b,double& r){
@@ -104,17 +107,95 @@ void Regression::on_calculation_clicked()
     Solution(a,b,r);
 
     // a
-    ui->a->setText(QString::asprintf("%.5lf",a));
-
+    ui->expresion->setText(QString::asprintf("y = %.4lfx",a));
     // b
     if(b<1e-8)
-        ui->operator_2->setText("");
+        ui->expresion->setText(ui->expresion->text()+"");
     else if(b<0)
-        ui->operator_2->setText("－");
+        ui->expresion->setText(ui->expresion->text()+
+                               QString::asprintf(" － %.5lf",fabs(b)));
     else
-        ui->operator_2->setText("＋");
-    ui->b->setText(QString::asprintf("%.5lf",fabs(b)));
+        ui->expresion->setText(ui->expresion->text()+
+                               QString::asprintf(" ＋ %.5lf",fabs(b)));
 
     // r
-    ui->r->setText(QString::asprintf("%.2lf",r));
+    ui->r->setText(QString::asprintf("%.3lf",r));
+
+    this->drawing(a,b);
 }
+
+
+void Regression::drawing(double a,double b){
+    QChartView *chartview = new QChartView(ui->stackedWidget);
+    chartview->setVisible(true);
+    chartview->setRenderHint(QPainter::Antialiasing);
+    chartview->setMinimumSize(940,450);
+    QChart *chart = new QChart();
+    chartview->setChart(chart);
+    chart->setTitle(QString::asprintf("y = %.4lfx + %.4lf",a,b));
+    chart->setTheme(QChart::ChartThemeBlueCerulean);
+    chart->setAnimationOptions(QChart::AllAnimations);
+
+    // 折线系列和散点系列
+    QLineSeries *line = new QLineSeries();
+    QScatterSeries *scatter = new QScatterSeries();
+
+    // 坐标系
+    QValueAxis *xaxis = new QValueAxis();
+    QValueAxis *yaxis = new QValueAxis();
+
+    // 读取数据
+    Point temp;
+    QVector<Point>point;
+    for (int i = 0; i < number; i++) {
+        temp.x = data[0][i].text().toDouble();
+        temp.y = data[1][i].text().toDouble();
+        point.push_back(temp);
+    }
+
+    // 为散点系列添加坐标点
+    for (int i = 0; i < number; i++)
+        scatter->append(point.at(i).x,point.at(i).y);
+
+    double max,min;
+    // 寻找横坐标最值
+    max = point.at(0).x;
+    min = point.at(0).x;
+    for (int i = 1; i < number; i++) {
+        if(point.at(i).x>max)
+            max = point.at(i).x;
+        if(point.at(i).x<min)
+            min = point.at(i).x;
+    }
+    xaxis->setRange(min-max/min,max+max/min);
+
+    //为折线系列添加坐标点
+    line->append(max,a*max+b);
+    line->append(min,a*min+b);
+
+    // 寻找纵坐标的最值
+    max = point.at(0).y;
+    min = point.at(0).y;
+    for (int i = 1; i < number; i++) {
+        if(point.at(i).y>max)
+            max = point.at(i).y;
+        if(point.at(i).y<min)
+            min = point.at(i).y;
+    }
+    yaxis->setRange(min-max/min,max+max/min);
+
+    // 添加折线和散点系列
+    chart->addSeries(line);
+    chart->addSeries(scatter);
+
+    // 为系列添加坐标系
+    chart->setAxisX(xaxis,line);
+    chart->setAxisY(yaxis,line);
+    chart->setAxisX(xaxis,scatter);
+    chart->setAxisY(yaxis,scatter);
+}
+
+
+
+
+
