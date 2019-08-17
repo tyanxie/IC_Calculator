@@ -16,10 +16,12 @@ Calculator::Calculator(QWidget *parent) :
     new_complex=new Complex;
     new_date=new Date;
     new_equation=new Equation;
+    new_matrix = new Matrix(this);
     ui->stackedWidget->addWidget(new_science);
     ui->stackedWidget->addWidget(new_complex);
     ui->stackedWidget->addWidget(new_date);
     ui->stackedWidget->addWidget(new_equation);
+    ui->stackedWidget->addWidget(new_matrix);
 
     ui->stackedWidget->setCurrentWidget(new_science);
 
@@ -27,7 +29,7 @@ Calculator::Calculator(QWidget *parent) :
     connect(ui->actioncomplex,&QAction::triggered,this,&Calculator::open_complex);
     connect(ui->actiondate,&QAction::triggered,this,&Calculator::open_date);
     connect(ui->actionequation,&QAction::triggered,this,&Calculator::open_equation);
-
+    connect(ui->actionmatrix,&QAction::triggered,this,&Calculator::open_matrix);
 }
 
 Calculator::~Calculator()
@@ -40,7 +42,8 @@ void Calculator::open_science()
     ui->stackedWidget->setCurrentWidget(new_science);
 }
 
-void Calculator::open_complex(){
+void Calculator::open_complex()
+{
     ui->stackedWidget->setCurrentWidget(new_complex);
 }
 
@@ -52,4 +55,9 @@ void Calculator::open_date()
 void Calculator::open_equation()
 {
     ui->stackedWidget->setCurrentWidget(new_equation);
+}
+
+void Calculator::open_matrix()
+{
+    ui->stackedWidget->setCurrentWidget(new_matrix);
 }

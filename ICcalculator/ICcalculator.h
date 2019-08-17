@@ -8,6 +8,7 @@
 #include "complex.h"
 #include "date.h"
 #include "equation.h"
+#include "matrix.h"
 namespace Ui {
 class Calculator;
 }
@@ -25,6 +26,7 @@ private slots:
     void open_date();
     void open_science();
     void open_equation();
+    void open_matrix();
 
 private:
     Ui::Calculator *ui;
@@ -32,6 +34,7 @@ private:
     Complex *new_complex;
     Date *new_date;
     Equation *new_equation;
+    Matrix *new_matrix;
 };
 
 #endif // CALCULATOR_H
