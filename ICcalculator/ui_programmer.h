@@ -216,10 +216,10 @@ public:
         label_12->setText(QApplication::translate("Programmer", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">\350\276\223\345\207\272\345\210\227</span></p></body></html>", Q_NULLPTR));
         groupBox_3->setTitle(QApplication::translate("Programmer", "\350\276\223\345\205\245\357\274\232\344\273\273\351\200\211\344\270\200\347\247\215\350\277\233\345\210\266\346\225\260\350\276\223\345\205\245", Q_NULLPTR));
         groupBox_4->setTitle(QApplication::translate("Programmer", "\350\276\223\345\207\272", Q_NULLPTR));
-        bin_output->setText(QApplication::translate("Programmer", "TextLabel", Q_NULLPTR));
-        oct_output->setText(QApplication::translate("Programmer", "TextLabel", Q_NULLPTR));
-        dec_output->setText(QApplication::translate("Programmer", "TextLabel", Q_NULLPTR));
-        hex_output->setText(QApplication::translate("Programmer", "TextLabel", Q_NULLPTR));
+        bin_output->setText(QString());
+        oct_output->setText(QString());
+        dec_output->setText(QString());
+        hex_output->setText(QString());
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
          << QApplication::translate("Programmer", "\344\272\214\350\277\233\345\210\266", Q_NULLPTR)
