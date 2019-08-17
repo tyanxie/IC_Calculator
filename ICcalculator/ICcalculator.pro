@@ -34,7 +34,9 @@ SOURCES += \
     date.cpp \
     equation.cpp \
     matrix.cpp \
-    matrix_bottom.cpp
+    matrix_bottom.cpp \
+    calculator_for_programmer.cpp \
+    programmer.cpp
 
 HEADERS += \
         ICcalculator.h \
@@ -45,7 +47,9 @@ HEADERS += \
     date.h \
     equation.h \
     matrix.h \
-    matrix_bottom.h
+    matrix_bottom.h \
+    calculator_for_programmer.h \
+    programmer.h
 
 FORMS += \
         ICcalculator.ui \
@@ -53,7 +57,8 @@ FORMS += \
     complex.ui \
     date.ui \
     equation.ui \
-    matrix.ui
+    matrix.ui \
+    programmer.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
