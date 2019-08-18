@@ -13,9 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -38,6 +40,9 @@ public:
     QAction *actionmatrix;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QGridLayout *gridLayout;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QWidget *page_2;
@@ -106,10 +111,22 @@ public:
         centralWidget = new QWidget(Calculator);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(6);
+        verticalLayout->setSpacing(0);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        stackedWidget = new QStackedWidget(centralWidget);
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1198, 797));
+        gridLayout = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout->setSpacing(0);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        stackedWidget = new QStackedWidget(scrollAreaWidgetContents);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
@@ -118,7 +135,11 @@ public:
         page_2->setObjectName(QStringLiteral("page_2"));
         stackedWidget->addWidget(page_2);
 
-        verticalLayout->addWidget(stackedWidget);
+        gridLayout->addWidget(stackedWidget, 0, 0, 1, 1);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout->addWidget(scrollArea);
 
         Calculator->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Calculator);
