@@ -15,8 +15,11 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,19 +27,32 @@ QT_BEGIN_NAMESPACE
 class Ui_Matrix
 {
 public:
+    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout;
+    QLabel *a_row_label;
+    QComboBox *a_row_combo;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *a_column_label;
+    QComboBox *a_column_combo;
+    QSpacerItem *verticalSpacer_3;
     QWidget *a_input_grid;
     QGridLayout *a_input_gridLayout;
-    QLabel *a_row_label;
-    QLabel *a_column_label;
-    QComboBox *a_row_combo;
-    QComboBox *a_column_combo;
+    QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer;
+    QComboBox *operator_combo;
+    QSpacerItem *verticalSpacer_2;
+    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *horizontalLayout_3;
     QLabel *b_row_label;
+    QComboBox *b_row_combo;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *b_column_label;
     QComboBox *b_column_combo;
+    QSpacerItem *verticalSpacer_4;
     QWidget *b_input_grid;
     QGridLayout *b_input_gridLayout;
-    QComboBox *b_row_combo;
-    QLabel *b_column_label;
-    QComboBox *operator_combo;
     QWidget *output_grid;
     QGridLayout *output_gridLayout;
 
@@ -45,65 +61,177 @@ public:
         if (Matrix->objectName().isEmpty())
             Matrix->setObjectName(QStringLiteral("Matrix"));
         Matrix->resize(1200, 820);
-        a_input_grid = new QWidget(Matrix);
-        a_input_grid->setObjectName(QStringLiteral("a_input_grid"));
-        a_input_grid->setGeometry(QRect(170, 0, 350, 350));
-        a_input_gridLayout = new QGridLayout(a_input_grid);
-        a_input_gridLayout->setSpacing(3);
-        a_input_gridLayout->setObjectName(QStringLiteral("a_input_gridLayout"));
+        verticalLayout_4 = new QVBoxLayout(Matrix);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         a_row_label = new QLabel(Matrix);
         a_row_label->setObjectName(QStringLiteral("a_row_label"));
-        a_row_label->setGeometry(QRect(10, 20, 91, 61));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(a_row_label->sizePolicy().hasHeightForWidth());
+        a_row_label->setSizePolicy(sizePolicy);
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(26);
         a_row_label->setFont(font);
-        a_column_label = new QLabel(Matrix);
-        a_column_label->setObjectName(QStringLiteral("a_column_label"));
-        a_column_label->setGeometry(QRect(10, 90, 91, 61));
-        a_column_label->setFont(font);
+
+        horizontalLayout->addWidget(a_row_label);
+
         a_row_combo = new QComboBox(Matrix);
         a_row_combo->setObjectName(QStringLiteral("a_row_combo"));
-        a_row_combo->setGeometry(QRect(100, 20, 61, 61));
+        a_row_combo->setMinimumSize(QSize(0, 60));
         a_row_combo->setFont(font);
+
+        horizontalLayout->addWidget(a_row_combo);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        a_column_label = new QLabel(Matrix);
+        a_column_label->setObjectName(QStringLiteral("a_column_label"));
+        sizePolicy.setHeightForWidth(a_column_label->sizePolicy().hasHeightForWidth());
+        a_column_label->setSizePolicy(sizePolicy);
+        a_column_label->setFont(font);
+
+        horizontalLayout_2->addWidget(a_column_label);
+
         a_column_combo = new QComboBox(Matrix);
         a_column_combo->setObjectName(QStringLiteral("a_column_combo"));
-        a_column_combo->setGeometry(QRect(100, 90, 61, 61));
+        a_column_combo->setMinimumSize(QSize(0, 60));
         a_column_combo->setFont(font);
+
+        horizontalLayout_2->addWidget(a_column_combo);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_2);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer_3);
+
+        verticalLayout_2->setStretch(0, 1);
+        verticalLayout_2->setStretch(1, 1);
+        verticalLayout_2->setStretch(2, 5);
+
+        horizontalLayout_5->addLayout(verticalLayout_2);
+
+        a_input_grid = new QWidget(Matrix);
+        a_input_grid->setObjectName(QStringLiteral("a_input_grid"));
+        a_input_gridLayout = new QGridLayout(a_input_grid);
+        a_input_gridLayout->setSpacing(3);
+        a_input_gridLayout->setObjectName(QStringLiteral("a_input_gridLayout"));
+
+        horizontalLayout_5->addWidget(a_input_grid);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
+        operator_combo = new QComboBox(Matrix);
+        operator_combo->setObjectName(QStringLiteral("operator_combo"));
+        operator_combo->setMinimumSize(QSize(0, 60));
+        operator_combo->setFont(font);
+
+        verticalLayout->addWidget(operator_combo);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
+
+        horizontalLayout_5->addLayout(verticalLayout);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         b_row_label = new QLabel(Matrix);
         b_row_label->setObjectName(QStringLiteral("b_row_label"));
-        b_row_label->setGeometry(QRect(670, 20, 91, 61));
+        sizePolicy.setHeightForWidth(b_row_label->sizePolicy().hasHeightForWidth());
+        b_row_label->setSizePolicy(sizePolicy);
         b_row_label->setFont(font);
+
+        horizontalLayout_3->addWidget(b_row_label);
+
+        b_row_combo = new QComboBox(Matrix);
+        b_row_combo->setObjectName(QStringLiteral("b_row_combo"));
+        b_row_combo->setMinimumSize(QSize(0, 60));
+        b_row_combo->setFont(font);
+
+        horizontalLayout_3->addWidget(b_row_combo);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_3);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        b_column_label = new QLabel(Matrix);
+        b_column_label->setObjectName(QStringLiteral("b_column_label"));
+        sizePolicy.setHeightForWidth(b_column_label->sizePolicy().hasHeightForWidth());
+        b_column_label->setSizePolicy(sizePolicy);
+        b_column_label->setFont(font);
+
+        horizontalLayout_4->addWidget(b_column_label);
+
         b_column_combo = new QComboBox(Matrix);
         b_column_combo->setObjectName(QStringLiteral("b_column_combo"));
-        b_column_combo->setGeometry(QRect(760, 90, 61, 61));
+        b_column_combo->setMinimumSize(QSize(0, 60));
         b_column_combo->setFont(font);
+
+        horizontalLayout_4->addWidget(b_column_combo);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_4);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_4);
+
+        verticalLayout_3->setStretch(0, 1);
+        verticalLayout_3->setStretch(1, 1);
+        verticalLayout_3->setStretch(2, 5);
+
+        horizontalLayout_5->addLayout(verticalLayout_3);
+
         b_input_grid = new QWidget(Matrix);
         b_input_grid->setObjectName(QStringLiteral("b_input_grid"));
-        b_input_grid->setGeometry(QRect(830, 0, 350, 350));
         b_input_gridLayout = new QGridLayout(b_input_grid);
         b_input_gridLayout->setSpacing(3);
         b_input_gridLayout->setObjectName(QStringLiteral("b_input_gridLayout"));
         b_input_gridLayout->setContentsMargins(9, 9, 9, 9);
-        b_row_combo = new QComboBox(Matrix);
-        b_row_combo->setObjectName(QStringLiteral("b_row_combo"));
-        b_row_combo->setGeometry(QRect(760, 20, 61, 61));
-        b_row_combo->setFont(font);
-        b_column_label = new QLabel(Matrix);
-        b_column_label->setObjectName(QStringLiteral("b_column_label"));
-        b_column_label->setGeometry(QRect(670, 90, 91, 61));
-        b_column_label->setFont(font);
-        operator_combo = new QComboBox(Matrix);
-        operator_combo->setObjectName(QStringLiteral("operator_combo"));
-        operator_combo->setGeometry(QRect(600, 180, 71, 65));
-        operator_combo->setFont(font);
+
+        horizontalLayout_5->addWidget(b_input_grid);
+
+        horizontalLayout_5->setStretch(0, 1);
+        horizontalLayout_5->setStretch(1, 6);
+        horizontalLayout_5->setStretch(2, 1);
+        horizontalLayout_5->setStretch(3, 1);
+        horizontalLayout_5->setStretch(4, 6);
+
+        verticalLayout_4->addLayout(horizontalLayout_5);
+
         output_grid = new QWidget(Matrix);
         output_grid->setObjectName(QStringLiteral("output_grid"));
         output_grid->setEnabled(true);
-        output_grid->setGeometry(QRect(100, 380, 1000, 350));
         output_gridLayout = new QGridLayout(output_grid);
         output_gridLayout->setSpacing(3);
         output_gridLayout->setObjectName(QStringLiteral("output_gridLayout"));
+        output_gridLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+
+        verticalLayout_4->addWidget(output_grid);
+
+        verticalLayout_4->setStretch(0, 1);
+        verticalLayout_4->setStretch(1, 1);
 
         retranslateUi(Matrix);
 
@@ -114,7 +242,6 @@ public:
     {
         Matrix->setWindowTitle(QApplication::translate("Matrix", "Form", Q_NULLPTR));
         a_row_label->setText(QApplication::translate("Matrix", "\350\241\214\346\225\260\357\274\232", Q_NULLPTR));
-        a_column_label->setText(QApplication::translate("Matrix", "\345\210\227\346\225\260\357\274\232", Q_NULLPTR));
         a_row_combo->clear();
         a_row_combo->insertItems(0, QStringList()
          << QApplication::translate("Matrix", "1", Q_NULLPTR)
@@ -128,6 +255,7 @@ public:
          << QApplication::translate("Matrix", "9", Q_NULLPTR)
          << QApplication::translate("Matrix", "10", Q_NULLPTR)
         );
+        a_column_label->setText(QApplication::translate("Matrix", "\345\210\227\346\225\260\357\274\232", Q_NULLPTR));
         a_column_combo->clear();
         a_column_combo->insertItems(0, QStringList()
          << QApplication::translate("Matrix", "1", Q_NULLPTR)
@@ -141,20 +269,13 @@ public:
          << QApplication::translate("Matrix", "9", Q_NULLPTR)
          << QApplication::translate("Matrix", "10", Q_NULLPTR)
         );
-        b_row_label->setText(QApplication::translate("Matrix", "\350\241\214\346\225\260\357\274\232", Q_NULLPTR));
-        b_column_combo->clear();
-        b_column_combo->insertItems(0, QStringList()
-         << QApplication::translate("Matrix", "1", Q_NULLPTR)
-         << QApplication::translate("Matrix", "2", Q_NULLPTR)
-         << QApplication::translate("Matrix", "3", Q_NULLPTR)
-         << QApplication::translate("Matrix", "4", Q_NULLPTR)
-         << QApplication::translate("Matrix", "5", Q_NULLPTR)
-         << QApplication::translate("Matrix", "6", Q_NULLPTR)
-         << QApplication::translate("Matrix", "7", Q_NULLPTR)
-         << QApplication::translate("Matrix", "8", Q_NULLPTR)
-         << QApplication::translate("Matrix", "9", Q_NULLPTR)
-         << QApplication::translate("Matrix", "10", Q_NULLPTR)
+        operator_combo->clear();
+        operator_combo->insertItems(0, QStringList()
+         << QApplication::translate("Matrix", "\357\274\213", Q_NULLPTR)
+         << QApplication::translate("Matrix", "\357\274\215", Q_NULLPTR)
+         << QApplication::translate("Matrix", "\303\227", Q_NULLPTR)
         );
+        b_row_label->setText(QApplication::translate("Matrix", "\350\241\214\346\225\260\357\274\232", Q_NULLPTR));
         b_row_combo->clear();
         b_row_combo->insertItems(0, QStringList()
          << QApplication::translate("Matrix", "1", Q_NULLPTR)
@@ -169,11 +290,18 @@ public:
          << QApplication::translate("Matrix", "10", Q_NULLPTR)
         );
         b_column_label->setText(QApplication::translate("Matrix", "\345\210\227\346\225\260\357\274\232", Q_NULLPTR));
-        operator_combo->clear();
-        operator_combo->insertItems(0, QStringList()
-         << QApplication::translate("Matrix", "\357\274\213", Q_NULLPTR)
-         << QApplication::translate("Matrix", "\357\274\215", Q_NULLPTR)
-         << QApplication::translate("Matrix", "\303\227", Q_NULLPTR)
+        b_column_combo->clear();
+        b_column_combo->insertItems(0, QStringList()
+         << QApplication::translate("Matrix", "1", Q_NULLPTR)
+         << QApplication::translate("Matrix", "2", Q_NULLPTR)
+         << QApplication::translate("Matrix", "3", Q_NULLPTR)
+         << QApplication::translate("Matrix", "4", Q_NULLPTR)
+         << QApplication::translate("Matrix", "5", Q_NULLPTR)
+         << QApplication::translate("Matrix", "6", Q_NULLPTR)
+         << QApplication::translate("Matrix", "7", Q_NULLPTR)
+         << QApplication::translate("Matrix", "8", Q_NULLPTR)
+         << QApplication::translate("Matrix", "9", Q_NULLPTR)
+         << QApplication::translate("Matrix", "10", Q_NULLPTR)
         );
     } // retranslateUi
 

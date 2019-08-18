@@ -19,6 +19,7 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -36,6 +37,7 @@ public:
     QAction *actiongame;
     QAction *actionmatrix;
     QWidget *centralWidget;
+    QVBoxLayout *verticalLayout;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QWidget *page_2;
@@ -103,19 +105,25 @@ public:
         actionmatrix->setIcon(icon8);
         centralWidget = new QWidget(Calculator);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        verticalLayout = new QVBoxLayout(centralWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(0, 0, 1200, 820));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
         stackedWidget->addWidget(page_2);
+
+        verticalLayout->addWidget(stackedWidget);
+
         Calculator->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Calculator);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1200, 17));
+        menuBar->setGeometry(QRect(0, 0, 1200, 23));
         Calculator->setMenuBar(menuBar);
         mainToolBar = new QToolBar(Calculator);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

@@ -135,7 +135,7 @@ void Matrix::compute(){
                 output_Label[i][j].setMaximumSize(54,54);
                 output_Label[i][j].setFont(font);
                 output_Label[i][j].setText(QString::asprintf("%d %d",i,j));
-                output_Label[i][j].setStyleSheet("background:transparent;border:0px solid black;");
+//                output_Label[i][j].setStyleSheet("background:transparent;border:0px solid black;");
                 ui->output_gridLayout->addWidget(&output_Label[i][j],i,j);
             }
         }
@@ -205,7 +205,7 @@ void Matrix::construct_output(int row,int column){
             output_Label[i][j].setMaximumSize(975/row,35);
             output_Label[i][j].setAlignment(Qt::AlignCenter);
             output_Label[i][j].setFont(font);
-            output_Label[i][j].setStyleSheet("background:transparent;border:1px solid black;");
+//            output_Label[i][j].setStyleSheet("background:transparent;border:1px solid black;");
             ui->output_gridLayout->addWidget(&output_Label[i][j],i,j);
         }
     }

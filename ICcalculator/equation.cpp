@@ -8,7 +8,7 @@ Equation::Equation(QWidget *parent) :
     ui(new Ui::Equation)
 {
     ui->setupUi(this);
-    ui->radioButton_4->close();
+//    ui->radioButton_4->close();
 }
 
 Equation::~Equation()
@@ -38,9 +38,9 @@ void Equation::on_radioButton_4_clicked(bool)
 
 void Equation::on_pushButton_clicked()
 {
-    double va=ui->textEdit_a->toPlainText().toDouble();
-    double vb=ui->textEdit_b->toPlainText().toDouble();
-    double vc=ui->textEdit_c->toPlainText().toDouble();
+    double va=ui->textEdit_a->text().toDouble();
+    double vb=ui->textEdit_b->text().toDouble();
+    double vc=ui->textEdit_c->text().toDouble();
     double d=vb*vb-va*vc*4.0;
     double x1,x2;
     QString str="",ret1,ret2;
@@ -320,12 +320,12 @@ void Equation::on_pushButton_2_clicked()
 
 void Equation::on_pushButton_3_clicked()
 {
-    double a1=ui->Twoa->toPlainText().toDouble();
-    double a2=ui->Twoc->toPlainText().toDouble();
-    double b1=ui->Twob->toPlainText().toDouble();
-    double b2=ui->Twod->toPlainText().toDouble();
-    double c1=ui->Twoe->toPlainText().toDouble();
-    double c2=ui->Twof->toPlainText().toDouble();
+    double a1=ui->Twoa->text().toDouble();
+    double a2=ui->Twoc->text().toDouble();
+    double b1=ui->Twob->text().toDouble();
+    double b2=ui->Twod->text().toDouble();
+    double c1=ui->Twoe->text().toDouble();
+    double c2=ui->Twof->text().toDouble();
     double x,y;
     QString ret;
     if(fabs(b1*a2-b2*a1)>10e-20)

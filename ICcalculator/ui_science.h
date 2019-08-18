@@ -26,7 +26,8 @@ QT_BEGIN_NAMESPACE
 class Ui_science
 {
 public:
-    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout_7;
+    QSpacerItem *horizontalSpacer;
     QVBoxLayout *verticalLayout;
     QTextEdit *textEditIN;
     QSpacerItem *verticalSpacer_3;
@@ -69,23 +70,27 @@ public:
     QPushButton *Equal;
     QPushButton *Divide;
     QPushButton *Clear;
+    QSpacerItem *horizontalSpacer_2;
 
     void setupUi(QWidget *science)
     {
         if (science->objectName().isEmpty())
             science->setObjectName(QStringLiteral("science"));
-        science->resize(1200, 1000);
-        science->setMinimumSize(QSize(1000, 1000));
+        science->resize(1182, 781);
+        science->setMinimumSize(QSize(0, 0));
+        science->setMaximumSize(QSize(1182, 16777215));
         QFont font;
         font.setPointSize(9);
         science->setFont(font);
-        layoutWidget = new QWidget(science);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 11, 561, 770));
-        verticalLayout = new QVBoxLayout(layoutWidget);
+        horizontalLayout_7 = new QHBoxLayout(science);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalSpacer = new QSpacerItem(372, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer);
+
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        textEditIN = new QTextEdit(layoutWidget);
+        textEditIN = new QTextEdit(science);
         textEditIN->setObjectName(QStringLiteral("textEditIN"));
         textEditIN->setEnabled(false);
         textEditIN->setMinimumSize(QSize(0, 0));
@@ -97,11 +102,11 @@ public:
 
         verticalLayout->addWidget(textEditIN);
 
-        verticalSpacer_3 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_3 = new QSpacerItem(20, 2, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_3);
 
-        textEditOUT = new QTextEdit(layoutWidget);
+        textEditOUT = new QTextEdit(science);
         textEditOUT->setObjectName(QStringLiteral("textEditOUT"));
         textEditOUT->setEnabled(false);
         textEditOUT->setMinimumSize(QSize(0, 0));
@@ -113,34 +118,59 @@ public:
 
         verticalLayout->addWidget(textEditOUT);
 
-        verticalSpacer = new QSpacerItem(20, 28, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 5, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        PI = new QPushButton(layoutWidget);
+        PI = new QPushButton(science);
         PI->setObjectName(QStringLiteral("PI"));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(PI->sizePolicy().hasHeightForWidth());
+        PI->setSizePolicy(sizePolicy);
+        PI->setMinimumSize(QSize(0, 70));
+        QFont font3;
+        font3.setPointSize(23);
+        PI->setFont(font3);
 
         horizontalLayout_5->addWidget(PI);
 
-        E = new QPushButton(layoutWidget);
+        E = new QPushButton(science);
         E->setObjectName(QStringLiteral("E"));
+        sizePolicy.setHeightForWidth(E->sizePolicy().hasHeightForWidth());
+        E->setSizePolicy(sizePolicy);
+        E->setMinimumSize(QSize(0, 70));
+        E->setFont(font3);
 
         horizontalLayout_5->addWidget(E);
 
-        Factorial = new QPushButton(layoutWidget);
+        Factorial = new QPushButton(science);
         Factorial->setObjectName(QStringLiteral("Factorial"));
+        sizePolicy.setHeightForWidth(Factorial->sizePolicy().hasHeightForWidth());
+        Factorial->setSizePolicy(sizePolicy);
+        Factorial->setMinimumSize(QSize(0, 70));
+        Factorial->setFont(font3);
 
         horizontalLayout_5->addWidget(Factorial);
 
-        Square = new QPushButton(layoutWidget);
+        Square = new QPushButton(science);
         Square->setObjectName(QStringLiteral("Square"));
+        sizePolicy.setHeightForWidth(Square->sizePolicy().hasHeightForWidth());
+        Square->setSizePolicy(sizePolicy);
+        Square->setMinimumSize(QSize(0, 70));
+        Square->setFont(font3);
 
         horizontalLayout_5->addWidget(Square);
 
-        Mod = new QPushButton(layoutWidget);
+        Mod = new QPushButton(science);
         Mod->setObjectName(QStringLiteral("Mod"));
+        sizePolicy.setHeightForWidth(Mod->sizePolicy().hasHeightForWidth());
+        Mod->setSizePolicy(sizePolicy);
+        Mod->setMinimumSize(QSize(0, 70));
+        Mod->setFont(font3);
 
         horizontalLayout_5->addWidget(Mod);
 
@@ -149,71 +179,89 @@ public:
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        Involution = new QPushButton(layoutWidget);
+        Involution = new QPushButton(science);
         Involution->setObjectName(QStringLiteral("Involution"));
+        sizePolicy.setHeightForWidth(Involution->sizePolicy().hasHeightForWidth());
+        Involution->setSizePolicy(sizePolicy);
+        Involution->setMinimumSize(QSize(0, 70));
+        Involution->setFont(font3);
 
         horizontalLayout_6->addWidget(Involution);
 
-        Sin = new QPushButton(layoutWidget);
+        Sin = new QPushButton(science);
         Sin->setObjectName(QStringLiteral("Sin"));
+        sizePolicy.setHeightForWidth(Sin->sizePolicy().hasHeightForWidth());
+        Sin->setSizePolicy(sizePolicy);
+        Sin->setMinimumSize(QSize(0, 70));
+        Sin->setFont(font3);
 
         horizontalLayout_6->addWidget(Sin);
 
-        Cos = new QPushButton(layoutWidget);
+        Cos = new QPushButton(science);
         Cos->setObjectName(QStringLiteral("Cos"));
+        sizePolicy.setHeightForWidth(Cos->sizePolicy().hasHeightForWidth());
+        Cos->setSizePolicy(sizePolicy);
+        Cos->setMinimumSize(QSize(0, 70));
+        Cos->setFont(font3);
 
         horizontalLayout_6->addWidget(Cos);
 
-        pushButton_9 = new QPushButton(layoutWidget);
+        pushButton_9 = new QPushButton(science);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
+        sizePolicy.setHeightForWidth(pushButton_9->sizePolicy().hasHeightForWidth());
+        pushButton_9->setSizePolicy(sizePolicy);
+        pushButton_9->setMinimumSize(QSize(0, 70));
+        pushButton_9->setFont(font3);
 
         horizontalLayout_6->addWidget(pushButton_9);
 
-        Log = new QPushButton(layoutWidget);
+        Log = new QPushButton(science);
         Log->setObjectName(QStringLiteral("Log"));
+        sizePolicy.setHeightForWidth(Log->sizePolicy().hasHeightForWidth());
+        Log->setSizePolicy(sizePolicy);
+        Log->setMinimumSize(QSize(0, 70));
+        Log->setFont(font3);
 
         horizontalLayout_6->addWidget(Log);
 
 
         verticalLayout->addLayout(horizontalLayout_6);
 
-        verticalSpacer_2 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 2, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        Seven = new QPushButton(layoutWidget);
+        Seven = new QPushButton(science);
         Seven->setObjectName(QStringLiteral("Seven"));
         Seven->setMinimumSize(QSize(0, 70));
-        QFont font3;
-        font3.setPointSize(23);
         Seven->setFont(font3);
 
         horizontalLayout->addWidget(Seven);
 
-        Eight = new QPushButton(layoutWidget);
+        Eight = new QPushButton(science);
         Eight->setObjectName(QStringLiteral("Eight"));
         Eight->setMinimumSize(QSize(0, 70));
         Eight->setFont(font3);
 
         horizontalLayout->addWidget(Eight);
 
-        Nine = new QPushButton(layoutWidget);
+        Nine = new QPushButton(science);
         Nine->setObjectName(QStringLiteral("Nine"));
         Nine->setMinimumSize(QSize(0, 70));
         Nine->setFont(font3);
 
         horizontalLayout->addWidget(Nine);
 
-        Add = new QPushButton(layoutWidget);
+        Add = new QPushButton(science);
         Add->setObjectName(QStringLiteral("Add"));
         Add->setMinimumSize(QSize(0, 70));
         Add->setFont(font3);
 
         horizontalLayout->addWidget(Add);
 
-        Leftbracket = new QPushButton(layoutWidget);
+        Leftbracket = new QPushButton(science);
         Leftbracket->setObjectName(QStringLiteral("Leftbracket"));
         Leftbracket->setMinimumSize(QSize(0, 70));
         Leftbracket->setFont(font3);
@@ -225,35 +273,35 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        Four = new QPushButton(layoutWidget);
+        Four = new QPushButton(science);
         Four->setObjectName(QStringLiteral("Four"));
         Four->setMinimumSize(QSize(0, 70));
         Four->setFont(font3);
 
         horizontalLayout_2->addWidget(Four);
 
-        Five = new QPushButton(layoutWidget);
+        Five = new QPushButton(science);
         Five->setObjectName(QStringLiteral("Five"));
         Five->setMinimumSize(QSize(0, 70));
         Five->setFont(font3);
 
         horizontalLayout_2->addWidget(Five);
 
-        Six = new QPushButton(layoutWidget);
+        Six = new QPushButton(science);
         Six->setObjectName(QStringLiteral("Six"));
         Six->setMinimumSize(QSize(0, 70));
         Six->setFont(font3);
 
         horizontalLayout_2->addWidget(Six);
 
-        Subtract = new QPushButton(layoutWidget);
+        Subtract = new QPushButton(science);
         Subtract->setObjectName(QStringLiteral("Subtract"));
         Subtract->setMinimumSize(QSize(0, 70));
         Subtract->setFont(font3);
 
         horizontalLayout_2->addWidget(Subtract);
 
-        Rightbracket = new QPushButton(layoutWidget);
+        Rightbracket = new QPushButton(science);
         Rightbracket->setObjectName(QStringLiteral("Rightbracket"));
         Rightbracket->setMinimumSize(QSize(0, 70));
         Rightbracket->setFont(font3);
@@ -265,35 +313,35 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        One = new QPushButton(layoutWidget);
+        One = new QPushButton(science);
         One->setObjectName(QStringLiteral("One"));
         One->setMinimumSize(QSize(0, 70));
         One->setFont(font3);
 
         horizontalLayout_3->addWidget(One);
 
-        Two = new QPushButton(layoutWidget);
+        Two = new QPushButton(science);
         Two->setObjectName(QStringLiteral("Two"));
         Two->setMinimumSize(QSize(0, 70));
         Two->setFont(font3);
 
         horizontalLayout_3->addWidget(Two);
 
-        Three = new QPushButton(layoutWidget);
+        Three = new QPushButton(science);
         Three->setObjectName(QStringLiteral("Three"));
         Three->setMinimumSize(QSize(0, 70));
         Three->setFont(font3);
 
         horizontalLayout_3->addWidget(Three);
 
-        Multiple = new QPushButton(layoutWidget);
+        Multiple = new QPushButton(science);
         Multiple->setObjectName(QStringLiteral("Multiple"));
         Multiple->setMinimumSize(QSize(0, 70));
         Multiple->setFont(font3);
 
         horizontalLayout_3->addWidget(Multiple);
 
-        Backspace = new QPushButton(layoutWidget);
+        Backspace = new QPushButton(science);
         Backspace->setObjectName(QStringLiteral("Backspace"));
         Backspace->setMinimumSize(QSize(0, 70));
         Backspace->setFont(font3);
@@ -305,35 +353,35 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        Zero = new QPushButton(layoutWidget);
+        Zero = new QPushButton(science);
         Zero->setObjectName(QStringLiteral("Zero"));
         Zero->setMinimumSize(QSize(0, 70));
         Zero->setFont(font3);
 
         horizontalLayout_4->addWidget(Zero);
 
-        Point = new QPushButton(layoutWidget);
+        Point = new QPushButton(science);
         Point->setObjectName(QStringLiteral("Point"));
         Point->setMinimumSize(QSize(0, 70));
         Point->setFont(font3);
 
         horizontalLayout_4->addWidget(Point);
 
-        Equal = new QPushButton(layoutWidget);
+        Equal = new QPushButton(science);
         Equal->setObjectName(QStringLiteral("Equal"));
         Equal->setMinimumSize(QSize(0, 70));
         Equal->setFont(font3);
 
         horizontalLayout_4->addWidget(Equal);
 
-        Divide = new QPushButton(layoutWidget);
+        Divide = new QPushButton(science);
         Divide->setObjectName(QStringLiteral("Divide"));
         Divide->setMinimumSize(QSize(0, 70));
         Divide->setFont(font3);
 
         horizontalLayout_4->addWidget(Divide);
 
-        Clear = new QPushButton(layoutWidget);
+        Clear = new QPushButton(science);
         Clear->setObjectName(QStringLiteral("Clear"));
         Clear->setMinimumSize(QSize(0, 70));
         Clear->setFont(font3);
@@ -343,6 +391,14 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_4);
 
+
+        horizontalLayout_7->addLayout(verticalLayout);
+
+        horizontalSpacer_2 = new QSpacerItem(371, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_2);
+
+        horizontalLayout_7->setStretch(1, 1);
 
         retranslateUi(science);
 
