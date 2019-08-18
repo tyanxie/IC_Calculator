@@ -17,11 +17,9 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -39,9 +37,6 @@ public:
     QAction *actiongame;
     QAction *actionmatrix;
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
     QGridLayout *gridLayout;
     QStackedWidget *stackedWidget;
     QWidget *page;
@@ -110,23 +105,12 @@ public:
         actionmatrix->setIcon(icon8);
         centralWidget = new QWidget(Calculator);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(0);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1198, 797));
-        gridLayout = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(0);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        stackedWidget = new QStackedWidget(scrollAreaWidgetContents);
+        stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
@@ -136,10 +120,6 @@ public:
         stackedWidget->addWidget(page_2);
 
         gridLayout->addWidget(stackedWidget, 0, 0, 1, 1);
-
-        scrollArea->setWidget(scrollAreaWidgetContents);
-
-        verticalLayout->addWidget(scrollArea);
 
         Calculator->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Calculator);
@@ -164,6 +144,9 @@ public:
         mainToolBar->addAction(actiongame);
 
         retranslateUi(Calculator);
+
+        stackedWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(Calculator);
     } // setupUi

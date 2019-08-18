@@ -129,55 +129,55 @@ void science::on_Multiple_clicked()
 void science::on_Backspace_clicked()
 {
     strall = strall.left(strall.length()-1);
-        ui->textEditIN->setText(strall);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Zero_clicked()
 {
     str = "0";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Point_clicked()
 {
     str = ".";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Divide_clicked()
 {
     str = "/";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Clear_clicked()
 {
     strall.clear();
-        ui->textEditIN->clear();
-        ui->textEditOUT->clear();
+    ui->textEditIN->clear();
+    ui->textEditOUT->clear();
 }
 
 void science::on_Equal_clicked()
 {
 
-        ui->textEditIN->setText("");
-        strall.remove("in");//sin去掉in取‘s’为运算符，简便
-        strall.remove("os");//cos
-        strall.remove("an");//tan
-        strall.remove("od");//Mod
-        strall.remove('I');//In
+    ui->textEditIN->setText("");
+    strall.remove("in");//sin去掉in取‘s’为运算符，简便
+    strall.remove("os");//cos
+    strall.remove("an");//tan
+    strall.remove("od");//Mod
+    strall.remove('I');//In
 
-        QQueue<QString> temp1 = prefixExpression(strall);
-        QQueue<QString> temp2 = transferToPostfixExpression(temp1);
-        QString temp3 = Calculate(temp2);
+    QQueue<QString> temp1 = prefixExpression(strall);
+    QQueue<QString> temp2 = transferToPostfixExpression(temp1);
+    QString temp3 = Calculate(temp2);
 
-        if(temp3=="-0")temp3="0";//规范
+    if(temp3=="-0")temp3="0";//规范
 
-        strall.clear();
-        ui->textEditOUT->setText(temp3);
+    strall.clear();
+    ui->textEditOUT->setText(temp3);
 }
 
 
@@ -185,21 +185,46 @@ void science::on_Equal_clicked()
 QQueue<QString> science::prefixExpression(const QString &exp)
 {
     QQueue<QString> ret;
-        QString num="";
+    QString num="";
 
-        for(int i=0;i<exp.length();i++)
+    for(int i=0;i<exp.length();i++)
+    {
+        if( (exp[i]=='.') || ( (exp[i]>='0') && (exp[i]<='9') ))    //判断小数点和数字
         {
-            if( (exp[i]=='.') || ( (exp[i]>='0') && (exp[i]<='9') ))    //判断小数点和数字
+            num += exp[i];
+        }
+
+        else if(exp[i]== '(' || exp[i]== ')'
+                || exp[i]== '*' || exp[i]== '/'
+                ||exp[i] == '^' || exp[i]== 's'
+                ||exp[i] == 'c' || exp[i]== 't'
+                ||exp[i] == "√" || exp[i]== 'M'
+                ||exp[i] =='n'  || exp[i]== '!')
+        {
+            if(!num.isEmpty())
             {
-                num += exp[i];
+                ret.enqueue(num);        //将数字入队列
+                num.clear();
+            }
+            ret.enqueue(exp[i]);
+        }
+
+        else if(exp[i]== '+' || exp[i]== '-')           // + - 需要特殊处理
+        {
+            if(i==0)       //表达式开头,说明是正负号
+            {
+                num+= exp[i];
             }
 
-            else if(exp[i]== '(' || exp[i]== ')'
-                    || exp[i]== '*' || exp[i]== '/'
-                    ||exp[i] == '^' || exp[i]== 's'
-                    ||exp[i] == 'c' || exp[i]== 't'
-                    ||exp[i] == "√" || exp[i]== 'M'
-                    ||exp[i] =='n'  || exp[i]== '!')
+            else if(exp[i-1]=='(' || exp[i-1]=='+'
+                    || exp[i-1]=='-' || exp[i-1]=='*'
+                    || exp[i-1]=='/'||exp[i-1]=='^'||exp[i-1]=='s'
+                    || exp[i-1]=='c'||exp[i-1]=='t'||exp[i-1]=="√"
+                    || exp[i-1]=='M'||exp[i-1]=='n'||exp[i-1]=='!')
+            {
+                num+= exp[i];
+            }
+            else        //否则是加减运算符
             {
                 if(!num.isEmpty())
                 {
@@ -208,129 +233,104 @@ QQueue<QString> science::prefixExpression(const QString &exp)
                 }
                 ret.enqueue(exp[i]);
             }
-
-            else if(exp[i]== '+' || exp[i]== '-')           // + - 需要特殊处理
-            {
-                if(i==0)       //表达式开头,说明是正负号
-                {
-                 num+= exp[i];
-                }
-
-                else if(exp[i-1]=='(' || exp[i-1]=='+'
-                        || exp[i-1]=='-' || exp[i-1]=='*'
-                        || exp[i-1]=='/'||exp[i-1]=='^'||exp[i-1]=='s'
-                        || exp[i-1]=='c'||exp[i-1]=='t'||exp[i-1]=="√"
-                        || exp[i-1]=='M'||exp[i-1]=='n'||exp[i-1]=='!')
-                {
-                 num+= exp[i];
-                }
-                else        //否则是加减运算符
-                {
-                    if(!num.isEmpty())
-                    {
-                        ret.enqueue(num);        //将数字入队列
-                        num.clear();
-                    }
-                 ret.enqueue(exp[i]);
-                }
-            }
         }
+    }
 
-        if(!num.isEmpty())         //遍历完成,判断是否还有数字
-        {
-            ret.enqueue(num);
-            num.clear();
-        }
+    if(!num.isEmpty())         //遍历完成,判断是否还有数字
+    {
+        ret.enqueue(num);
+        num.clear();
+    }
     return ret;
 }
 
 QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
 {
-        QStack<QString> stack;
-        QQueue<QString> ret;
-        bool num_ok;
-        QString symbol;
+    QStack<QString> stack;
+    QQueue<QString> ret;
+    bool num_ok;
+    QString symbol;
 
-        while(!exp.isEmpty())
+    while(!exp.isEmpty())
+    {
+        symbol = exp.dequeue();   //出队列
+        symbol.toDouble(&num_ok);
+
+        if(num_ok==true)          //当前元素为数字，直接输出
         {
-          symbol = exp.dequeue();   //出队列
-          symbol.toDouble(&num_ok);
-
-          if(num_ok==true)          //当前元素为数字，直接输出
-          {
-               stack.push(symbol);
-          }
+            stack.push(symbol);
+        }
 
 
 
-          //与栈顶运算符进行优先级比较，如果小于等于，将栈顶元素输出，转1；如果大于，将当前元素入栈。
-          else if(symbol=="+"||symbol=="-")
-          {
-              while(!stack.isEmpty() &&(stack.top()!="("))// *
-              {
-                  ret.enqueue(stack.pop());     //取出栈顶运算符  并入队列
-              }
-              stack.push(symbol);
-          }
+        //与栈顶运算符进行优先级比较，如果小于等于，将栈顶元素输出，转1；如果大于，将当前元素入栈。
+        else if(symbol=="+"||symbol=="-")
+        {
+            while(!stack.isEmpty() &&(stack.top()!="("))// *
+            {
+                ret.enqueue(stack.pop());     //取出栈顶运算符  并入队列
+            }
+            stack.push(symbol);
+        }
 
-          else if(symbol=="*"||symbol=="/")
-          {
-              while(!stack.isEmpty() && (stack.top()!="(") && (stack.top()!="+") && (stack.top()!="-"))
-              {
-                  ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
-              }
-              stack.push(symbol);
-          }
+        else if(symbol=="*"||symbol=="/")
+        {
+            while(!stack.isEmpty() && (stack.top()!="(") && (stack.top()!="+") && (stack.top()!="-"))
+            {
+                ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
+            }
+            stack.push(symbol);
+        }
 
 
-          //以下优先级比乘，除，^更高
-          else if(symbol=="s"||symbol=="c"
-                  ||symbol=='t'||symbol=="√"
-                  ||symbol=='M'||symbol=='n'||symbol=='!'||symbol=="^")
-          {
-              while(!stack.isEmpty() && (stack.top()!="(")
-                    && (stack.top()!="+") && (stack.top()!="-")
-                    && (stack.top()!="*") && (stack.top()!="/"))
-              {
-                  ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
-              }
-              stack.push(symbol);//输出
-          }
+        //以下优先级比乘，除，^更高
+        else if(symbol=="s"||symbol=="c"
+                ||symbol=='t'||symbol=="√"
+                ||symbol=='M'||symbol=='n'||symbol=='!'||symbol=="^")
+        {
+            while(!stack.isEmpty() && (stack.top()!="(")
+                  && (stack.top()!="+") && (stack.top()!="-")
+                  && (stack.top()!="*") && (stack.top()!="/"))
+            {
+                ret.enqueue(stack.pop());     //取出栈顶运算符   并入队列
+            }
+            stack.push(symbol);//输出
+        }
 
-          else if(symbol == "(")
-          {
-             stack.push(symbol);
-          }
+        else if(symbol == "(")
+        {
+            stack.push(symbol);
+        }
 
-          else if(symbol ==")")
-          {
-              while(!stack.isEmpty() && (stack.top()!="("))
-              {
-                  ret.enqueue(stack.pop()); //取出栈顶运算符并入队列
-              }
+        else if(symbol ==")")
+        {
+            while(!stack.isEmpty() && (stack.top()!="("))
+            {
+                ret.enqueue(stack.pop()); //取出栈顶运算符并入队列
+            }
 
-              if(stack.isEmpty())//若没有“（”，则Error
-              {
-                  ret.clear();
-                  return ret;
-              }
-              if(stack.top()=="(")
+            if(stack.isEmpty())//若没有“（”，则Error
+            {
+                ret.clear();
+                return ret;
+            }
+            if(stack.top()=="(")
                 stack.pop();
 
-          }
         }
+    }
 
-        if(stack.isEmpty())//若没有数字，全为运算符，则Error
-        {
-            ret.clear();
-            return ret;
-        }
-
-        while(!stack.isEmpty()&& (stack.top()!="("))         //遍历完成,判断栈里是否为空
-        {
-           ret.enqueue(stack.pop());     //取出栈顶运算符并入队列
-        }
+    if(stack.isEmpty())//若没有数字，全为运算符，则Error
+    {
+        ret.clear();
         return ret;
+    }
+
+    while(!stack.isEmpty()&& (stack.top()!="("))         //遍历完成,判断栈里是否为空
+    {
+        ret.enqueue(stack.pop());     //取出栈顶运算符并入队列
+    }
+    return ret;
 
 }
 
@@ -339,67 +339,67 @@ QQueue<QString> science::transferToPostfixExpression(QQueue<QString> &exp)
 QString science::Calculate(QString &l, QString &op, QString &r)
 {
     double left,right,res;
-        QString ret="";
-        left = l.toDouble();
-        right = r.toDouble();
-        if(op == "+")
-        {
-            res = left + right;
-        }
+    QString ret="";
+    left = l.toDouble();
+    right = r.toDouble();
+    if(op == "+")
+    {
+        res = left + right;
+    }
 
-        else if(op == "-")
-        {
-            res = left - right;
-        }
+    else if(op == "-")
+    {
+        res = left - right;
+    }
 
-        else if(op == "*")
-        {
-            res = left * right;
-        }
+    else if(op == "*")
+    {
+        res = left * right;
+    }
 
-        else if(op == "^")
-        {
-            res = pow(left,right);
-        }
+    else if(op == "^")
+    {
+        res = pow(left,right);
+    }
 
-        else if(op == "M")
-        {
-            res = int(left) % int(right);
-        }
+    else if(op == "M")
+    {
+        res = int(left) % int(right);
+    }
 
-        else if(op == "/")
-        {
-            if( (right>(-0.000000000000001)) && (right<(0.000000000000001)) )   //判断除数为0
-                return "Error";
-            else
-                res = left/right;
-        }
+    else if(op == "/")
+    {
+        if( (right>(-0.000000000000001)) && (right<(0.000000000000001)) )   //判断除数为0
+            return "Error";
+        else
+            res = left/right;
+    }
 
-        ret.sprintf("%f",res);//将double型的res 转成 QString型的ret
-        return ret;
+    ret.sprintf("%f",res);//将double型的res 转成 QString型的ret
+    return ret;
 }
 
 QString science::ValidNum(QString str)
 {
     QString num;
 
-        if(str.indexOf(".")== -1) //没有出现“.”,indexOf返回-1，判断是否小数
-            return str;
-
-
-        while(str.length()>1)   //避免0被去掉
-        {
-             num=str.right(1);//字符串右端提取一个字符
-             if(num=="."||num=="0")
-             {
-                 str.chop(1);//砍掉一个字符
-                 if(num==".")
-                     return  str;
-             }
-             else
-                 return str;
-        }
+    if(str.indexOf(".")== -1) //没有出现“.”,indexOf返回-1，判断是否小数
         return str;
+
+
+    while(str.length()>1)   //避免0被去掉
+    {
+        num=str.right(1);//字符串右端提取一个字符
+        if(num=="."||num=="0")
+        {
+            str.chop(1);//砍掉一个字符
+            if(num==".")
+                return  str;
+        }
+        else
+            return str;
+    }
+    return str;
 }
 
 /*计算结果
@@ -415,175 +415,175 @@ QString science::ValidNum(QString str)
 QString science::Calculate(QQueue<QString> &exp)
 {
     QStack<QString> stack;
-        QString symbol,L,R,op,ret;
-        bool num_ok;
+    QString symbol,L,R,op,ret;
+    bool num_ok;
 
-        double res;
-        if(exp.isEmpty())return"Error";
-        while(!exp.isEmpty())
+    double res;
+    if(exp.isEmpty())return"Error";
+    while(!exp.isEmpty())
+    {
+        symbol = exp.dequeue();   //出队列
+        symbol.toDouble(&num_ok);
+
+        if(num_ok==true && symbol!='s'
+                && symbol!='c' && symbol!='t'
+                && symbol!="√" && symbol!='n')      //数字
         {
-          symbol = exp.dequeue();   //出队列
-          symbol.toDouble(&num_ok);
-
-          if(num_ok==true && symbol!='s'
-                  && symbol!='c' && symbol!='t'
-                  && symbol!="√" && symbol!='n')      //数字
-          {
             stack.push(symbol);
-          }
-          else                  //运算符
-          {
-
-              if(stack.size()<1)
-                  return "Error";
-
-                              if(symbol=='s')
-                               {
-
-                                res = stack.top().toDouble();
-                                res=sin(res);
-                                stack.pop();
-                                ret.sprintf("%f",res);
-                               }
-                              else if(symbol=='c')
-                               {
-
-                                res = stack.top().toDouble();
-                                res=cos(res);
-                                stack.pop();
-                                ret.sprintf("%f",res);
-                               }
-                              else if(symbol=='t')
-                               {
-
-                                res = stack.top().toDouble();
-                                res=tan(res);
-                                stack.pop();
-                                ret.sprintf("%f",res);
-                               }
-
-                              else if(symbol=="√")
-                               {
-
-                                res = stack.top().toDouble();
-                                res=sqrt(res);
-                                stack.pop();
-                                ret.sprintf("%f",res);
-                               }
-                              else if(symbol=="n")
-                               {
-
-                                res = stack.top().toDouble();
-                                res=log(res);
-                                stack.pop();
-                                ret.sprintf("%f",res);
-                               }
-                              else if(symbol=="!")
-                               {
-
-                                res = stack.top().toDouble();
-                                res=fac(int(res));
-                                stack.pop();
-                                ret.sprintf("%f",res);
-                               }
-
-                              else if(stack.size()<2)
-                                  return "Error";
-
-                              if(fabs(res)>=3060000.1) return"Overflow";
-
-
-
-                              if(symbol!='s' && symbol!='c'
-                                 && symbol!='t' && symbol!="√"
-                                 && symbol!='n' && symbol!='!')
-                              {
-                                  R= stack.pop();
-
-                                  L= stack.pop();
-
-                                  ret = Calculate(L,symbol,R );
-                              }
-
-                              if(ret=="Error")return "Error";
-              if(ret==nullptr)
-                  return ret;
-
-              stack.push(ret);
-          }
         }
-        if(stack.size()==1) //遍历完成,结果只有一个
+        else                  //运算符
         {
-             return ValidNum(stack.pop());
+
+            if(stack.size()<1)
+                return "Error";
+
+            if(symbol=='s')
+            {
+
+                res = stack.top().toDouble();
+                res=sin(res);
+                stack.pop();
+                ret.sprintf("%f",res);
+            }
+            else if(symbol=='c')
+            {
+
+                res = stack.top().toDouble();
+                res=cos(res);
+                stack.pop();
+                ret.sprintf("%f",res);
+            }
+            else if(symbol=='t')
+            {
+
+                res = stack.top().toDouble();
+                res=tan(res);
+                stack.pop();
+                ret.sprintf("%f",res);
+            }
+
+            else if(symbol=="√")
+            {
+
+                res = stack.top().toDouble();
+                res=sqrt(res);
+                stack.pop();
+                ret.sprintf("%f",res);
+            }
+            else if(symbol=="n")
+            {
+
+                res = stack.top().toDouble();
+                res=log(res);
+                stack.pop();
+                ret.sprintf("%f",res);
+            }
+            else if(symbol=="!")
+            {
+
+                res = stack.top().toDouble();
+                res=fac(int(res));
+                stack.pop();
+                ret.sprintf("%f",res);
+            }
+
+            else if(stack.size()<2)
+                return "Error";
+
+            if(fabs(res)>=3060000.1) return"Overflow";
+
+
+
+            if(symbol!='s' && symbol!='c'
+                    && symbol!='t' && symbol!="√"
+                    && symbol!='n' && symbol!='!')
+            {
+                R= stack.pop();
+
+                L= stack.pop();
+
+                ret = Calculate(L,symbol,R );
+            }
+
+            if(ret=="Error")return "Error";
+            if(ret==nullptr)
+                return ret;
+
+            stack.push(ret);
         }
-        else
-        {
-            return "Error";
-        }
+    }
+    if(stack.size()==1) //遍历完成,结果只有一个
+    {
+        return ValidNum(stack.pop());
+    }
+    else
+    {
+        return "Error";
+    }
 }
 
 void science::on_PI_clicked()
 {
     str = "3.1415926";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_E_clicked()
 {
     str = "2.718281828";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Involution_clicked()
 {
     str = "^";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Sin_clicked()
 {
     str = "sin";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 
 }
 
 void science::on_Cos_clicked()
 {
     str = "cos";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_pushButton_9_clicked()
 {
     str = "tan";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Square_clicked()
 {
     str = "√";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Mod_clicked()
 {
     str = "Mod";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Log_clicked()
 {
     str = "In";
-        strall.append(str);
-        ui->textEditIN->setText(strall);
+    strall.append(str);
+    ui->textEditIN->setText(strall);
 }
 
 void science::on_Factorial_clicked()
@@ -592,24 +592,24 @@ void science::on_Factorial_clicked()
     str = "!";
 
 
-        if(strall=="")
-        {
-            strall.append("0!");
-            ui->textEditIN->setText(strall);
+    if(strall=="")
+    {
+        strall.append("0!");
+        ui->textEditIN->setText(strall);
 
-        }
-        else
-        {
-            strall.append(str);
-            ui->textEditIN->setText(strall);
+    }
+    else
+    {
+        strall.append(str);
+        ui->textEditIN->setText(strall);
 
-        }
+    }
 
 
-        QQueue<QString> temp1 = prefixExpression(strall);
-        QQueue<QString> temp2 = transferToPostfixExpression(temp1);
-        QString temp3 = Calculate(temp2);
+    QQueue<QString> temp1 = prefixExpression(strall);
+    QQueue<QString> temp2 = transferToPostfixExpression(temp1);
+    QString temp3 = Calculate(temp2);
 
-        strall.clear();
-        ui->textEditOUT->setText(temp3);
+    strall.clear();
+    ui->textEditOUT->setText(temp3);
 }

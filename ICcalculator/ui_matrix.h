@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -27,6 +28,9 @@ QT_BEGIN_NAMESPACE
 class Ui_Matrix
 {
 public:
+    QGridLayout *gridLayout;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents_2;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_5;
     QVBoxLayout *verticalLayout_2;
@@ -61,15 +65,24 @@ public:
         if (Matrix->objectName().isEmpty())
             Matrix->setObjectName(QStringLiteral("Matrix"));
         Matrix->resize(1200, 820);
-        verticalLayout_4 = new QVBoxLayout(Matrix);
+        gridLayout = new QGridLayout(Matrix);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        scrollArea = new QScrollArea(Matrix);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents_2 = new QWidget();
+        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 1180, 800));
+        verticalLayout_4 = new QVBoxLayout(scrollAreaWidgetContents_2);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(0);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        a_row_label = new QLabel(Matrix);
+        a_row_label = new QLabel(scrollAreaWidgetContents_2);
         a_row_label->setObjectName(QStringLiteral("a_row_label"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
@@ -83,9 +96,11 @@ public:
 
         horizontalLayout->addWidget(a_row_label);
 
-        a_row_combo = new QComboBox(Matrix);
+        a_row_combo = new QComboBox(scrollAreaWidgetContents_2);
         a_row_combo->setObjectName(QStringLiteral("a_row_combo"));
         a_row_combo->setMinimumSize(QSize(0, 60));
+        a_row_combo->setMaximumSize(QSize(60, 16777215));
+        a_row_combo->setSizeIncrement(QSize(0, 0));
         a_row_combo->setFont(font);
 
         horizontalLayout->addWidget(a_row_combo);
@@ -95,7 +110,7 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        a_column_label = new QLabel(Matrix);
+        a_column_label = new QLabel(scrollAreaWidgetContents_2);
         a_column_label->setObjectName(QStringLiteral("a_column_label"));
         sizePolicy.setHeightForWidth(a_column_label->sizePolicy().hasHeightForWidth());
         a_column_label->setSizePolicy(sizePolicy);
@@ -103,9 +118,11 @@ public:
 
         horizontalLayout_2->addWidget(a_column_label);
 
-        a_column_combo = new QComboBox(Matrix);
+        a_column_combo = new QComboBox(scrollAreaWidgetContents_2);
         a_column_combo->setObjectName(QStringLiteral("a_column_combo"));
         a_column_combo->setMinimumSize(QSize(0, 60));
+        a_column_combo->setMaximumSize(QSize(60, 16777215));
+        a_column_combo->setSizeIncrement(QSize(0, 0));
         a_column_combo->setFont(font);
 
         horizontalLayout_2->addWidget(a_column_combo);
@@ -123,7 +140,7 @@ public:
 
         horizontalLayout_5->addLayout(verticalLayout_2);
 
-        a_input_grid = new QWidget(Matrix);
+        a_input_grid = new QWidget(scrollAreaWidgetContents_2);
         a_input_grid->setObjectName(QStringLiteral("a_input_grid"));
         a_input_gridLayout = new QGridLayout(a_input_grid);
         a_input_gridLayout->setSpacing(3);
@@ -137,9 +154,10 @@ public:
 
         verticalLayout->addItem(verticalSpacer);
 
-        operator_combo = new QComboBox(Matrix);
+        operator_combo = new QComboBox(scrollAreaWidgetContents_2);
         operator_combo->setObjectName(QStringLiteral("operator_combo"));
         operator_combo->setMinimumSize(QSize(0, 60));
+        operator_combo->setMaximumSize(QSize(60, 60));
         operator_combo->setFont(font);
 
         verticalLayout->addWidget(operator_combo);
@@ -155,7 +173,7 @@ public:
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        b_row_label = new QLabel(Matrix);
+        b_row_label = new QLabel(scrollAreaWidgetContents_2);
         b_row_label->setObjectName(QStringLiteral("b_row_label"));
         sizePolicy.setHeightForWidth(b_row_label->sizePolicy().hasHeightForWidth());
         b_row_label->setSizePolicy(sizePolicy);
@@ -163,9 +181,11 @@ public:
 
         horizontalLayout_3->addWidget(b_row_label);
 
-        b_row_combo = new QComboBox(Matrix);
+        b_row_combo = new QComboBox(scrollAreaWidgetContents_2);
         b_row_combo->setObjectName(QStringLiteral("b_row_combo"));
         b_row_combo->setMinimumSize(QSize(0, 60));
+        b_row_combo->setMaximumSize(QSize(60, 16777215));
+        b_row_combo->setSizeIncrement(QSize(0, 0));
         b_row_combo->setFont(font);
 
         horizontalLayout_3->addWidget(b_row_combo);
@@ -175,7 +195,7 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        b_column_label = new QLabel(Matrix);
+        b_column_label = new QLabel(scrollAreaWidgetContents_2);
         b_column_label->setObjectName(QStringLiteral("b_column_label"));
         sizePolicy.setHeightForWidth(b_column_label->sizePolicy().hasHeightForWidth());
         b_column_label->setSizePolicy(sizePolicy);
@@ -183,9 +203,11 @@ public:
 
         horizontalLayout_4->addWidget(b_column_label);
 
-        b_column_combo = new QComboBox(Matrix);
+        b_column_combo = new QComboBox(scrollAreaWidgetContents_2);
         b_column_combo->setObjectName(QStringLiteral("b_column_combo"));
         b_column_combo->setMinimumSize(QSize(0, 60));
+        b_column_combo->setMaximumSize(QSize(60, 16777215));
+        b_column_combo->setSizeIncrement(QSize(60, 0));
         b_column_combo->setFont(font);
 
         horizontalLayout_4->addWidget(b_column_combo);
@@ -203,7 +225,7 @@ public:
 
         horizontalLayout_5->addLayout(verticalLayout_3);
 
-        b_input_grid = new QWidget(Matrix);
+        b_input_grid = new QWidget(scrollAreaWidgetContents_2);
         b_input_grid->setObjectName(QStringLiteral("b_input_grid"));
         b_input_gridLayout = new QGridLayout(b_input_grid);
         b_input_gridLayout->setSpacing(3);
@@ -220,7 +242,7 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_5);
 
-        output_grid = new QWidget(Matrix);
+        output_grid = new QWidget(scrollAreaWidgetContents_2);
         output_grid->setObjectName(QStringLiteral("output_grid"));
         output_grid->setEnabled(true);
         output_gridLayout = new QGridLayout(output_grid);
@@ -230,8 +252,12 @@ public:
 
         verticalLayout_4->addWidget(output_grid);
 
-        verticalLayout_4->setStretch(0, 1);
-        verticalLayout_4->setStretch(1, 1);
+        verticalLayout_4->setStretch(0, 2);
+        verticalLayout_4->setStretch(1, 3);
+        scrollArea->setWidget(scrollAreaWidgetContents_2);
+
+        gridLayout->addWidget(scrollArea, 0, 0, 1, 1);
+
 
         retranslateUi(Matrix);
 
