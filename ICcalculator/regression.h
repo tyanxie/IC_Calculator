@@ -44,9 +44,9 @@ private slots:
 
     void on_calculation_clicked();
 
-    void on_pushButton_clicked();
-
     void on_title_textChanged(const QString &arg1);
+
+    void on_Save_clicked();
 
 private:
     Ui::Regression *ui;

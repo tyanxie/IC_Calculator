@@ -28,8 +28,27 @@ Regression::Regression(QWidget *parent) :
     ui->x->setAlignment(Qt::AlignCenter);
     ui->y->setAlignment(Qt::AlignCenter);
 
-    chartview = new QChartView(ui->stackedWidget);
+    chartview = new QChartView();
+    ui->stackedWidget->addWidget(chartview);
+    ui->stackedWidget->setCurrentWidget(chartview);
     chartview->setVisible(false);
+
+    ui->horizontalLayout->setStretch(0,130);
+    ui->horizontalLayout->setStretch(1,65);
+    ui->horizontalLayout->setStretch(2,500);
+    ui->horizontalLayout->setStretch(3,150);
+    ui->horizontalLayout->setStretch(4,150);
+
+    ui->horizontalLayout_2->setStretch(0,141);
+    ui->horizontalLayout_2->setStretch(1,931);
+    ui->horizontalLayout_2->setStretch(2,91);
+
+    ui->horizontalLayout_3->setStretch(0,2);
+    ui->horizontalLayout_3->setStretch(1,19);
+
+    ui->verticalLayout_5->setStretch(0,8);
+    ui->verticalLayout_5->setStretch(1,10);
+    ui->verticalLayout_5->setStretch(2,5);
 }
 
 void Regression::Solution(double& a,double& b,double& r){
@@ -79,6 +98,8 @@ Regression::~Regression()
 
 void Regression::on_comboBox_currentIndexChanged(int index)
 {
+    ui->r->setText("R");
+
     delete[] data[0];
     delete[] data[1];
     number = index + 3;
@@ -124,8 +145,13 @@ void Regression::on_calculation_clicked()
         else
             expression = expression + QString::asprintf(" ＋ %.4lf",fabs(b));
     }
+
     // r
-    ui->r->setText(QString::asprintf("%.3lf",r));
+    if(number>5)
+        ui->r->setText(QString::asprintf("R = \n"));
+    else
+        ui->r->setText(QString::asprintf("R = "));
+    ui->r->setText(ui->r->text() + QString::asprintf("%.3lf",r));
 
     this->drawing(a,b);
 }
@@ -134,7 +160,6 @@ void Regression::on_calculation_clicked()
 void Regression::drawing(double a,double b){
     chartview->setVisible(true);
     chartview->setRenderHint(QPainter::Antialiasing);
-    chartview->setMinimumSize(940,450);
     QChart *chart = new QChart();
     chartview->setChart(chart);
 
@@ -244,7 +269,15 @@ void Regression::drawing(double a,double b){
     chart->setAxisY(yaxis,scatter);
 }
 
-void Regression::on_pushButton_clicked()
+void Regression::on_title_textChanged(const QString &arg1)
+{
+    if(arg1 == "在此输入标题，默认为图表1")
+        title_flag = false;
+    else
+        title_flag = true;
+}
+
+void Regression::on_Save_clicked()
 {
     QString filepath = QFileDialog::getSaveFileName(
                 this,tr("Save Image"),"图片",tr("*.png"));
@@ -252,12 +285,4 @@ void Regression::on_pushButton_clicked()
     QPixmap p = screen->grabWindow(chartview->winId());
     QImage image = p.toImage();
     image.save(filepath);
-}
-
-void Regression::on_title_textChanged(const QString &arg1)
-{
-    if(arg1 == "在此输入标题，默认为图表1")
-        title_flag = false;
-    else
-        title_flag = true;
 }
