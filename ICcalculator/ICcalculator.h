@@ -11,6 +11,7 @@
 #include "matrix.h"
 #include "programmer.h"
 #include "relationship.h"
+#include "game.h"
 namespace Ui {
 class Calculator;
 }
@@ -31,6 +32,7 @@ private slots:
     void open_matrix();
     void open_programmer();
     void open_relationship();
+    void open_game();
 
 private:
     Ui::Calculator *ui;
@@ -41,6 +43,7 @@ private:
     Matrix *new_matrix;
     Programmer *new_programmer;
     Relationship *new_relationship;
+    Game *new_game;
 };
 
 #endif // CALCULATOR_H
