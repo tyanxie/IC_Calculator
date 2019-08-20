@@ -39,7 +39,8 @@ SOURCES += \
     programmer.cpp \
     relationship.cpp \
     relatives.cpp \
-    game.cpp
+    game.cpp \
+    game_points_twenty_four.cpp
 
 HEADERS += \
         ICcalculator.h \
@@ -55,7 +56,8 @@ HEADERS += \
     programmer.h \
     relationship.h \
     relatives.h \
-    game.h
+    game.h \
+    game_points_twenty_four.h
 
 FORMS += \
         ICcalculator.ui \
