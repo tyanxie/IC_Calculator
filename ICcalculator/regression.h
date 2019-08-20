@@ -8,6 +8,7 @@
 #include <QImage>
 #include <QLineEdit>
 #include <QtCharts>
+#include "prompt.h"
 
 namespace Ui {
 class Regression;
@@ -32,11 +33,12 @@ class Regression : public QWidget
     Q_OBJECT
 
 private:
+    void Solution(double& a,double& b,double& r);
     void drawing(double a,double b);
+    bool not_all_number()const;
 
 public:
     explicit Regression(QWidget *parent = nullptr);
-    void Solution(double& a,double& b,double& r);
     ~Regression();
 
 private slots:
@@ -48,13 +50,16 @@ private slots:
 
     void on_Save_clicked();
 
+    void on_clear_clicked();
+
 private:
-    Ui::Regression *ui;
-    QLineEdit **data;
-    QChartView *chartview;
-    QString expression;
     int number;
+    Prompt *prompt;
     bool title_flag;
+    QLineEdit **data;
+    Ui::Regression *ui;
+    QString expression;
+    QChartView *chartView;
 };
 
 #endif // REGRESSION_H

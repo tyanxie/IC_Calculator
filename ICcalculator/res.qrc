@@ -15,5 +15,7 @@
         <file>images/science2.ico</file>
         <file>images/matrix2.ico</file>
         <file>images/mainIco.ico</file>
+        <file>images/warning.ico</file>
+        <file>images/success.ico</file>
     </qresource>
 </RCC>

@@ -7,6 +7,9 @@ Regression::Regression(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    prompt = new Prompt();
+    prompt->hide();
+
     number = 3;
     title_flag = false;
 
@@ -28,10 +31,10 @@ Regression::Regression(QWidget *parent) :
     ui->x->setAlignment(Qt::AlignCenter);
     ui->y->setAlignment(Qt::AlignCenter);
 
-    chartview = new QChartView();
-    ui->stackedWidget->addWidget(chartview);
-    ui->stackedWidget->setCurrentWidget(chartview);
-    chartview->setVisible(false);
+    chartView = new QChartView();
+    ui->stackedWidget->addWidget(chartView);
+    ui->stackedWidget->setCurrentWidget(chartView);
+    chartView->setVisible(false);
 
     ui->horizontalLayout->setStretch(0,130);
     ui->horizontalLayout->setStretch(1,65);
@@ -49,6 +52,67 @@ Regression::Regression(QWidget *parent) :
     ui->verticalLayout_5->setStretch(0,8);
     ui->verticalLayout_5->setStretch(1,10);
     ui->verticalLayout_5->setStretch(2,5);
+}
+
+bool Regression::not_all_number() const{
+    QString x,y;
+    for (int i = 0; i < number; i++) {
+        x = data[0][i].text();
+        y = data[1][i].text();
+        for(int j = 0; j < x.size(); j++)
+            if(x[j]<'0'||x[j]>'9')
+                return true;
+        for(int j = 0; j < y.size(); j++)
+            if(y[j]<'0'||y[j]>'9')
+                return true;
+    }
+    return false;
+}
+
+void Regression::on_calculation_clicked()
+{
+    if(not_all_number()){
+        QApplication::beep();
+        prompt->changeMessage("输入必须全部为数字");
+        prompt->setWindowTitle("Error");
+        prompt->setWindowIcon(QIcon(":/images/warning.ico"));
+        prompt->exec();
+        return;
+    }
+
+    expression.clear();
+    double a,b,r;
+    bool is_a = false;
+    Solution(a,b,r);
+
+    // a
+    if(a<1e-8){
+        is_a = true;
+        expression = "";
+    }
+    else
+        expression.sprintf("y = %.4lfx",a);
+
+    // b
+    if(b<1e-8)
+        expression = expression + "";
+    else if(b<0)
+        expression = expression +  QString::asprintf(" － %.4lf",fabs(b));
+    else{
+        if(is_a)
+            expression = QString::asprintf("%.4lf",fabs(b));
+        else
+            expression = expression + QString::asprintf(" ＋ %.4lf",fabs(b));
+    }
+
+    // r
+    if(number>5)
+        ui->r->setText(QString::asprintf("R = \n"));
+    else
+        ui->r->setText(QString::asprintf("R = "));
+    ui->r->setText(ui->r->text() + QString::asprintf("%.3lf",r));
+
+    this->drawing(a,b);
 }
 
 void Regression::Solution(double& a,double& b,double& r){
@@ -88,80 +152,11 @@ void Regression::Solution(double& a,double& b,double& r){
     r = Lxy / sqrt(Lxx * Lyy);
 }
 
-Regression::~Regression()
-{
-    for(int i = 0;i < number;i++)
-        delete[] data[i];
-    delete [] data;
-    delete ui;
-}
-
-void Regression::on_comboBox_currentIndexChanged(int index)
-{
-    ui->r->setText("R");
-
-    delete[] data[0];
-    delete[] data[1];
-    number = index + 3;
-
-    data[0] = new QLineEdit[number];
-    data[1] = new QLineEdit[number];
-
-    for(int i = 0;i < number;i++){
-        data[0][i].setMaximumSize(MAX_SIZE);
-        data[1][i].setMaximumSize(MAX_SIZE);
-
-        data[0][i].setFont(FONT);
-        data[1][i].setFont(FONT);
-
-        ui->gridLayout->addWidget(&data[0][i],0,i);
-        ui->gridLayout->addWidget(&data[1][i],1,i);
-    }
-}
-
-void Regression::on_calculation_clicked()
-{
-    expression.clear();
-    double a,b,r;
-    bool is_a = false;
-    Solution(a,b,r);
-
-    // a
-    if(a<1e-8){
-        is_a = true;
-        expression = "";
-    }
-    else
-        expression.sprintf("y = %.4lfx",a);
-
-    // b
-    if(b<1e-8)
-        expression = expression + "";
-    else if(b<0)
-        expression = expression +  QString::asprintf(" － %.4lf",fabs(b));
-    else{
-        if(is_a)
-            expression = QString::asprintf("%.4lf",fabs(b));
-        else
-            expression = expression + QString::asprintf(" ＋ %.4lf",fabs(b));
-    }
-
-    // r
-    if(number>5)
-        ui->r->setText(QString::asprintf("R = \n"));
-    else
-        ui->r->setText(QString::asprintf("R = "));
-    ui->r->setText(ui->r->text() + QString::asprintf("%.3lf",r));
-
-    this->drawing(a,b);
-}
-
-
 void Regression::drawing(double a,double b){
-    chartview->setVisible(true);
-    chartview->setRenderHint(QPainter::Antialiasing);
+    chartView->setVisible(true);
+    chartView->setRenderHint(QPainter::Antialiasing);
     QChart *chart = new QChart();
-    chartview->setChart(chart);
+    chartView->setChart(chart);
 
     // 展示动画
     chart->setAnimationOptions(QChart::AllAnimations);
@@ -269,6 +264,48 @@ void Regression::drawing(double a,double b){
     chart->setAxisY(yaxis,scatter);
 }
 
+void Regression::on_comboBox_currentIndexChanged(int index)
+{
+    ui->r->setText("R");
+
+    QString **temp;
+    int num = number;
+    temp = new QString*[2];
+    temp[0] = new QString[num];
+    temp[1] = new QString[num];
+    for(int i = 0;i < num;i++){
+        temp[0][i] = data[0][i].text();
+        temp[1][i] = data[1][i].text();
+    }
+
+    delete[] data[0];
+    delete[] data[1];
+    number = index + 3;
+
+    data[0] = new QLineEdit[number];
+    data[1] = new QLineEdit[number];
+
+    for(int i = 0;i < num && i < number;i++){
+        data[0][i].setText(temp[0][i]);
+        data[1][i].setText(temp[1][i]);
+    }
+
+    for(int i = 0;i < number;i++){
+        data[0][i].setMaximumSize(MAX_SIZE);
+        data[1][i].setMaximumSize(MAX_SIZE);
+
+        data[0][i].setFont(FONT);
+        data[1][i].setFont(FONT);
+
+        ui->gridLayout->addWidget(&data[0][i],0,i);
+        ui->gridLayout->addWidget(&data[1][i],1,i);
+    }
+
+    delete[] temp[0];
+    delete[] temp[1];
+    delete[] temp;
+}
+
 void Regression::on_title_textChanged(const QString &arg1)
 {
     if(arg1 == "在此输入标题，默认为图表1")
@@ -282,7 +319,30 @@ void Regression::on_Save_clicked()
     QString filepath = QFileDialog::getSaveFileName(
                 this,tr("Save Image"),"图片",tr("*.png"));
     QScreen *screen = QGuiApplication::primaryScreen();
-    QPixmap p = screen->grabWindow(chartview->winId());
+    QPixmap p = screen->grabWindow(chartView->winId());
     QImage image = p.toImage();
     image.save(filepath);
+    QApplication::beep();
+    prompt->changeMessage("保存成功");
+    prompt->setWindowTitle("Message");
+    prompt->setWindowIcon(QIcon(":/images/success.ico"));
+    prompt->exec();
+}
+
+Regression::~Regression()
+{
+    for(int i = 0;i < number;i++)
+        delete[] data[i];
+    delete [] data;
+    delete prompt;
+    delete chartView;
+    delete ui;
+}
+
+void Regression::on_clear_clicked()
+{
+    for(int i = 0; i < number; i++){
+        data[0][i].clear();
+        data[1][i].clear();
+    }
 }

@@ -31,20 +31,23 @@ SOURCES += \
     science.cpp \
     plural.cpp \
     complex.cpp \
-    regression.cpp
+    regression.cpp \
+    prompt.cpp
 
 HEADERS += \
         ICcalculator.h \
     science.h \
     plural.h \
     complex.h \
-    regression.h
+    regression.h \
+    prompt.h
 
 FORMS += \
         ICcalculator.ui \
     science.ui \
     complex.ui \
-    regression.ui
+    regression.ui \
+    prompt.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -55,3 +58,5 @@ RESOURCES += \
     res.qrc
 
 RC_ICONS = mainIco.ico
+
+DISTFILES +=
