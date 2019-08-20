@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -74,3 +75,5 @@ RESOURCES += \
     res.qrc
 
 RC_ICONS = mainIco.ico
+
+DISTFILES +=
