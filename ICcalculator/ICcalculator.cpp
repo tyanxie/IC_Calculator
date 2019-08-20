@@ -20,25 +20,26 @@ Calculator::Calculator(QWidget *parent) :
     new_programmer=new Programmer;
     new_regression = new Regression;
     new_relationship=new Relationship;
+
+    ui->stackedWidget->addWidget(new_date);
+    ui->stackedWidget->addWidget(new_matrix);
     ui->stackedWidget->addWidget(new_science);
     ui->stackedWidget->addWidget(new_complex);
-    ui->stackedWidget->addWidget(new_date);
     ui->stackedWidget->addWidget(new_equation);
-    ui->stackedWidget->addWidget(new_matrix);
     ui->stackedWidget->addWidget(new_programmer);
-    ui->stackedWidget->addWidget(new_relationship);
     ui->stackedWidget->addWidget(new_regression);
+    ui->stackedWidget->addWidget(new_relationship);
 
     ui->stackedWidget->setCurrentWidget(new_science);
 
+    connect(ui->actiondate,&QAction::triggered,this,&Calculator::open_date);
+    connect(ui->actionmatrix,&QAction::triggered,this,&Calculator::open_matrix);
     connect(ui->actionscience,&QAction::triggered,this,&Calculator::open_science);
     connect(ui->actioncomplex,&QAction::triggered,this,&Calculator::open_complex);
-    connect(ui->actiondate,&QAction::triggered,this,&Calculator::open_date);
     connect(ui->actionequation,&QAction::triggered,this,&Calculator::open_equation);
-    connect(ui->actionmatrix,&QAction::triggered,this,&Calculator::open_matrix);
     connect(ui->actionprogrammer,&QAction::triggered,this,&Calculator::open_programmer);
-    connect(ui->actionrelationship,&QAction::triggered,this,&Calculator::open_relationship);
     connect(ui->actionregression,&QAction::triggered,this,&Calculator::open_regression);
+    connect(ui->actionrelationship,&QAction::triggered,this,&Calculator::open_relationship);
 }
 
 Calculator::~Calculator()

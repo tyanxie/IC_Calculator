@@ -25,25 +25,25 @@ public:
     ~Calculator();
 
 private slots:
-    void open_complex();
     void open_date();
+    void open_matrix();
+    void open_complex();
     void open_science();
     void open_equation();
-    void open_matrix();
     void open_programmer();
-    void open_relationship();
     void open_regression();
+    void open_relationship();
 
 private:
     Ui::Calculator *ui;
+    Date *new_date;
+    Matrix *new_matrix;
     science *new_science;
     Complex *new_complex;
-    Date *new_date;
     Equation *new_equation;
-    Matrix *new_matrix;
     Programmer *new_programmer;
-    Relationship *new_relationship;
     Regression *new_regression;
+    Relationship *new_relationship;
 };
 
 #endif // CALCULATOR_H
