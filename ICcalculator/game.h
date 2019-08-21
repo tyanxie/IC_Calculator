@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 #include "calculator_game.h"
+#include "game24.h"
 
 namespace Ui {
 class Game;
@@ -38,6 +39,8 @@ private slots:
 
     void on_start_clicked();
 
+    void on_return_2_clicked();
+
 private:
     Ui::Game *ui;
     game_for_calculator g;
@@ -45,6 +48,7 @@ private:
     int try_time;
     int correct_number;
     Time newtime;
+    Game24 *game24;
 
     void changeQue();
     void addOneMs(Time& time);

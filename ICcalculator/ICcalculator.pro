@@ -43,7 +43,9 @@ SOURCES += \
     prompt.cpp \
     regression.cpp \
     calculator_game.cpp \
-    game.cpp
+    game.cpp \
+    game24.cpp \
+    game_points_twenty_four.cpp
 
 HEADERS += \
         ICcalculator.h \
@@ -62,7 +64,9 @@ HEADERS += \
     prompt.h \
     regression.h \
     calculator_game.h \
-    game.h
+    game.h \
+    game24.h \
+    game_points_twenty_four.h
 
 FORMS += \
         ICcalculator.ui \
@@ -75,7 +79,8 @@ FORMS += \
     relationship.ui \
     prompt.ui \
     regression.ui \
-    game.ui
+    game.ui \
+    game24.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

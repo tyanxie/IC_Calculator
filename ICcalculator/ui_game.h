@@ -53,7 +53,9 @@ public:
     QSpacerItem *verticalSpacer_4;
     QWidget *page_2;
     QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_9;
     QSpacerItem *verticalSpacer;
+    QPushButton *return_2;
     QGroupBox *groupBox;
     QHBoxLayout *horizontalLayout_5;
     QLabel *left_operand;
@@ -206,9 +208,23 @@ public:
         page_2->setObjectName(QStringLiteral("page_2"));
         verticalLayout_4 = new QVBoxLayout(page_2);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalSpacer = new QSpacerItem(20, 149, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        verticalSpacer = new QSpacerItem(17, 153, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_4->addItem(verticalSpacer);
+        horizontalLayout_9->addItem(verticalSpacer);
+
+        return_2 = new QPushButton(page_2);
+        return_2->setObjectName(QStringLiteral("return_2"));
+        return_2->setMaximumSize(QSize(16777215, 75));
+        return_2->setFont(font);
+
+        horizontalLayout_9->addWidget(return_2);
+
+        horizontalLayout_9->setStretch(0, 10);
+        horizontalLayout_9->setStretch(1, 1);
+
+        verticalLayout_4->addLayout(horizontalLayout_9);
 
         groupBox = new QGroupBox(page_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -439,7 +455,7 @@ public:
 
         retranslateUi(Game);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Game);
@@ -452,6 +468,7 @@ public:
         radioButton->setText(QApplication::translate("Game", "\347\256\200\345\215\225\347\256\227\346\234\257", Q_NULLPTR));
         radioButton_2->setText(QApplication::translate("Game", "24\347\202\271", Q_NULLPTR));
         start->setText(QApplication::translate("Game", "Start", Q_NULLPTR));
+        return_2->setText(QApplication::translate("Game", "\350\277\224\345\233\236", Q_NULLPTR));
         groupBox->setTitle(QApplication::translate("Game", "\345\217\243\347\256\227\345\260\217\346\270\270\346\210\217\357\274\214\350\276\223\345\205\245\346\241\206\345\233\236\350\275\246\346\217\220\344\272\244\347\255\224\346\241\210\357\274\214\346\214\211\351\222\256\346\214\211\344\270\213\346\215\242\351\242\230", Q_NULLPTR));
         left_operand->setText(QString());
         _operator->setText(QString());

@@ -9,6 +9,9 @@ Game::Game(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    game24 = new Game24;
+    ui->stackedWidget->addWidget(game24);
+
     try_time = 0;
     correct_number = 0;
 
@@ -139,12 +142,22 @@ void Game::upDate(){
 
 void Game::on_start_clicked()
 {
-    ui->minute->setText("00");
-    ui->second->setText("00");
-    ui->msecond->setText("00");
-    ui->stackedWidget->setCurrentWidget(ui->page_2);
+    if(ui->radioButton->isChecked()){
+        correct_number = 0;
+        ui->correct->setText("0");
+        ui->minute->setText("00");
+        ui->second->setText("00");
+        ui->msecond->setText("00");
+        ui->answer->setText("");
+        ui->result->setText("");
+        ui->realanswer->setText("");
+        ui->stackedWidget->setCurrentWidget(ui->page_2);
 
-    this->changeQue();
+        this->changeQue();
+    }
+    else if(ui->radioButton_2->isChecked()){
+        ui->stackedWidget->setCurrentWidget(game24);
+    }
 }
 
 void Game::addOneMs(Time &time){
@@ -158,4 +171,9 @@ void Game::addOneMs(Time &time){
         time.second = 0;
         ++time.minute;
     }
+}
+
+void Game::on_return_2_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page);
 }
