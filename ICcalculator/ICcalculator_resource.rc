@@ -1,6 +1,6 @@
 #include <windows.h>
 
-IDI_ICON1	ICON	DISCARDABLE	"C:\\Qt\\Projects\\GIit\\IC_Calculator\\ICcalculator\\mainIco.ico"
+IDI_ICON1	ICON	DISCARDABLE	"C:\\Qt\\Projects\\IC_Calculator\\ICcalculator\\mainIco.ico"
 
 VS_VERSION_INFO VERSIONINFO
 	FILEVERSION 0,0,0,0

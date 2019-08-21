@@ -2,11 +2,35 @@
 #define GAME_H
 
 #include <QWidget>
+#include <QTimer>
 #include "calculator_game.h"
 
 namespace Ui {
 class Game;
 }
+
+struct Time{
+    int msecond;
+    int second;
+    int minute;
+    Time(){
+        msecond = second = minute = 0;
+    }
+    void clear(){
+        msecond = 0;
+        second = 0;
+        minute = 0;
+    }
+    bool operator>(const Time& temp){
+        if(this->minute > temp.minute)
+            return true;
+        if(this->second > temp.second)
+            return true;
+        if(this->msecond > temp.msecond)
+            return true;
+        return false;
+    }
+};
 
 class Game : public QWidget
 {
@@ -17,15 +41,22 @@ public:
     ~Game();
 
 private slots:
-
-
-    void on_startbutton_clicked();
+    void upDate();
 
     void on_answer_returnPressed();
+
+    void on_start_clicked();
 
 private:
     Ui::Game *ui;
     game_for_calculator g;
+    QTimer *timer;
+    int try_time;
+    int correct_number;
+    Time newtime;
+
+    void changeQue();
+    void addOneMs(Time& time);
 };
 
 #endif // GAME_H
