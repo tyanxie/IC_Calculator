@@ -223,7 +223,7 @@ public:
 };
 
 namespace Ui {
-    class Game: public Ui_Game {};
+    class Game24: public Ui_Game {};
 } // namespace Ui
 
 QT_END_NAMESPACE
