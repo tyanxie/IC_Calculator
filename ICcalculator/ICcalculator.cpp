@@ -19,6 +19,7 @@ Calculator::Calculator(QWidget *parent) :
     new_matrix = new Matrix;
     new_programmer=new Programmer;
     new_relationship=new Relationship;
+    new_game=new Game;
     ui->stackedWidget->addWidget(new_science);
     ui->stackedWidget->addWidget(new_complex);
     ui->stackedWidget->addWidget(new_date);
@@ -26,6 +27,7 @@ Calculator::Calculator(QWidget *parent) :
     ui->stackedWidget->addWidget(new_matrix);
     ui->stackedWidget->addWidget(new_programmer);
     ui->stackedWidget->addWidget(new_relationship);
+    ui->stackedWidget->addWidget(new_game);
 
     ui->stackedWidget->setCurrentWidget(new_science);
 
@@ -37,6 +39,7 @@ Calculator::Calculator(QWidget *parent) :
     connect(ui->actionmatrix,&QAction::triggered,this,&Calculator::open_matrix);
     connect(ui->actionprogrammer,&QAction::triggered,this,&Calculator::open_programmer);
     connect(ui->actionrelationship,&QAction::triggered,this,&Calculator::open_relationship);
+    connect(ui->actiongame,&QAction::triggered,this,&Calculator::open_game);
 }
 
 Calculator::~Calculator()
@@ -76,4 +79,8 @@ void Calculator::open_programmer()
 
 void Calculator::open_relationship(){
     ui->stackedWidget->setCurrentWidget(new_relationship);
+}
+
+void Calculator::open_game(){
+    ui->stackedWidget->setCurrentWidget(new_game);
 }
