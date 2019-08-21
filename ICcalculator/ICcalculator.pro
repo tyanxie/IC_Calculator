@@ -39,8 +39,8 @@ SOURCES += \
     programmer.cpp \
     relationship.cpp \
     relatives.cpp \
-    game.cpp \
-    game_points_twenty_four.cpp
+    game_points_twenty_four.cpp \
+    tfpoints.cpp
 
 HEADERS += \
         ICcalculator.h \
@@ -56,8 +56,8 @@ HEADERS += \
     programmer.h \
     relationship.h \
     relatives.h \
-    game.h \
-    game_points_twenty_four.h
+    game_points_twenty_four.h \
+    tfpoints.h
 
 FORMS += \
         ICcalculator.ui \
@@ -68,7 +68,7 @@ FORMS += \
     matrix.ui \
     programmer.ui \
     relationship.ui \
-    game.ui
+    tfpoints.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

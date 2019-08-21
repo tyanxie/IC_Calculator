@@ -11,7 +11,7 @@
 #include "matrix.h"
 #include "programmer.h"
 #include "relationship.h"
-#include "game.h"
+#include "tfpoints.h"
 namespace Ui {
 class Calculator;
 }

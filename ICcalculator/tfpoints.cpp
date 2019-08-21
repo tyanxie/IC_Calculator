@@ -1,6 +1,6 @@
-#include "game.h"
+#include "tfpoints.h"
 #include "game_points_twenty_four.h"
-#include "ui_game.h"
+#include "ui_tfpoints.h"
 #include <string>
 
 Game::Game(QWidget *parent) :

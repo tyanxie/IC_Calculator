@@ -65,7 +65,6 @@ void points_twenty_four::get_question() {
 }
 
 void points_twenty_four::get_user_answer(int *_num, char *_op){
-    int tot = 0;
     for (int i = 0; i < 4; i++) {
         input_num[i] = _num[i];
         if(i < 3){
