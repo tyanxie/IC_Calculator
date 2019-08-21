@@ -31,10 +31,7 @@ void Game::changeQue()
 
     newtime.clear();
 
-    ui->startbutton->setText("再来一发");
     ui->answer->setText("");
-//    ui->realanswer->setText("");
-//    ui->result->setText("");
 
     g.get_equation();
 
@@ -59,7 +56,11 @@ void Game::on_answer_returnPressed()
         QString ra = QString::asprintf("%.5lf", g.get_result());
         ui->realanswer->setText(ra);
 
-        if(now > newtime){
+        if((newtime.minute < now.minute )||
+                (newtime.minute == now.minute && newtime.second < now.second)||
+                (newtime.minute == now.minute && newtime.second == now.second &&
+                 newtime.minute < now.msecond))
+        {
             if(newtime.msecond<10)
                 ui->msecond_cal->setText(QString::asprintf("0%d",newtime.msecond));
             else
@@ -86,6 +87,11 @@ void Game::on_answer_returnPressed()
         ui->correct->setText(QString::asprintf("%d",correct_number));
         ui->result->setText("不太对嗷，再试试看");
         ui->realanswer->setText("");
+
+        ui->minute->setText("00");
+        ui->second->setText("00");
+        ui->msecond->setText("00");
+
         ++try_time;
     }
     else{
@@ -94,6 +100,10 @@ void Game::on_answer_returnPressed()
         ui->result->setText("不太对嗷，答案应该是：");
         QString ra = QString::asprintf("%.5lf", g.get_result());
         ui->realanswer->setText(ra);
+
+        ui->minute->setText("00");
+        ui->second->setText("00");
+        ui->msecond->setText("00");
 
         this->changeQue();
     }
@@ -149,15 +159,3 @@ void Game::addOneMs(Time &time){
         ++time.minute;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -20,6 +20,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,19 +34,38 @@ public:
     QGridLayout *gridLayout;
     QStackedWidget *stackedWidget;
     QWidget *page;
-    QPushButton *start;
-    QWidget *page_2;
+    QVBoxLayout *verticalLayout_3;
+    QSpacerItem *verticalSpacer_3;
+    QHBoxLayout *horizontalLayout_7;
+    QSpacerItem *horizontalSpacer_4;
     QLabel *label;
-    QPushButton *startbutton;
-    QLabel *realanswer;
+    QSpacerItem *horizontalSpacer_5;
+    QHBoxLayout *horizontalLayout_8;
+    QSpacerItem *horizontalSpacer_8;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
+    QSpacerItem *horizontalSpacer_9;
+    QSpacerItem *verticalSpacer_5;
+    QHBoxLayout *horizontalLayout_6;
+    QSpacerItem *horizontalSpacer_6;
+    QPushButton *start;
+    QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *verticalSpacer_4;
+    QWidget *page_2;
+    QVBoxLayout *verticalLayout_4;
+    QSpacerItem *verticalSpacer;
     QGroupBox *groupBox;
+    QHBoxLayout *horizontalLayout_5;
     QLabel *left_operand;
     QLabel *_operator;
     QLabel *right_operand;
     QLabel *equal;
     QLineEdit *answer;
+    QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer;
     QLabel *result;
-    QWidget *widget;
+    QLabel *realanswer;
+    QSpacerItem *horizontalSpacer_2;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout;
     QLabel *label_5;
@@ -64,6 +85,8 @@ public:
     QLabel *second_cal;
     QLabel *label_9;
     QLabel *msecond_cal;
+    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *verticalSpacer_2;
 
     void setupUi(QWidget *Game)
     {
@@ -71,109 +94,238 @@ public:
             Game->setObjectName(QStringLiteral("Game"));
         Game->resize(1200, 820);
         gridLayout = new QGridLayout(Game);
+        gridLayout->setSpacing(0);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         stackedWidget = new QStackedWidget(Game);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
+        verticalLayout_3 = new QVBoxLayout(page);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalSpacer_3 = new QSpacerItem(20, 149, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_3);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_4);
+
+        label = new QLabel(page);
+        label->setObjectName(QStringLiteral("label"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font.setPointSize(18);
+        label->setFont(font);
+        label->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_7->addWidget(label);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_5);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_7);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_8);
+
+        radioButton = new QRadioButton(page);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setFont(font);
+        radioButton->setChecked(true);
+
+        horizontalLayout_8->addWidget(radioButton);
+
+        radioButton_2 = new QRadioButton(page);
+        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
+        radioButton_2->setFont(font);
+
+        horizontalLayout_8->addWidget(radioButton_2);
+
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_9);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_8);
+
+        verticalSpacer_5 = new QSpacerItem(20, 126, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_5);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_6);
+
         start = new QPushButton(page);
         start->setObjectName(QStringLiteral("start"));
-        start->setGeometry(QRect(200, 230, 791, 221));
-        QFont font;
-        font.setPointSize(100);
-        start->setFont(font);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(start->sizePolicy().hasHeightForWidth());
+        start->setSizePolicy(sizePolicy);
+        start->setMaximumSize(QSize(16777215, 75));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Times New Roman"));
+        font1.setPointSize(24);
+        start->setFont(font1);
+
+        horizontalLayout_6->addWidget(start);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_7);
+
+        horizontalLayout_6->setStretch(0, 2);
+        horizontalLayout_6->setStretch(1, 1);
+        horizontalLayout_6->setStretch(2, 2);
+
+        verticalLayout_3->addLayout(horizontalLayout_6);
+
+        verticalSpacer_4 = new QSpacerItem(20, 149, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_4);
+
+        verticalLayout_3->setStretch(0, 1);
+        verticalLayout_3->setStretch(1, 1);
+        verticalLayout_3->setStretch(2, 1);
+        verticalLayout_3->setStretch(3, 1);
+        verticalLayout_3->setStretch(4, 1);
+        verticalLayout_3->setStretch(5, 1);
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        label = new QLabel(page_2);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(531, 490, 450, 80));
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("\351\232\266\344\271\246"));
-        font1.setPointSize(14);
-        label->setFont(font1);
-        label->setAlignment(Qt::AlignCenter);
-        startbutton = new QPushButton(page_2);
-        startbutton->setObjectName(QStringLiteral("startbutton"));
-        startbutton->setGeometry(QRect(891, 390, 200, 100));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("\345\215\216\346\226\207\350\241\214\346\245\267"));
-        font2.setPointSize(20);
-        startbutton->setFont(font2);
-        realanswer = new QLabel(page_2);
-        realanswer->setObjectName(QStringLiteral("realanswer"));
-        realanswer->setGeometry(QRect(561, 380, 241, 100));
-        QFont font3;
-        font3.setFamily(QStringLiteral("Consolas"));
-        font3.setPointSize(18);
-        realanswer->setFont(font3);
-        realanswer->setAlignment(Qt::AlignCenter);
+        verticalLayout_4 = new QVBoxLayout(page_2);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalSpacer = new QSpacerItem(20, 149, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer);
+
         groupBox = new QGroupBox(page_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(91, 150, 1001, 150));
+        horizontalLayout_5 = new QHBoxLayout(groupBox);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         left_operand = new QLabel(groupBox);
         left_operand->setObjectName(QStringLiteral("left_operand"));
-        left_operand->setGeometry(QRect(40, 40, 150, 80));
-        QFont font4;
-        font4.setFamily(QStringLiteral("Consolas"));
-        font4.setPointSize(20);
-        left_operand->setFont(font4);
+        QFont font2;
+        font2.setFamily(QStringLiteral("Consolas"));
+        font2.setPointSize(20);
+        left_operand->setFont(font2);
         left_operand->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_5->addWidget(left_operand);
+
         _operator = new QLabel(groupBox);
         _operator->setObjectName(QStringLiteral("_operator"));
-        _operator->setGeometry(QRect(240, 40, 150, 80));
-        _operator->setFont(font4);
+        QFont font3;
+        font3.setFamily(QStringLiteral("Consolas"));
+        font3.setPointSize(24);
+        _operator->setFont(font3);
         _operator->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_5->addWidget(_operator);
+
         right_operand = new QLabel(groupBox);
         right_operand->setObjectName(QStringLiteral("right_operand"));
-        right_operand->setGeometry(QRect(450, 40, 150, 80));
-        right_operand->setFont(font4);
+        right_operand->setFont(font2);
         right_operand->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_5->addWidget(right_operand);
+
         equal = new QLabel(groupBox);
         equal->setObjectName(QStringLiteral("equal"));
-        equal->setGeometry(QRect(640, 40, 150, 80));
-        equal->setFont(font4);
+        equal->setFont(font3);
         equal->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_5->addWidget(equal);
+
         answer = new QLineEdit(groupBox);
         answer->setObjectName(QStringLiteral("answer"));
-        answer->setGeometry(QRect(830, 40, 150, 80));
-        answer->setFont(font4);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(answer->sizePolicy().hasHeightForWidth());
+        answer->setSizePolicy(sizePolicy1);
+        answer->setMinimumSize(QSize(0, 0));
+        answer->setMaximumSize(QSize(16777215, 75));
+        answer->setFont(font2);
         answer->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_5->addWidget(answer);
+
+        horizontalLayout_5->setStretch(0, 1);
+        horizontalLayout_5->setStretch(1, 1);
+        horizontalLayout_5->setStretch(2, 1);
+        horizontalLayout_5->setStretch(3, 1);
+        horizontalLayout_5->setStretch(4, 1);
+
+        verticalLayout_4->addWidget(groupBox);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer);
+
         result = new QLabel(page_2);
         result->setObjectName(QStringLiteral("result"));
-        result->setGeometry(QRect(90, 380, 451, 100));
-        QFont font5;
-        font5.setFamily(QString::fromUtf8("\345\215\216\346\226\207\350\241\214\346\245\267"));
-        font5.setPointSize(24);
-        font5.setUnderline(true);
-        result->setFont(font5);
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("\345\215\216\346\226\207\350\241\214\346\245\267"));
+        font4.setPointSize(24);
+        font4.setUnderline(false);
+        result->setFont(font4);
         result->setAlignment(Qt::AlignCenter);
-        widget = new QWidget(page_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(90, 500, 334, 119));
-        horizontalLayout_3 = new QHBoxLayout(widget);
+        result->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+
+        horizontalLayout_4->addWidget(result);
+
+        realanswer = new QLabel(page_2);
+        realanswer->setObjectName(QStringLiteral("realanswer"));
+        realanswer->setFont(font3);
+        realanswer->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        realanswer->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+
+        horizontalLayout_4->addWidget(realanswer);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_2);
+
+        horizontalLayout_4->setStretch(0, 1);
+        horizontalLayout_4->setStretch(1, 1);
+        horizontalLayout_4->setStretch(2, 2);
+        horizontalLayout_4->setStretch(3, 1);
+
+        verticalLayout_4->addLayout(horizontalLayout_4);
+
+        horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(page_2);
         label_5->setObjectName(QStringLiteral("label_5"));
-        QFont font6;
-        font6.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font6.setPointSize(18);
-        label_5->setFont(font6);
+        label_5->setFont(font);
 
         verticalLayout->addWidget(label_5);
 
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(page_2);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setFont(font6);
+        label_4->setFont(font);
 
         verticalLayout->addWidget(label_4);
 
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(page_2);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setFont(font6);
+        label_7->setFont(font);
 
         verticalLayout->addWidget(label_7);
 
@@ -182,44 +334,44 @@ public:
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        correct = new QLabel(widget);
+        correct = new QLabel(page_2);
         correct->setObjectName(QStringLiteral("correct"));
-        QFont font7;
-        font7.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font7.setPointSize(24);
-        correct->setFont(font7);
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font5.setPointSize(24);
+        correct->setFont(font5);
 
         verticalLayout_2->addWidget(correct);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        minute = new QLabel(widget);
+        minute = new QLabel(page_2);
         minute->setObjectName(QStringLiteral("minute"));
-        minute->setFont(font7);
+        minute->setFont(font5);
 
         horizontalLayout->addWidget(minute);
 
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(page_2);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setFont(font7);
+        label_3->setFont(font5);
 
         horizontalLayout->addWidget(label_3);
 
-        second = new QLabel(widget);
+        second = new QLabel(page_2);
         second->setObjectName(QStringLiteral("second"));
-        second->setFont(font7);
+        second->setFont(font5);
 
         horizontalLayout->addWidget(second);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(page_2);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setFont(font7);
+        label_2->setFont(font5);
 
         horizontalLayout->addWidget(label_2);
 
-        msecond = new QLabel(widget);
+        msecond = new QLabel(page_2);
         msecond->setObjectName(QStringLiteral("msecond"));
-        msecond->setFont(font7);
+        msecond->setFont(font5);
 
         horizontalLayout->addWidget(msecond);
 
@@ -228,33 +380,33 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        minute_cal = new QLabel(widget);
+        minute_cal = new QLabel(page_2);
         minute_cal->setObjectName(QStringLiteral("minute_cal"));
-        minute_cal->setFont(font7);
+        minute_cal->setFont(font5);
 
         horizontalLayout_2->addWidget(minute_cal);
 
-        label_8 = new QLabel(widget);
+        label_8 = new QLabel(page_2);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setFont(font7);
+        label_8->setFont(font5);
 
         horizontalLayout_2->addWidget(label_8);
 
-        second_cal = new QLabel(widget);
+        second_cal = new QLabel(page_2);
         second_cal->setObjectName(QStringLiteral("second_cal"));
-        second_cal->setFont(font7);
+        second_cal->setFont(font5);
 
         horizontalLayout_2->addWidget(second_cal);
 
-        label_9 = new QLabel(widget);
+        label_9 = new QLabel(page_2);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setFont(font7);
+        label_9->setFont(font5);
 
         horizontalLayout_2->addWidget(label_9);
 
-        msecond_cal = new QLabel(widget);
+        msecond_cal = new QLabel(page_2);
         msecond_cal->setObjectName(QStringLiteral("msecond_cal"));
-        msecond_cal->setFont(font7);
+        msecond_cal->setFont(font5);
 
         horizontalLayout_2->addWidget(msecond_cal);
 
@@ -264,6 +416,22 @@ public:
 
         horizontalLayout_3->addLayout(verticalLayout_2);
 
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_3);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_3);
+
+        verticalSpacer_2 = new QSpacerItem(20, 149, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_2);
+
+        verticalLayout_4->setStretch(0, 1);
+        verticalLayout_4->setStretch(1, 1);
+        verticalLayout_4->setStretch(2, 1);
+        verticalLayout_4->setStretch(3, 1);
+        verticalLayout_4->setStretch(4, 1);
         stackedWidget->addWidget(page_2);
 
         gridLayout->addWidget(stackedWidget, 0, 0, 1, 1);
@@ -271,7 +439,7 @@ public:
 
         retranslateUi(Game);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Game);
@@ -280,16 +448,17 @@ public:
     void retranslateUi(QWidget *Game)
     {
         Game->setWindowTitle(QApplication::translate("Game", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("Game", "\351\200\211\346\213\251\346\203\263\347\216\251\347\232\204\346\270\270\346\210\217\345\271\266\345\215\225\345\207\273start", Q_NULLPTR));
+        radioButton->setText(QApplication::translate("Game", "\347\256\200\345\215\225\347\256\227\346\234\257", Q_NULLPTR));
+        radioButton_2->setText(QApplication::translate("Game", "24\347\202\271", Q_NULLPTR));
         start->setText(QApplication::translate("Game", "Start", Q_NULLPTR));
-        label->setText(QApplication::translate("Game", "\350\277\231\346\230\257\346\215\242\351\242\230\351\224\256\357\274\214\344\270\215\346\230\257\346\217\220\344\272\244\347\255\224\346\241\210\347\232\204\346\214\211\345\227\267\342\206\227", Q_NULLPTR));
-        startbutton->setText(QApplication::translate("Game", "\346\235\245\344\270\200\345\217\221", Q_NULLPTR));
-        realanswer->setText(QString());
         groupBox->setTitle(QApplication::translate("Game", "\345\217\243\347\256\227\345\260\217\346\270\270\346\210\217\357\274\214\350\276\223\345\205\245\346\241\206\345\233\236\350\275\246\346\217\220\344\272\244\347\255\224\346\241\210\357\274\214\346\214\211\351\222\256\346\214\211\344\270\213\346\215\242\351\242\230", Q_NULLPTR));
         left_operand->setText(QString());
         _operator->setText(QString());
         right_operand->setText(QString());
-        equal->setText(QApplication::translate("Game", "=", Q_NULLPTR));
+        equal->setText(QApplication::translate("Game", "\357\274\235", Q_NULLPTR));
         result->setText(QString());
+        realanswer->setText(QString());
         label_5->setText(QApplication::translate("Game", "\350\277\236\347\273\255\346\255\243\347\241\256\344\270\252\346\225\260\357\274\232", Q_NULLPTR));
         label_4->setText(QApplication::translate("Game", "\350\277\236\347\273\255\346\255\243\347\241\256\346\227\266\351\225\277\357\274\232", Q_NULLPTR));
         label_7->setText(QApplication::translate("Game", "\346\234\200\347\237\255\350\256\241\347\256\227\346\227\266\351\227\264\357\274\232", Q_NULLPTR));

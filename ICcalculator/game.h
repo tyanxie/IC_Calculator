@@ -21,15 +21,6 @@ struct Time{
         second = 0;
         minute = 0;
     }
-    bool operator>(const Time& temp){
-        if(this->minute > temp.minute)
-            return true;
-        if(this->second > temp.second)
-            return true;
-        if(this->msecond > temp.msecond)
-            return true;
-        return false;
-    }
 };
 
 class Game : public QWidget
