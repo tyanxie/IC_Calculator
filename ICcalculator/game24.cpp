@@ -90,3 +90,8 @@ void Game24::on_input4_returnPressed()
 {
     this->on_input1_returnPressed();
 }
+
+void Game24::on_pushButton_clicked()
+{
+    emit please_Return();
+}

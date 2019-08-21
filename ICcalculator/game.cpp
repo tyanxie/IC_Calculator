@@ -11,6 +11,7 @@ Game::Game(QWidget *parent) :
 
     game24 = new Game24;
     ui->stackedWidget->addWidget(game24);
+    connect(game24,SIGNAL(please_Return()),this,SLOT(allowReturn()));
 
     try_time = 0;
     correct_number = 0;
@@ -171,6 +172,10 @@ void Game::addOneMs(Time &time){
         time.second = 0;
         ++time.minute;
     }
+}
+
+void Game::allowReturn(){
+    ui->stackedWidget->setCurrentWidget(ui->page);
 }
 
 void Game::on_return_2_clicked()

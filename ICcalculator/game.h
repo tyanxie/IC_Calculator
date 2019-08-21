@@ -35,6 +35,8 @@ public:
 private slots:
     void upDate();
 
+    void allowReturn();
+
     void on_answer_returnPressed();
 
     void on_start_clicked();
