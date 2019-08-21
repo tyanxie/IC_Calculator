@@ -39,12 +39,12 @@ void Game::on_answer_returnPressed()
 
     if (fabs(ui->answer->text().toDouble() - g.get_result()) < 0.01) {
         ui->result->setText("厉害嗷！答案是：");
-        QString ra = QString::number(g.get_result());
+        QString ra = QString::asprintf("%.5lf", g.get_result());
         ui->realanswer->setText(ra);
     }
     else {
         ui->result->setText("不太对嗷，答案应该是：");
-        QString ra = QString::number(g.get_result());
+        QString ra = QString::asprintf("%.5lf", g.get_result());
         ui->realanswer->setText(ra);
     }
 }
