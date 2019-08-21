@@ -12,6 +12,7 @@
 #include "programmer.h"
 #include "relationship.h"
 #include "regression.h"
+#include "game.h"
 namespace Ui {
 class Calculator;
 }
@@ -33,6 +34,7 @@ private slots:
     void open_programmer();
     void open_regression();
     void open_relationship();
+    void open_game();
 
 private:
     Ui::Calculator *ui;
@@ -44,6 +46,7 @@ private:
     Programmer *new_programmer;
     Regression *new_regression;
     Relationship *new_relationship;
+    Game *new_game;
 };
 
 #endif // CALCULATOR_H
