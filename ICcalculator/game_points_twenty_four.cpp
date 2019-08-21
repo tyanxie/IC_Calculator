@@ -1,7 +1,9 @@
 #include "game_points_twenty_four.h"
 #include <iostream>
+#include <string>
 #include <random>
 #include <ctime>
+#include <cstring>
 #include <unordered_map>
 using namespace std;
 
@@ -18,13 +20,7 @@ points_twenty_four::points_twenty_four()
         op[i] = '\0';
         input_op[i] = '\0';
     }
-    //get_question();
-    while (1) {
-        get_question();
-        if (get_suggested_answer() != "no answer!") {
-            break;
-        }
-    }
+    get_question();
 }
 
 
@@ -58,23 +54,23 @@ void points_twenty_four::get_question() {
             break;
         }
     }
+    get_suggested_answer();
+    if(suggested_answer == "no answer!"){
+        get_question();
+    }
+    else {
+        return;
+    }
 
 }
 
-bool points_twenty_four::get_user_answer(int *_num, char *_op){
+void points_twenty_four::get_user_answer(int *_num, char *_op){
     int tot = 0;
     for (int i = 0; i < 4; i++) {
         input_num[i] = _num[i];
-        tot += input_num[i];
         if(i < 3){
             input_op[i] = _op[i];
         }
-    }
-    if(tot == 24){
-        return false;
-    }
-    else {
-        return true;
     }
 }
 
@@ -868,7 +864,9 @@ string points_twenty_four::get_suggested_answer() {
     }
     suggested_answer = answer_map[s];
 
-    //给出答案
+    //if(answer_map[s] == "no answer!")
+
+    //返回所得答案
     return suggested_answer;
 
 }
