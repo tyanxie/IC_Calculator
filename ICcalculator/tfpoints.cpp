@@ -3,19 +3,19 @@
 #include "ui_tfpoints.h"
 #include <string>
 
-Game24::Game24(QWidget *parent) :
+Game::Game(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Game24)
+    ui(new Ui::Game)
 {
     ui->setupUi(this);
 }
 
-Game24::~Game24()
+Game::~Game()
 {
     delete ui;
 }
 
-void Game24::on_change_clicked()
+void Game::on_change_clicked()
 {
     ui->change->setText("再来一发");
     ui->input1->setText("");
@@ -34,7 +34,7 @@ void Game24::on_change_clicked()
     ui->number4->setText(QString('0' + num[3]));
 }
 
-void Game24::on_input4_returnPressed()
+void Game::on_input4_returnPressed()
 {
 
 

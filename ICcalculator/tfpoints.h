@@ -5,16 +5,16 @@
 #include "game_points_twenty_four.h"
 
 namespace Ui {
-class Game24;
+class Game;
 }
 
-class Game24 : public QWidget
+class Game : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Game24(QWidget *parent = nullptr);
-    ~Game24();
+    explicit Game(QWidget *parent = nullptr);
+    ~Game();
 
 private slots:
     void on_change_clicked();
@@ -22,7 +22,7 @@ private slots:
     void on_input4_returnPressed();
 
 private:
-    Ui::Game24 *ui;
+    Ui::Game *ui;
     points_twenty_four p;
 };
 
