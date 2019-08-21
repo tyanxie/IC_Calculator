@@ -22,8 +22,14 @@
      <height>150</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>华文行楷</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="title">
-    <string>GroupBox</string>
+    <string>输入框，输入的算式不按数学逻辑顺序计算，而是按照从左到右的顺序计算</string>
    </property>
    <widget class="QLineEdit" name="input1">
     <property name="geometry">
@@ -33,6 +39,15 @@
       <width>142</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="input2">
@@ -44,6 +59,15 @@
       <height>101</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLineEdit" name="input3">
     <property name="geometry">
@@ -54,6 +78,15 @@
       <height>101</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLineEdit" name="input4">
     <property name="geometry">
@@ -63,6 +96,15 @@
       <width>142</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QComboBox" name="_operator1">
@@ -189,8 +231,14 @@
      <height>141</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="title">
-    <string>GroupBox</string>
+    <string>二十四点的题目</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
@@ -202,7 +250,7 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -218,7 +266,7 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -234,7 +282,7 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -250,7 +298,7 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -268,8 +316,14 @@
      <height>161</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="title">
-    <string>GroupBox</string>
+    <string>答案输出</string>
    </property>
    <widget class="QLabel" name="output_result">
     <property name="geometry">
@@ -280,8 +334,14 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>华文行楷</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="output_answer">
@@ -293,16 +353,22 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
   </widget>
   <widget class="QPushButton" name="change">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>490</y>
+     <x>880</x>
+     <y>530</y>
      <width>181</width>
      <height>81</height>
     </rect>
@@ -315,6 +381,44 @@
    </property>
    <property name="text">
     <string>来一发</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>610</y>
+     <width>491</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>隶书</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>这是游戏开始按钮和换题目的按钮↗</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>380</y>
+     <width>521</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>隶书</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>提交答案请在这个输入框按下回车键↗</string>
    </property>
   </widget>
  </widget>
