@@ -60,10 +60,10 @@ bool Regression::not_all_number() const{
         x = data[0][i].text();
         y = data[1][i].text();
         for(int j = 0; j < x.size(); j++)
-            if(x[j]<'0'||x[j]>'9')
+            if(!((x[j] >= '0' && x[j] <= '9')||x[j] == '.'))
                 return true;
         for(int j = 0; j < y.size(); j++)
-            if(y[j]<'0'||y[j]>'9')
+            if(!((y[j] >= '0' && y[j] <= '9')||y[j] == '.'))
                 return true;
     }
     return false;

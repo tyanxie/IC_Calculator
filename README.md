@@ -1,5 +1,3 @@
-<font face = "Consolas">
-
 # IC_Calculator
 > 使用说明书
 
